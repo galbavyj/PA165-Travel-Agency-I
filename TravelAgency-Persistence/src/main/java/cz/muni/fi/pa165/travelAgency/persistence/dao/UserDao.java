@@ -6,6 +6,7 @@
 package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
 import cz.muni.fi.pa165.travelAgency.persistence.entity.User;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -44,7 +45,7 @@ public interface UserDao {
      *
      * @return all customers
      */
-    public Set<User> findAllCustomers();
+    public List<User> findAllCustomers();
     
     /**
      * find user by email in database

@@ -6,32 +6,44 @@
 package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
 import cz.muni.fi.pa165.travelAgency.persistence.entity.User;
-import java.util.Set;
+import enums.UserRole;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Martin
  */
-public class UserDaoImpl implements UserDao{
+@Repository
+public class UserDaoImpl implements UserDao {
+
+    @PersistenceContext
+    private EntityManager em;
 
     public void create(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        em.persist(user);
     }
 
     public void remove(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        em.remove(user);
     }
 
     public User update(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return em.merge(user);
     }
 
-    public Set<User> findAllCustomers() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<User> findAllCustomers() {
+        final Query query = em.createQuery("SELECT u FROM User as u WHERE u.userRole = :userRole");
+        query.setParameter("userRole", UserRole.CUSTOMER);
+        return query.getResultList();
     }
 
     public User findByEmail(String email) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        final Query query = em.createQuery("SELECT u FROM User as u WHERE u.email = :email");
+        query.setParameter("email", email);
+        return (User) query.getSingleResult();
     }
-    
 }
