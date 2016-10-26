@@ -69,8 +69,6 @@ public class Trip {
         this.price = price;
     }
 
-    
-    
     public Long getId() {
         return id;
     }
@@ -186,8 +184,8 @@ public class Trip {
 
     @Override
     public String toString() {
-        return "Trip{" + "id=" + id + ", from=" + from.toString() + ", to=" + to.toString() + ", addressOfHotel=" + 
-                addressOfHotel.toString() + ", price=" + price.toString() +  ", created=" + created + ", filePathToPicture=" +
+        return "Trip{" + "id=" + id.toString() + ", from=" + from.toString() + ", to=" + to.toString() + ", addressOfHotel=" + 
+                addressOfHotel.toString() + ", price=" + price.toString() +  ", created=" + created.toString() + ", filePathToPicture=" +
                 filePathToPicture + ", possibleExcursions=" + possibleExcursions.toString() + '}';
     }
     
