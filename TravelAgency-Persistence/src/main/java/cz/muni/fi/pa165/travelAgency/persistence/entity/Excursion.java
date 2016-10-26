@@ -5,14 +5,7 @@
  */
 package cz.muni.fi.pa165.travelAgency.persistence.entity;
 
-<<<<<<< HEAD
-/**
- *
- * @author Patrik Behrami
- */
-class Excursion {
     
-=======
 import enums.UserRole;
 import java.util.Date;
 import java.util.Set;
@@ -133,5 +126,4 @@ public class Excursion {
     public Excursion(){
         
     }
->>>>>>> refs/remotes/origin/master
 }
