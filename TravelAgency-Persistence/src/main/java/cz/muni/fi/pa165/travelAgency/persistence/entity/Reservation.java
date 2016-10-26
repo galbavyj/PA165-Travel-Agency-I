@@ -64,9 +64,13 @@ public class Reservation {
         this.user = user;
     }
 
-    public Date getCreated() { return created;}
+    public Date getCreated() {
+        return created;
+    }
 
-    public void setCreated(Date created) { this.created = created; }
+    public void setCreated(Date created) {
+        this.created = created;
+    }
 
     public Trip getTrip() {
         return trip;
