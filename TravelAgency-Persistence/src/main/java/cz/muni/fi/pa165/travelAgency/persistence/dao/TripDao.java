@@ -6,6 +6,7 @@
 package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -43,6 +44,6 @@ public interface TripDao {
      *
      * @return all trips
      */
-    public Set<Trip> findAllTrips();
+    public List<Trip> findAllTrips();
     
 }

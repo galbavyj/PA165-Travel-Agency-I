@@ -6,7 +6,10 @@
 package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
+import java.util.List;
 import java.util.Set;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -14,20 +17,23 @@ import java.util.Set;
  */
 public class TripDaoImpl implements TripDao {
 
+    @PersistenceContext
+    private EntityManager em;
+    
     public void create(Trip trip) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        em.persist(trip);
     }
 
     public void remove(Trip trip) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        em.remove(trip);
     }
 
     public Trip update(Trip trip) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return em.merge(trip);
     }
 
-    public Set<Trip> findAllTrips() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Trip> findAllTrips() {
+        return em.createQuery("SELECT t FROM Trip t",Trip.class).getResultList();
     }
     
 }
