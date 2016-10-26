@@ -40,10 +40,19 @@ public interface TripDao {
 
     
     /**
-     * find all trips
+     * Find all trips
      *
-     * @return all trips
+     * @return All trips in a List
      */
     public List<Trip> findAllTrips();
+   
+    /**
+     * Find all trips that are taking place in a certain country
+     * 
+     * @param countryName Name of the country we want to find Trips to.
+     * @return List of Trips available in demanded country
+     */
+    public List<Trip> findTripsByCountry(String countryName);
+
     
 }

@@ -8,6 +8,7 @@ package cz.muni.fi.pa165.travelAgency.persistence.entity;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -55,9 +56,9 @@ public class Trip {
     private BigDecimal price;
     
     private String filePathToPicture;
-
+     
     public Trip(){
-        
+        possibleExcursions = new HashSet<>();
     }
     
     public Trip(Date from, Date to, Date created, Set<Excursion> possibleExcursions, Address addressOfHotel, BigDecimal price) {

@@ -35,5 +35,11 @@ public class TripDaoImpl implements TripDao {
     public List<Trip> findAllTrips() {
         return em.createQuery("SELECT t FROM Trip t",Trip.class).getResultList();
     }
+
+    @Override
+    public List<Trip> findTripsByCountry(String countryName) {
+        //TODO
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
