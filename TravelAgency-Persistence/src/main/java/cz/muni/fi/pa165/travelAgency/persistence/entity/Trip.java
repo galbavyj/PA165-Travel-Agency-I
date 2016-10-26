@@ -53,6 +53,8 @@ public class Trip {
     @NotNull
     @Column(nullable = false)
     private BigDecimal price;
+    
+    private String filePathToPicture;
 
     public Trip(){
         
@@ -125,6 +127,69 @@ public class Trip {
         this.price = price;
     }
     
+    @Override
+    public int hashCode() {
+        int hash = 11;
+        hash = 37 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 37 * hash + (this.to != null ? this.to.hashCode() : 0);
+        hash = 37 * hash + (this.from != null ? this.from.hashCode() : 0);
+        hash = 37 * hash + (this.possibleExcursions != null ? this.possibleExcursions.hashCode() : 0);
+        hash = 37 * hash + (this.addressOfHotel != null ? this.addressOfHotel.hashCode() : 0);
+        hash = 37 * hash + (this.price != null ? this.price.hashCode() : 0);
+        hash = 37 * hash + (this.created != null ? this.created.hashCode() : 0);
+        hash = 37 * hash + (this.filePathToPicture != null ? this.filePathToPicture.hashCode() : 0);
+
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Trip other = (Trip) obj;
+        if ((this.from == null) ? (other.from != null) : !this.from.equals(other.from)) {
+            return false;
+        }
+        if ((this.to == null) ? (other.to != null) : !this.to.equals(other.to)) {
+            return false;
+        }
+        if ((this.addressOfHotel == null) ? (other.addressOfHotel != null) : !this.addressOfHotel.equals(other.addressOfHotel)) {
+            return false;
+        }
+        if ((this.price == null) ? (other.price != null) : !this.price.equals(other.price)) {
+            return false;
+        }
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if (this.filePathToPicture != other.filePathToPicture && (this.filePathToPicture == null
+                || !this.filePathToPicture.equals(other.filePathToPicture))) {
+            return false;
+        }
+        if (this.created != other.created && (this.created == null || !this.created.equals(other.created))) {
+            return false;
+        }
+        
+        if (this.possibleExcursions != other.possibleExcursions && (this.possibleExcursions == null ||
+                !this.possibleExcursions.equals(other.possibleExcursions))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Trip{" + "id=" + id + ", from=" + from.toString() + ", to=" + to.toString() + ", addressOfHotel=" + 
+                addressOfHotel.toString() + ", price=" + price.toString() +  ", created=" + created + ", filePathToPicture=" +
+                filePathToPicture + ", possibleExcursions=" + possibleExcursions.toString() + '}';
+    }
     
     
     
