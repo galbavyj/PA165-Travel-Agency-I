@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.travelAgency.persistence.entity;
 
-import com.sun.istack.internal.NotNull;
+import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
 import java.util.Collections;
@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- *
+ * Class of Reservation
  *
  * @author Juraj Galbavý
  */
@@ -23,7 +23,7 @@ public class Reservation {
 
     @NotNull
     @ManyToOne
-    private Customer customer;
+    private User user;
 
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
@@ -40,9 +40,9 @@ public class Reservation {
 
     public Reservation(){}
 
-    public Reservation(long id, Customer customer,Date created, Trip trip, Set<Excursion> excursions){
+    public Reservation(long id, User user,Date created, Trip trip, Set<Excursion> excursions){
         this.id = id;
-        this.customer = customer;
+        this.user = user;
         this.trip = trip;
         this.excursions = excursions;
         this.created = created;
@@ -56,12 +56,12 @@ public class Reservation {
         this.id = id;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public User getUser() {
+        return user;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Date getCreated() { return created;}
@@ -100,7 +100,7 @@ public class Reservation {
         Reservation that = (Reservation) o;
 
         if (getId() != that.getId()) return false;
-        if (!getCustomer().equals(that.getCustomer())) return false;
+        if (!getUser().equals(that.getUser())) return false;
         if (!getCreated().equals(that.getCreated())) return false;
         if (!getTrip().equals(that.getTrip())) return false;
         return getExcursions().equals(that.getExcursions());
@@ -110,7 +110,7 @@ public class Reservation {
     @Override
     public int hashCode() {
         int result = (int) (getId() ^ (getId() >>> 32));
-        result = 31 * result + getCustomer().hashCode();
+        result = 31 * result + getUser().hashCode();
         result = 31 * result + getCreated().hashCode();
         result = 31 * result + getTrip().hashCode();
         result = 31 * result + getExcursions().hashCode();
@@ -121,7 +121,7 @@ public class Reservation {
     public String toString() {
         return "Reservation{" +
                 "id=" + id +
-                ", customer=" + customer +
+                ", user=" + user +
                 ", created=" + created +
                 ", trip=" + trip +
                 ", excursions=" + excursions +
