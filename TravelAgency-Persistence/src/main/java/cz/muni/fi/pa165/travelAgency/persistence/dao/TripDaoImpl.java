@@ -43,7 +43,7 @@ public class TripDaoImpl implements TripDao {
 
     @Override
     public List<Trip> findTripsByCountry(String countryName) {
-        return em.createQuery("SELECT t FROM Trip as t WHERE t.country = :country").setParameter("country", countryName).getResultList();
+        return em.createQuery("SELECT t FROM Trip as t WHERE t.country = :country",Trip.class).setParameter("country", countryName).getResultList();
     }
     
 }
