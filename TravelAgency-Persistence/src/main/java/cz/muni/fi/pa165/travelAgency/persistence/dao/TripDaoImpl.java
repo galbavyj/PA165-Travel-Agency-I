@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -20,26 +21,29 @@ public class TripDaoImpl implements TripDao {
     @PersistenceContext
     private EntityManager em;
     
+    @Override
     public void create(Trip trip) {
         em.persist(trip);
     }
 
+    @Override
     public void remove(Trip trip) {
         em.remove(trip);
     }
 
+    @Override
     public Trip update(Trip trip) {
         return em.merge(trip);
     }
 
+    @Override
     public List<Trip> findAllTrips() {
         return em.createQuery("SELECT t FROM Trip t",Trip.class).getResultList();
     }
 
     @Override
     public List<Trip> findTripsByCountry(String countryName) {
-        //TODO
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return em.createQuery("SELECT t FROM Trip as t WHERE t.country = :country").setParameter("country", countryName).getResultList();
     }
     
 }
