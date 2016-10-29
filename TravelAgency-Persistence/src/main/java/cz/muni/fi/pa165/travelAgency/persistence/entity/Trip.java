@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -48,7 +49,7 @@ public class Trip {
     @OneToMany
     private Set<Excursion> possibleExcursions;
     
-    @OneToOne
+    @Embedded
     private Address addressOfHotel;
     
     @NotNull
