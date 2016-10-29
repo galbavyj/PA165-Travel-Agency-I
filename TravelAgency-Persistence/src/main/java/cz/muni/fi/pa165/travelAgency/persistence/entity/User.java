@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -46,7 +47,7 @@ public class User {
 
     @NotNull
     @Column(nullable = false)
-    @OneToOne
+    @Embedded
     private Address address;
 
     @NotNull
@@ -66,7 +67,7 @@ public class User {
     private Set<Reservation> reservations;
 
     public User() {
-        reservations = new HashSet<Reservation>();
+        reservations = new HashSet<>();
     }
 
     public Long getId() {
@@ -200,6 +201,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", address=" + address + ", phoneNumber=" + phoneNumber + ", created=" + created + ", userRole=" + userRole + ", reservations=" + reservations + '}';
+        return "User{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", address=" + address.toString() + ", phoneNumber=" + phoneNumber + ", created=" + created.toString() + ", userRole=" + userRole.toString();
     }
 }

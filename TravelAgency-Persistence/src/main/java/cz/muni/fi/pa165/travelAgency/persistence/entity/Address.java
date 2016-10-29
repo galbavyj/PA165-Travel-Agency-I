@@ -6,6 +6,7 @@
 package cz.muni.fi.pa165.travelAgency.persistence.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +17,7 @@ import javax.validation.constraints.NotNull;
  *
  * @author Martin
  */
-@Entity
+@Embeddable
 public class Address {
     
     @Id
@@ -82,8 +83,6 @@ public class Address {
 
     @Override
     public String toString() {
-        return ("Just checking if somebody will point out on code review that I am not implementing this method properly");
+        return "Address{" + "id=" + id + ", country=" + country + ", city=" + city + ", street=" + street + ", numberOfHouse=" + numberOfHouse.toString() + '}';
     }
-    
-    
 }
