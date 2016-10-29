@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa165.travelAgency.persistence.entity;
 
+    
 import enums.UserRole;
 import java.util.Date;
 import java.util.Set;
