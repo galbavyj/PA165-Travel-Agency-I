@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -46,7 +47,7 @@ public class User {
 
     @NotNull
     @Column(nullable = false)
-    @OneToOne
+    @Embedded
     private Address address;
 
     @NotNull
@@ -66,7 +67,7 @@ public class User {
     private Set<Reservation> reservations;
 
     public User() {
-        reservations = new HashSet<Reservation>();
+        reservations = new HashSet<>();
     }
 
     public Long getId() {
@@ -139,5 +140,67 @@ public class User {
 
     public void setReservations(Set<Reservation> reservations) {
         this.reservations = reservations;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 59 * hash + (this.firstName != null ? this.firstName.hashCode() : 0);
+        hash = 59 * hash + (this.lastName != null ? this.lastName.hashCode() : 0);
+        hash = 59 * hash + (this.email != null ? this.email.hashCode() : 0);
+        hash = 59 * hash + (this.address != null ? this.address.hashCode() : 0);
+        hash = 59 * hash + (this.phoneNumber != null ? this.phoneNumber.hashCode() : 0);
+        hash = 59 * hash + (this.created != null ? this.created.hashCode() : 0);
+        hash = 59 * hash + (this.userRole != null ? this.userRole.hashCode() : 0);
+        hash = 59 * hash + (this.reservations != null ? this.reservations.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final User other = (User) obj;
+        if ((this.firstName == null) ? (other.firstName != null) : !this.firstName.equals(other.firstName)) {
+            return false;
+        }
+        if ((this.lastName == null) ? (other.lastName != null) : !this.lastName.equals(other.lastName)) {
+            return false;
+        }
+        if ((this.email == null) ? (other.email != null) : !this.email.equals(other.email)) {
+            return false;
+        }
+        if ((this.phoneNumber == null) ? (other.phoneNumber != null) : !this.phoneNumber.equals(other.phoneNumber)) {
+            return false;
+        }
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if (this.address != other.address && (this.address == null || !this.address.equals(other.address))) {
+            return false;
+        }
+        if (this.created != other.created && (this.created == null || !this.created.equals(other.created))) {
+            return false;
+        }
+        if (this.userRole != other.userRole) {
+            return false;
+        }
+        if (this.reservations != other.reservations && (this.reservations == null || !this.reservations.equals(other.reservations))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", address=" + address.toString() + ", phoneNumber=" + phoneNumber + ", created=" + created.toString() + ", userRole=" + userRole.toString();
     }
 }
