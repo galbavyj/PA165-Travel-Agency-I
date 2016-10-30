@@ -22,22 +22,35 @@ public class ExcursionDaoImpl implements ExcursionDao {
     @PersistenceContext
     private EntityManager em;
 
+    @Override
     public void create(Excursion ex) {
             em.persist(ex);
     }
 
+    @Override
     public void remove(Excursion ex) {
         em.remove(ex);
     }
 
+    @Override
     public Excursion update(Excursion ex) {
         return em.merge(ex);
     }
 
+    @Override
     public Set<Excursion> findAllExcursions() {
         TypedQuery<Excursion> query = em.createQuery("SELECT e FROM Excursion e",
 				Excursion.class);
 		return (Set<Excursion>) query.getResultList();
     }
     
+
+    @Override
+    public Excursion findExcursionById(Long exId) {
+        return em
+				.createQuery("select e from Excursion e WHERE e.id = :exId",
+						Excursion.class).setParameter("exId", exId)
+				.getSingleResult();
+    }
+
 }

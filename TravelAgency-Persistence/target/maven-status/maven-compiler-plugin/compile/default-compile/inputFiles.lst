@@ -3,6 +3,7 @@
 /home/lucka/projects/PA165-Travel-Agency-I/TravelAgency-Persistence/src/main/java/cz/muni/fi/pa165/travelAgency/persistence/dao/ReservationDaoImpl.java
 /home/lucka/projects/PA165-Travel-Agency-I/TravelAgency-Persistence/src/main/java/cz/muni/fi/pa165/travelAgency/persistence/dao/UserDao.java
 /home/lucka/projects/PA165-Travel-Agency-I/TravelAgency-Persistence/src/main/java/cz/muni/fi/pa165/travelAgency/persistence/entity/Address.java
+/home/lucka/projects/PA165-Travel-Agency-I/TravelAgency-Persistence/src/main/java/enums/ExcursionType.java
 /home/lucka/projects/PA165-Travel-Agency-I/TravelAgency-Persistence/src/main/java/cz/muni/fi/pa165/travelAgency/persistence/dao/ExcursionDao.java
 /home/lucka/projects/PA165-Travel-Agency-I/TravelAgency-Persistence/src/main/java/cz/muni/fi/pa165/travelAgency/persistence/dao/ReservationDao.java
 /home/lucka/projects/PA165-Travel-Agency-I/TravelAgency-Persistence/src/main/java/travelAgency/TravelAgencyPersistenceContext.java

@@ -142,7 +142,9 @@
 &lt;suite thread-count=&quot;1&quot; verbose=&quot;0&quot; name=&quot;Surefire suite&quot;&gt;
   &lt;test name=&quot;Surefire test&quot;&gt;
     &lt;classes&gt;
+      &lt;class name=&quot;cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest&quot;/&gt;
       &lt;class name=&quot;cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest&quot;/&gt;
+      &lt;class name=&quot;cz.muni.fi.pa165.travelAgency.persistence.dao.ExcursionDaoTest&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Surefire test --&gt;
 &lt;/suite&gt; &lt;!-- Surefire suite --&gt;
@@ -156,7 +158,7 @@
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">Surefire test (1 class)</span>
+                <span class="test-name">Surefire test (3 classes)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -186,12 +188,12 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'testUpdate')
 data.setCell(0, 2, 'cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest')
-data.setCell(0, 3, 122);
+data.setCell(0, 3, 94);
 window.suiteTableData['Surefire_suite']= { tableData: data, tableDiv: 'times-div-Surefire_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 122 ms</span>
+              <span class="suite-total-time">Total running time: 94 ms</span>
               <div id="times-div-Surefire_suite">
               </div> <!-- times-div-Surefire_suite -->
             </div> <!-- times-div -->
@@ -224,27 +226,27 @@ return data;
               </div> <!-- configuration-class before -->
               <div class="configuration-class before">
                 <span class="method-name">springTestContextPrepareTestInstance</span>
-                <span class="method-start">7 ms</span>
+                <span class="method-start">6 ms</span>
               </div> <!-- configuration-class before -->
               <div class="configuration-method before">
                 <span class="method-name">springTestContextBeforeTestMethod(public void cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest.testUpdate())</span>
-                <span class="method-start">3873 ms</span>
+                <span class="method-start">3532 ms</span>
               </div> <!-- configuration-method before -->
               <div class="configuration-method before">
                 <span class="method-name">setUp</span>
-                <span class="method-start">3999 ms</span>
+                <span class="method-start">3661 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">testUpdate</span>
-                <span class="method-start">4005 ms</span>
+                <span class="method-start">3667 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">springTestContextAfterTestMethod(public void cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest.testUpdate())</span>
-                <span class="method-start">4127 ms</span>
+                <span class="method-start">3762 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-class after">
                 <span class="method-name">springTestContextAfterTestClass</span>
-                <span class="method-start">4138 ms</span>
+                <span class="method-start">3770 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
