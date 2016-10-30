@@ -40,8 +40,7 @@ public class Reservation {
 
     public Reservation(){}
 
-    public Reservation(long id, Customer customer,Date created, Trip trip, Set<Excursion> excursions){
-        this.id = id;
+    public Reservation(Customer customer,Date created, Trip trip, Set<Excursion> excursions){
         this.customer = customer;
         this.trip = trip;
         this.excursions = excursions;
