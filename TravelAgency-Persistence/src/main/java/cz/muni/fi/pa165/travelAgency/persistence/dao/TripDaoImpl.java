@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
+import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
 import java.util.List;
 import java.util.Set;
@@ -36,6 +37,12 @@ public class TripDaoImpl implements TripDao {
         return em.merge(trip);
     }
 
+    @Override
+    public Trip findById(Long id) {
+        return em.find(Trip.class, id);
+    }
+
+    
     @Override
     public List<Trip> findAllTrips() {
         return em.createQuery("SELECT t FROM Trip t",Trip.class).getResultList();

@@ -40,6 +40,14 @@ public interface TripDao {
 
     
     /**
+     * Finds Trip by id
+     * 
+     * @param id of a Trip we are looking for
+     * @return Trip with specified id
+     */
+    public Trip findById(Long id);
+    
+    /**
      * Find all trips
      *
      * @return All trips in a List
