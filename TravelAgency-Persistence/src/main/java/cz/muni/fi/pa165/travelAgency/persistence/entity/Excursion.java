@@ -35,7 +35,7 @@ public class Excursion {
 
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
-    private Date from;
+    private Date fromDate;
 
     @NotNull
     @Column(nullable = false)
@@ -62,12 +62,12 @@ public class Excursion {
     @ManyToMany()
     private Set<Reservation> reservations;
 
-    public Date getFrom() {
-        return from;
+    public Date getFromDate() {
+        return fromDate;
     }
 
-    public void setFrom(Date from) {
-        this.from = from;
+    public void setFromDate(Date fromDate) {
+        this.fromDate = fromDate;
     }
 
     public int getDuration() {

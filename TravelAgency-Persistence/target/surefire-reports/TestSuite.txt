@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 1, Errors: 0, Skipped: 4, Time elapsed: 3.753 sec <<< FAILURE! - in TestSuite
-setUp(cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest)  Time elapsed: 3.503 sec  <<< FAILURE!
-java.lang.ClassCastException: java.util.Date cannot be cast to java.sql.Date
-	at cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest.setUp(TripDaoTest.java:61)
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.334 sec - in TestSuite

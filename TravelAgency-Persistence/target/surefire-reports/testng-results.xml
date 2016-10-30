@@ -2,20 +2,20 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Surefire suite" duration-ms="3231" started-at="2016-10-30T19:42:18Z" finished-at="2016-10-30T19:42:21Z">
+  <suite name="Surefire suite" duration-ms="4148" started-at="2016-10-30T22:28:27Z" finished-at="2016-10-30T22:28:31Z">
     <groups>
     </groups>
-    <test name="Surefire test" duration-ms="3231" started-at="2016-10-30T19:42:18Z" finished-at="2016-10-30T19:42:21Z">
+    <test name="Surefire test" duration-ms="4148" started-at="2016-10-30T22:28:27Z" finished-at="2016-10-30T22:28:31Z">
       <class name="cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest">
-        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest@18eed359]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="8" started-at="2016-10-30T20:42:18Z" finished-at="2016-10-30T20:42:18Z">
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest@7791a895]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="7" started-at="2016-10-30T23:28:27Z" finished-at="2016-10-30T23:28:27Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextBeforeTestClass -->
-        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest@18eed359]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="2979" started-at="2016-10-30T20:42:18Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2016-10-30T20:42:21Z">
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest@7791a895]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="3864" started-at="2016-10-30T23:28:27Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2016-10-30T23:28:31Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextPrepareTestInstance -->
-        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest@18eed359]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="120" started-at="2016-10-30T20:42:21Z" finished-at="2016-10-30T20:42:21Z">
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest@7791a895]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="126" started-at="2016-10-30T23:28:31Z" finished-at="2016-10-30T23:28:31Z">
           <params>
             <param index="0">
               <value>
@@ -26,15 +26,15 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextBeforeTestMethod -->
-        <test-method status="PASS" signature="setUp()[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest@18eed359]" name="setUp" is-config="true" duration-ms="12" started-at="2016-10-30T20:42:21Z" finished-at="2016-10-30T20:42:21Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest@7791a895]" name="setUp" is-config="true" duration-ms="6" started-at="2016-10-30T23:28:31Z" finished-at="2016-10-30T23:28:31Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="testUpdate()[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest@18eed359]" name="testUpdate" duration-ms="94" started-at="2016-10-30T20:42:21Z" finished-at="2016-10-30T20:42:21Z">
+        <test-method status="PASS" signature="testUpdate()[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest@7791a895]" name="testUpdate" duration-ms="122" started-at="2016-10-30T23:28:31Z" finished-at="2016-10-30T23:28:31Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testUpdate -->
-        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest@18eed359]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="8" started-at="2016-10-30T20:42:21Z" finished-at="2016-10-30T20:42:21Z">
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest@7791a895]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="11" started-at="2016-10-30T23:28:31Z" finished-at="2016-10-30T23:28:31Z">
           <params>
             <param index="0">
               <value>
@@ -45,7 +45,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextAfterTestMethod -->
-        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest@18eed359]" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2016-10-30T20:42:21Z" finished-at="2016-10-30T20:42:21Z">
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest@7791a895]" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2016-10-30T23:28:31Z" finished-at="2016-10-30T23:28:31Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextAfterTestClass -->

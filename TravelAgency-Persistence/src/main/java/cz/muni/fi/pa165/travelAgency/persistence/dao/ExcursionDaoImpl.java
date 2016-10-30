@@ -7,36 +7,37 @@ package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
+import java.util.List;
 import java.util.Set;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
  * @author Lucia
  */
-@Repository
-@Transactional
 public class ExcursionDaoImpl implements ExcursionDao {
 
-    public void create(Excursion excursion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @PersistenceContext
+    private EntityManager em;
+
+    public void create(Excursion ex) {
+            em.persist(ex);
     }
 
-    public void remove(Long excursionId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void remove(Excursion ex) {
+        em.remove(ex);
     }
 
-    public Excursion update(Excursion excursion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Excursion update(Excursion ex) {
+        return em.merge(ex);
     }
 
     public Set<Excursion> findAllExcursions() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public Set<Excursion> findAllExcursionsInReservation(Reservation reservation) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TypedQuery<Excursion> query = em.createQuery("SELECT e FROM Excursion e",
+				Excursion.class);
+		return (Set<Excursion>) query.getResultList();
     }
     
 }
