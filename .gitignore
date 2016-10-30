@@ -1,1 +1,5 @@
 *.class
+*.html
+target/
+TravelAgency-Persistence\target
+*.html
