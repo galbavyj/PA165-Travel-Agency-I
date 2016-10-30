@@ -27,7 +27,7 @@ public interface TripDao {
      * @param trip trip to be removed from database
      * @throws IllegalArgumentException in case trip is not found
      */
-    public void delete(Trip trip);
+    public void remove(Trip trip);
 
     /**
      * Add new trip into database

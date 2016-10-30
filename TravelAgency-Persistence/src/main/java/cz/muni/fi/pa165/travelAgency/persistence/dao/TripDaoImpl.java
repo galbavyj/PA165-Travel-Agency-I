@@ -28,7 +28,7 @@ public class TripDaoImpl implements TripDao {
     }
 
     @Override
-    public void delete(Trip trip) {
+    public void remove(Trip trip) {
         em.remove(trip);
     }
 
