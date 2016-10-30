@@ -2,15 +2,19 @@ package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
-import cz.muni.fi.pa165.travelAgency.persistence.entity.User;
+import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author Juraj Galbavý
  */
+@Repository
+@Transactional
 public class ReservationDaoImpl implements ReservationDao{
 
     @PersistenceContext
@@ -39,7 +43,7 @@ public class ReservationDaoImpl implements ReservationDao{
     }
 
     @Override
-    public List<Reservation> findReservationsByUser(User user) {
+    public List<Reservation> findReservationsByUser(Customer user) {
         return em.createQuery("SELECT r FROM Reservation r WHERE r.user=:user", Reservation.class)
                 .setParameter("user", user).getResultList();
 
