@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestSuite" time="3.503" tests="5" errors="0" skipped="4" failures="1">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_91\jre\bin"/>
+    <property name="java.vm.version" value="25.91-b15"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="C:\Users\Martin\Documents\GitHub\PA165-Travel-Agency-I\TravelAgency-Persistence"/>
+    <property name="java.runtime.version" value="1.8.0_91-b15"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_91\jre\lib\endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\Martin\AppData\Local\Temp\"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="maven.ext.class.path" value="C:\Program Files\NetBeans 8.1\java\maven-nblib\netbeans-eventspy.jar"/>
+    <property name="classworlds.conf" value="C:\Program Files\NetBeans 8.1\java\maven\bin\m2.conf"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_91\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Users\Martin\AppData\Local\Microsoft\WindowsApps;;."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.0"/>
+    <property name="user.home" value="C:\Users\Martin"/>
+    <property name="user.timezone" value="Europe/Prague"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="user.name" value="Martin"/>
+    <property name="java.class.path" value="C:\Program Files\NetBeans 8.1\java\maven\boot\plexus-classworlds-2.4.jar"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_91\jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.1\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 clean install"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="en"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.8.0_91"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_91\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_91\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_91\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_91\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_91\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_91\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_91\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_91\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_91\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="C:\Program Files\NetBeans 8.1\java\maven"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase name="setUp" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest" time="3.503">
+    <failure message="java.util.Date cannot be cast to java.sql.Date" type="java.lang.ClassCastException">java.lang.ClassCastException: java.util.Date cannot be cast to java.sql.Date
+	at cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest.setUp(TripDaoTest.java:61)
+</failure>
+    <system-out><![CDATA[Configuring TestNG with: TestNG652Configurator
+Hibernate: 
+    alter table Excursion_Reservation 
+        drop constraint FK_lpf2m2ffg50b6pjq9ftjtuqpg
+Hibernate: 
+    alter table Excursion_Reservation 
+        drop constraint FK_nkqoy7oatili47wgf35del4e2
+Hibernate: 
+    alter table Reservation 
+        drop constraint FK_ketteu8uj8e50ls6ocde9mhi9
+Hibernate: 
+    alter table Reservation 
+        drop constraint FK_d6fljaihtws3py1326ie6863d
+Hibernate: 
+    alter table Reservation_Excursion 
+        drop constraint FK_f5fodc01x68lwh7lohn37n0lv
+Hibernate: 
+    alter table Reservation_Excursion 
+        drop constraint FK_78rkqrpq1fe8akuf337aokmfu
+Hibernate: 
+    alter table Trip_Excursion 
+        drop constraint FK_je1mlhbdodmmfxui3b1v9a8n2
+Hibernate: 
+    alter table Trip_Excursion 
+        drop constraint FK_3v1uhb2u4is2a8r2f7klr5gk7
+Hibernate: 
+    alter table User_Reservation 
+        drop constraint FK_avu8f8qkoqdjsix5d1caddr5s
+Hibernate: 
+    alter table User_Reservation 
+        drop constraint FK_n1sgxrsr7mfhmv1ff67fufyxc
+Hibernate: 
+    drop table Excursion
+Hibernate: 
+    drop table Excursion_Reservation
+Hibernate: 
+    drop table Reservation
+Hibernate: 
+    drop table Reservation_Excursion
+Hibernate: 
+    drop table Trip
+Hibernate: 
+    drop table Trip_Excursion
+Hibernate: 
+    drop table User
+Hibernate: 
+    drop table User_Reservation
+Hibernate: 
+    create table Excursion (
+        id bigint generated by default as identity,
+        created timestamp not null,
+        description varchar(255) not null,
+        duration integer not null,
+        from timestamp not null,
+        place varchar(255) not null,
+        price integer not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table Excursion_Reservation (
+        Excursion_id bigint not null,
+        reservations_id bigint not null,
+        primary key (Excursion_id, reservations_id)
+    )
+Hibernate: 
+    create table Reservation (
+        id bigint generated by default as identity,
+        created timestamp not null,
+        trip_id bigint not null,
+        user_id bigint not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table Reservation_Excursion (
+        Reservation_id bigint not null,
+        excursions_id bigint not null,
+        primary key (Reservation_id, excursions_id)
+    )
+Hibernate: 
+    create table Trip (
+        id bigint generated by default as identity,
+        city varchar(255) not null,
+        country varchar(255) not null,
+        numberOfHouse integer not null,
+        street varchar(255) not null,
+        created timestamp not null,
+        filePathToPicture varchar(255),
+        from timestamp not null,
+        price numeric(19,2) not null,
+        to timestamp not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table Trip_Excursion (
+        Trip_id bigint not null,
+        possibleExcursions_id bigint not null,
+        primary key (Trip_id, possibleExcursions_id)
+    )
+Hibernate: 
+    create table User (
+        id bigint generated by default as identity,
+        city varchar(255) not null,
+        country varchar(255) not null,
+        numberOfHouse integer not null,
+        street varchar(255) not null,
+        created timestamp not null,
+        email varchar(255),
+        firstName varchar(255) not null,
+        lastName varchar(255) not null,
+        phoneNumber varchar(255) not null,
+        userRole integer not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table User_Reservation (
+        User_id bigint not null,
+        reservations_id bigint not null,
+        primary key (User_id, reservations_id)
+    )
+Hibernate: 
+    alter table Excursion 
+        add constraint UK_scpkyxgjfr7kt53ofwn69mxa7 unique (place)
+Hibernate: 
+    alter table Trip_Excursion 
+        add constraint UK_je1mlhbdodmmfxui3b1v9a8n2 unique (possibleExcursions_id)
+Hibernate: 
+    create unique index UK_e6gkqunxajvyxl5uctpl2vl2p on User (email)
+Hibernate: 
+    alter table User_Reservation 
+        add constraint UK_avu8f8qkoqdjsix5d1caddr5s unique (reservations_id)
+Hibernate: 
+    alter table Excursion_Reservation 
+        add constraint FK_lpf2m2ffg50b6pjq9ftjtuqpg 
+        foreign key (reservations_id) 
+        references Reservation
+Hibernate: 
+    alter table Excursion_Reservation 
+        add constraint FK_nkqoy7oatili47wgf35del4e2 
+        foreign key (Excursion_id) 
+        references Excursion
+Hibernate: 
+    alter table Reservation 
+        add constraint FK_ketteu8uj8e50ls6ocde9mhi9 
+        foreign key (trip_id) 
+        references Trip
+Hibernate: 
+    alter table Reservation 
+        add constraint FK_d6fljaihtws3py1326ie6863d 
+        foreign key (user_id) 
+        references User
+Hibernate: 
+    alter table Reservation_Excursion 
+        add constraint FK_f5fodc01x68lwh7lohn37n0lv 
+        foreign key (excursions_id) 
+        references Excursion
+Hibernate: 
+    alter table Reservation_Excursion 
+        add constraint FK_78rkqrpq1fe8akuf337aokmfu 
+        foreign key (Reservation_id) 
+        references Reservation
+Hibernate: 
+    alter table Trip_Excursion 
+        add constraint FK_je1mlhbdodmmfxui3b1v9a8n2 
+        foreign key (possibleExcursions_id) 
+        references Excursion
+Hibernate: 
+    alter table Trip_Excursion 
+        add constraint FK_3v1uhb2u4is2a8r2f7klr5gk7 
+        foreign key (Trip_id) 
+        references Trip
+Hibernate: 
+    alter table User_Reservation 
+        add constraint FK_avu8f8qkoqdjsix5d1caddr5s 
+        foreign key (reservations_id) 
+        references Reservation
+Hibernate: 
+    alter table User_Reservation 
+        add constraint FK_n1sgxrsr7mfhmv1ff67fufyxc 
+        foreign key (User_id) 
+        references User
+]]></system-out>
+    <system-err><![CDATA[log4j:WARN No appenders could be found for logger (org.springframework.test.context.support.AbstractDelegatingSmartContextLoader).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+]]></system-err>
+  </testcase>
+  <testcase name="setUp" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="testNullTrip" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="springTestContextBeforeTestMethod" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="testUpdate" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest" time="0">
+    <skipped/>
+  </testcase>
+</testsuite>

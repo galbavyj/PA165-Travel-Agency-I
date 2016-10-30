@@ -28,7 +28,7 @@ import javax.validation.constraints.NotNull;
  * @author Martin
  */
 @Entity
-public class User {
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,7 +66,7 @@ public class User {
     @OneToMany()
     private Set<Reservation> reservations;
 
-    public User() {
+    public Customer() {
         reservations = new HashSet<>();
     }
 
@@ -168,7 +168,7 @@ public class User {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final User other = (User) obj;
+        final Customer other = (Customer) obj;
         if ((this.firstName == null) ? (other.firstName != null) : !this.firstName.equals(other.firstName)) {
             return false;
         }
