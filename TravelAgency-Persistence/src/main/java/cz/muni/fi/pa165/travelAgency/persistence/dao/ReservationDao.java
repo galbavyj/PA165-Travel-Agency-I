@@ -42,10 +42,10 @@ public interface ReservationDao {
 
     /**
      * Find Reservation by {@link Customer}
-     * @param user user
+     * @param customer customer
      * @return List of Reservations
      */
-    public List<Reservation> findReservationsByUser(Customer user);
+    public List<Reservation> findReservationsByCustomer(Customer customer);
 
     /**
      * Find Reservation by {@link Trip}

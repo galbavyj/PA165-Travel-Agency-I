@@ -43,9 +43,9 @@ public class ReservationDaoImpl implements ReservationDao{
     }
 
     @Override
-    public List<Reservation> findReservationsByUser(Customer user) {
-        return em.createQuery("SELECT r FROM Reservation r WHERE r.user=:user", Reservation.class)
-                .setParameter("user", user).getResultList();
+    public List<Reservation> findReservationsByCustomer(Customer customer) {
+        return em.createQuery("SELECT r FROM Reservation r WHERE r.customer=:customer", Reservation.class)
+                .setParameter("customer", customer).getResultList();
 
     }
 
