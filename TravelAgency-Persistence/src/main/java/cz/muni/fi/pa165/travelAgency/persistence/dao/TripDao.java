@@ -27,7 +27,7 @@ public interface TripDao {
      * @param trip trip to be removed from database
      * @throws IllegalArgumentException in case trip is not found
      */
-    public void remove(Trip trip);
+    public void delete(Trip trip);
 
     /**
      * Add new trip into database
@@ -38,6 +38,14 @@ public interface TripDao {
      */
     public Trip update(Trip trip);
 
+    
+    /**
+     * Finds Trip by id
+     * 
+     * @param id of a Trip we are looking for
+     * @return Trip with specified id
+     */
+    public Trip findById(Long id);
     
     /**
      * Find all trips
