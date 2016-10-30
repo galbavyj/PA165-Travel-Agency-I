@@ -5,17 +5,22 @@
  */
 package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
+import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Patrik Behrami
  */
+@Repository
+@Transactional
 public class TripDaoImpl implements TripDao {
 
     @PersistenceContext
@@ -36,6 +41,12 @@ public class TripDaoImpl implements TripDao {
         return em.merge(trip);
     }
 
+    @Override
+    public Trip findById(Long id) {
+        return em.find(Trip.class, id);
+    }
+
+    
     @Override
     public List<Trip> findAllTrips() {
         return em.createQuery("SELECT t FROM Trip t",Trip.class).getResultList();

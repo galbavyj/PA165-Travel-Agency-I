@@ -7,8 +7,12 @@ package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
+<<<<<<< HEAD
 import cz.muni.fi.pa165.travelAgency.persistence.entity.User;
 import java.util.List;
+=======
+import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
+>>>>>>> refs/remotes/origin/master
 import java.util.Set;
 
 /**

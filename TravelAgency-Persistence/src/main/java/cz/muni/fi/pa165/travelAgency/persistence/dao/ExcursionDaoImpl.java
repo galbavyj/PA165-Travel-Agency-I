@@ -9,14 +9,21 @@ import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import java.util.List;
 import java.util.Set;
+<<<<<<< HEAD
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+=======
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+>>>>>>> refs/remotes/origin/master
 
 /**
  *
  * @author Lucia
  */
+@Repository
+@Transactional
 public class ExcursionDaoImpl implements ExcursionDao {
 
     @PersistenceContext

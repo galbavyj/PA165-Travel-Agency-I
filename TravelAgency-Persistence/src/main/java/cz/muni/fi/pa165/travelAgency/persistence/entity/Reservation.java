@@ -23,7 +23,7 @@ public class Reservation {
 
     @NotNull
     @ManyToOne
-    private User user;
+    private Customer user;
 
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
@@ -40,7 +40,7 @@ public class Reservation {
 
     public Reservation(){}
 
-    public Reservation(long id, User user,Date created, Trip trip, Set<Excursion> excursions){
+    public Reservation(long id, Customer user,Date created, Trip trip, Set<Excursion> excursions){
         this.id = id;
         this.user = user;
         this.trip = trip;
@@ -56,11 +56,11 @@ public class Reservation {
         this.id = id;
     }
 
-    public User getUser() {
+    public Customer getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Customer user) {
         this.user = user;
     }
 

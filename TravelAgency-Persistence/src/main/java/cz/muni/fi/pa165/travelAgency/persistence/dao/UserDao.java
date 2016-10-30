@@ -5,7 +5,7 @@
  */
 package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
-import cz.muni.fi.pa165.travelAgency.persistence.entity.User;
+import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
 import java.util.List;
 import java.util.Set;
 
@@ -20,7 +20,7 @@ public interface UserDao {
      *
      * @param user user to be added into database
      */
-    public void create(User user);
+    public void create(Customer user);
 
     /**
      * Removes user from database
@@ -28,16 +28,16 @@ public interface UserDao {
      * @param user user to be removed from database
      * @throws IllegalArgumentException in case user is not found
      */
-    public void remove(User user);
+    public void remove(Customer user);
 
     /**
      * Add new user into database
      *
      * @param user user to be added into database
-     * @return updated User
+     * @return updated Customer
      * @throws IllegalArgumentException in case user is not found
      */
-    public User update(User user);
+    public Customer update(Customer user);
 
     
     /**
@@ -45,7 +45,7 @@ public interface UserDao {
      *
      * @return all customers
      */
-    public List<User> findAllCustomers();
+    public List<Customer> findAllCustomers();
     
     /**
      * find user by email in database
@@ -54,6 +54,6 @@ public interface UserDao {
      * @return user with given email
      * @throws IllegalArgumentException in case user is not found
      */
-    public User findByEmail(String email);
+    public Customer findByEmail(String email);
 
 }

@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.travelAgency.persistence;
+package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
 /**
  * @author Juraj Galbavý
