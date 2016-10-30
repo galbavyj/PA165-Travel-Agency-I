@@ -8,11 +8,15 @@ package cz.muni.fi.pa165.travelAgency.persistence.dao;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import java.util.Set;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Lucia
  */
+@Repository
+@Transactional
 public class ExcursionDaoImpl implements ExcursionDao {
 
     public void create(Excursion excursion) {
