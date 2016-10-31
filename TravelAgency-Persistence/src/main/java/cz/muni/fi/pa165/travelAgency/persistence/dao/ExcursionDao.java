@@ -7,7 +7,12 @@ package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
+<<<<<<< HEAD
+import cz.muni.fi.pa165.travelAgency.persistence.entity.User;
+import java.util.List;
+=======
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
+>>>>>>> refs/remotes/origin/master
 import java.util.Set;
 
 /**
@@ -25,10 +30,10 @@ public interface ExcursionDao {
     /**
      * Deletes excursion from database
      *
-     * @param excursionId ID of excursion, which will be removed from DB
+     * @param ex excursion, which will be removed from DB
      * @throws IllegalArgumentException in case ID is not found
      */
-    public void remove(Long excursionId);
+    public void remove(Excursion ex);
 
     /**
      * Edit the excursion in the database
@@ -45,7 +50,7 @@ public interface ExcursionDao {
      *
      * @return all excursions
      */
-    public Set<Excursion> findAllExcursions();
+    public List<Excursion> findAllExcursions();
     
     /**
      * List all excursions in given Trip
@@ -53,16 +58,7 @@ public interface ExcursionDao {
      * @param trip trip for which we want to find excursions
      * @return all Excursions in Trip
      * @throws IllegalArgumentException in case trip is not found
-     */
-    //public Set<Excursion> findAllExcursionsInTrip(Trip trip);
+     */    
     
-    /**
-     * Find all excursions in a reservation
-     *
-     * @param reservation Reservation for which we want to find the excursions
-     * @return all excursions in reservation
-     */
-    public Set<Excursion> findAllExcursionsInReservation(Reservation reservation);
-
     
 }
