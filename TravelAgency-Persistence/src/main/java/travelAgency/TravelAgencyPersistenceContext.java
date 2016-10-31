@@ -2,7 +2,6 @@ package travelAgency;
 
 import cz.muni.fi.pa165.travelAgency.persistence.dao.UserDao;
 import javax.sql.DataSource;
-
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

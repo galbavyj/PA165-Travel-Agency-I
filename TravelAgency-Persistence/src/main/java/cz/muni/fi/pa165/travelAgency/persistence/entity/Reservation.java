@@ -1,12 +1,11 @@
 package cz.muni.fi.pa165.travelAgency.persistence.entity;
 
-import javax.validation.constraints.NotNull;
-
-import javax.persistence.*;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Class of Reservation
