@@ -125,13 +125,7 @@ public class TripDaoTest extends AbstractTestNGSpringContextTests{
         tripDao.create(trip2);
         assertEquals(tripDao.findById(trip2.getId()), trip2);
     }
-    
-    @Test(expectedExceptions=ConstraintViolationException.class)
-    public void testNullAddress(){
-        trip.setAddressOfHotel(null);
-        tripDao.create(trip);
-    }
-    
+        
     @Test(expectedExceptions=ConstraintViolationException.class)
     public void testNullCreated(){
         trip.setCreated(null);
@@ -147,12 +141,6 @@ public class TripDaoTest extends AbstractTestNGSpringContextTests{
     @Test(expectedExceptions=ConstraintViolationException.class)
     public void testNullTo(){
         trip.setTo(null);
-        tripDao.create(trip);
-    }
-    
-    @Test(expectedExceptions=ConstraintViolationException.class)
-    public void testNullId(){
-        trip.setId(null);
         tripDao.create(trip);
     }
     

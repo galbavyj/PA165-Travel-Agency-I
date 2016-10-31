@@ -44,8 +44,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     public Customer findByEmail(String email) {
-        final Query query = em.createQuery("SELECT u FROM User as u WHERE u.email = :email");
-        query.setParameter("email", email);
-        return (Customer) query.getSingleResult();
+        return em.createQuery("SELECT u FROM User as u WHERE u.email = :email",Customer.class)
+                .setParameter("email", email).getSingleResult();
     }
 }
