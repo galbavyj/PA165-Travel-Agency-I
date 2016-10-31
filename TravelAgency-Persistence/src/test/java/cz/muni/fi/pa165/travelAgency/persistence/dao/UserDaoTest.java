@@ -131,7 +131,6 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests{
     }
     
     
-    
     @Test(expectedExceptions=ConstraintViolationException.class)
      public void testNullAddress(){
         cust.setAddress(null);
@@ -167,5 +166,13 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests{
         cust.setUserRole(null);
         userDao.create(cust);
       }
+
+	
+    @Test
+    public void findByIdTest(){
+        userDao.create(cust);
+        Customer c = userDao.findById(cust.getId());
+        assertEquals(c.getId(), cust.getId());     
+    }
     
 }
