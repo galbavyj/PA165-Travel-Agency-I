@@ -7,7 +7,7 @@ package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
 /**
  *
- * @author Martin
+ * @author Patrik Behrami
  */
 
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Address;
@@ -134,8 +134,7 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
         reservation2 = new Reservation();
         reservation2.setTrip(tripDolany);
         reservation2.setCustomer(customerPetr);
-        reservation2.setCreated(created);   
-        
+        reservation2.setCreated(created);        
         
         userDao.create(customerMilan);
         userDao.create(customerPetr);
@@ -231,9 +230,6 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
         Reservation expected2 = reservationDao.findById(reservation2.getId());
         
         assertEquals(reservation1, expected1);
-        assertEquals(reservation2, expected2);
-       
-    }
-    
-    
+        assertEquals(reservation2, expected2); 
+    }   
 }
