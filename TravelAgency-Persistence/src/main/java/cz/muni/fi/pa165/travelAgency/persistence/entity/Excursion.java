@@ -148,6 +148,10 @@ public class Excursion {
         return id;
     }
     
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
     public Trip getTrip() {
         return trip;
     }
