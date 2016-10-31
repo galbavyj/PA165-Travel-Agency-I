@@ -122,7 +122,7 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests{
     public void findByEmailTest(){
         userDao.create(cust);
         Customer c = userDao.findByEmail(cust.getEmail());
-        assertEquals(c.getEmail(), cust.getEmail());     
+        assertEquals(c, cust);     
     }
     
     
@@ -167,7 +167,7 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests{
     public void findByIdTest(){
         userDao.create(cust);
         Customer c = userDao.findById(cust.getId());
-        assertEquals(c.getId(), cust.getId());     
+        assertEquals(c, cust);     
     }
     
 }

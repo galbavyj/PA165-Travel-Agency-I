@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -61,7 +62,7 @@ public class Excursion {
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
 
-    @ManyToOne()
+    @ManyToOne(cascade= CascadeType.ALL)
     private Trip trip;
     
     @ManyToMany()
