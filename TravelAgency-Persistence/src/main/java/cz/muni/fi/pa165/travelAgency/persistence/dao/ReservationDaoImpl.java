@@ -1,12 +1,11 @@
 package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
+import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
-import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
-
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -7,7 +7,6 @@ package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
 import java.util.List;
-import java.util.Set;
 
 /**
  *

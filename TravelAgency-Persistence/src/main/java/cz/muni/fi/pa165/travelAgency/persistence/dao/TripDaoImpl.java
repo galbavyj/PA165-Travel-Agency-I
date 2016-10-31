@@ -5,13 +5,10 @@
  */
 package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
-import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
 import java.util.List;
-import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,7 +51,7 @@ public class TripDaoImpl implements TripDao {
 
     @Override
     public List<Trip> findTripsByCountry(String countryName) {
-        return em.createQuery("SELECT t FROM Trip as t WHERE t.country = :country",Trip.class).setParameter("country", countryName).getResultList();
+        return em.createQuery("SELECT t FROM Trip as t WHERE t.addressOfHotel.country = :country",Trip.class).setParameter("country", countryName).getResultList();
     }
     
 }

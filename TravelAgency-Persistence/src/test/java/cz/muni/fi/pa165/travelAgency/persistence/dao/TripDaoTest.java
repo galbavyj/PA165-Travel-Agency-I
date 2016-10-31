@@ -13,14 +13,12 @@ package cz.muni.fi.pa165.travelAgency.persistence.dao;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Address;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
 import java.math.BigDecimal;
-import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.List;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -42,7 +40,9 @@ public class TripDaoTest extends AbstractTestNGSpringContextTests{
     private TripDao tripDao;
     
     private Address address;
+    private Address address2;
     private Trip trip;
+    private Trip trip2;
     private Date from;
     private Date to;
     private Date created;
@@ -68,15 +68,127 @@ public class TripDaoTest extends AbstractTestNGSpringContextTests{
         trip.setFrom(from);
         trip.setTo(to);
         trip.setPrice(BigDecimal.TEN);
+        
+        trip2 = new Trip();
+        address2 = new Address();
+        address2.setCity("Athens");
+        address2.setCountry("Greece");
+        address2.setNumberOfHouse(69);
+        address2.setStreet("Oidipus street");
+        trip2.setAddressOfHotel(address2);
+        trip2.setCreated(created);
+        trip2.setFrom(from);
+        trip2.setTo(to);
+        trip2.setPrice(new BigDecimal(1000));
     }
-
     
-        @Test
+    @Test
+    public void testCreate(){
+        tripDao.create(trip);
+        Trip t = tripDao.findById(trip.getId());
+        assertEquals(t, trip);
+    }
+    
+    @Test
     public void testUpdate(){
         tripDao.create(trip);
         trip.setPrice(BigDecimal.ONE);
         tripDao.update(trip);
         Trip t = tripDao.findById(trip.getId());
         assertEquals(t, trip);
+    }
+    
+    @Test
+    public void testRemove(){
+        tripDao.create(trip);
+        tripDao.remove(trip);
+        assertEquals(tripDao.findAllTrips().size(), 0);
+    }
+    
+    @Test
+    public void testFindAll(){
+        tripDao.create(trip);
+        tripDao.create(trip2);
+        assertEquals(tripDao.findAllTrips().size(), 2);
+    }
+    
+    @Test
+    public void testFindByCountry(){
+        tripDao.create(trip);
+        tripDao.create(trip2);
+        assertEquals(tripDao.findTripsByCountry("Greece").size(), 1);
+    }
+    
+    @Test
+    public void testFindById(){
+        tripDao.create(trip);
+        tripDao.create(trip2);
+        assertEquals(tripDao.findById(trip2.getId()), trip2);
+    }
+    
+    @Test(expectedExceptions=ConstraintViolationException.class)
+    public void testNullAddress(){
+        trip.setAddressOfHotel(null);
+        tripDao.create(trip);
+    }
+    
+    @Test(expectedExceptions=ConstraintViolationException.class)
+    public void testNullCreated(){
+        trip.setCreated(null);
+        tripDao.create(trip);
+    }
+    
+    @Test(expectedExceptions=ConstraintViolationException.class)
+    public void testNullFrom(){
+        trip.setFrom(null);
+        tripDao.create(trip);
+    }
+    
+    @Test(expectedExceptions=ConstraintViolationException.class)
+    public void testNullTo(){
+        trip.setTo(null);
+        tripDao.create(trip);
+    }
+    
+    @Test(expectedExceptions=ConstraintViolationException.class)
+    public void testNullId(){
+        trip.setId(null);
+        tripDao.create(trip);
+    }
+    
+    @Test(expectedExceptions=ConstraintViolationException.class)
+    public void testNullPrice(){
+        trip.setPrice(null);
+        tripDao.create(trip);
+    }
+    
+    @Test(expectedExceptions=ConstraintViolationException.class)
+    public void testNegativePrice(){
+        trip.setPrice(new BigDecimal("-10"));
+        tripDao.create(trip);
+    }
+    
+    @Test(expectedExceptions=ConstraintViolationException.class)
+    public void testPastFromDate(){
+        Date pastFrom = null;
+        try {
+            pastFrom = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2010");
+        } catch (ParseException ex) {
+            Logger.getLogger(TripDaoTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        trip.setFrom(pastFrom);
+        tripDao.create(trip);
+    }
+    
+    @Test(expectedExceptions=ConstraintViolationException.class)
+    public void testPastToDate(){
+        Date pastTo = null;
+        try {
+            pastTo = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2010");
+        } catch (ParseException ex) {
+            Logger.getLogger(TripDaoTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        trip.setTo(pastTo);
+        tripDao.create(trip);
     }
 }
