@@ -1,9 +1,8 @@
 package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
+import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
-import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
-
 import java.util.List;
 
 /**
@@ -42,10 +41,10 @@ public interface ReservationDao {
 
     /**
      * Find Reservation by {@link Customer}
-     * @param user user
+     * @param customer customer
      * @return List of Reservations
      */
-    public List<Reservation> findReservationsByUser(Customer user);
+    public List<Reservation> findReservationsByCustomer(Customer customer);
 
     /**
      * Find Reservation by {@link Trip}

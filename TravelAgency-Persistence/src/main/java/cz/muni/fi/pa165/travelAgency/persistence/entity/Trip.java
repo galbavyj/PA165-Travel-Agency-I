@@ -19,6 +19,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -34,10 +36,12 @@ public class Trip {
     
     @NotNull
     @Column(nullable = false)
+    @Future
     private Date fromDate;
     
     @NotNull
     @Column(nullable = false)
+    @Future
     private Date toDate;
     
     @NotNull
@@ -52,6 +56,7 @@ public class Trip {
     
     @NotNull
     @Column(nullable = false)
+    @DecimalMin("1.0")
     private BigDecimal price;
     
     private String filePathToPicture;

@@ -7,7 +7,6 @@ package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
 import java.util.List;
-import java.util.Set;
 
 /**
  *
@@ -55,5 +54,14 @@ public interface UserDao {
      * @throws IllegalArgumentException in case user is not found
      */
     public Customer findByEmail(String email);
+    
+    /**
+     * find user by id in database
+     *
+     * @param id id of user
+     * @return user with given id
+     * @throws IllegalArgumentException in case user is not found
+     */
+    public Customer findById(Long id);
 
 }
