@@ -128,7 +128,7 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests{
     public void uniqueEmailTest() {
         userDao.create(cust);
         cust2.setEmail(cust.getEmail());
-        userDao.create(cust2);  
+        userDao.create(cust2);    
     }
     
 }
