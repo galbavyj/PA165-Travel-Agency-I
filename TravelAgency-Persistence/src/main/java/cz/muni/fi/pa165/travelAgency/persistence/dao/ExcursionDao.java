@@ -24,10 +24,10 @@ public interface ExcursionDao {
     /**
      * Deletes excursion from database
      *
-     * @param excursionId ID of excursion, which will be removed from DB
+     * @param ex excursion, which will be removed from DB
      * @throws IllegalArgumentException in case ID is not found
      */
-    public void remove(Long excursionId);
+    public void remove(Excursion ex);
 
     /**
      * Edit the excursion in the database
@@ -47,21 +47,9 @@ public interface ExcursionDao {
     public Set<Excursion> findAllExcursions();
     
     /**
-     * List all excursions in given Trip
-     *
-     * @param trip trip for which we want to find excursions
-     * @return all Excursions in Trip
-     * @throws IllegalArgumentException in case trip is not found
+     * Find some excursion by its ID
+     * @param exId ID of excursion
+     * @return found excursion
      */
-    //public Set<Excursion> findAllExcursionsInTrip(Trip trip);
-    
-    /**
-     * Find all excursions in a reservation
-     *
-     * @param reservation Reservation for which we want to find the excursions
-     * @return all excursions in reservation
-     */
-    public Set<Excursion> findAllExcursionsInReservation(Reservation reservation);
-
-    
+    public Excursion findExcursionById(Long exId);    
 }
