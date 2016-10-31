@@ -6,8 +6,7 @@
 package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
-import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
-import java.util.Set;
+import java.util.List;
 
 /**
  *
@@ -44,7 +43,7 @@ public interface ExcursionDao {
      *
      * @return all excursions
      */
-    public Set<Excursion> findAllExcursions();
+    public List<Excursion> findAllExcursions();
     
     /**
      * Find some excursion by its ID
