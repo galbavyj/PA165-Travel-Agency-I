@@ -50,14 +50,10 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
     @Autowired
     private UserDao userDao;
     
-    @Autowired
-    private ExcursionDao excursionDao;
-    
     private Address addressHotelBrno, addressHotelDolany,addressCustomer;
     private Trip tripBrno, tripDolany;
     private Reservation reservation1, reservation2;
     private Customer customerMilan,customerPetr;
-    private Excursion excursionMuseum, excursionFootballMatch;
     
     @BeforeMethod
     public void setUp(){
@@ -72,7 +68,6 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
         addressHotelDolany.setCountry("Czech republic");
         addressHotelDolany.setNumberOfHouse(9);
         addressHotelDolany.setStreet("U hospody");
-
         
         Date from = new Date();
         Date to = new Date();
@@ -104,42 +99,7 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
         tripDolany.setFrom(from);
         tripDolany.setTo(to);
         tripDolany.setPrice(BigDecimal.ONE);
-        
-        /*excursionMuseum = new Excursion();
-        excursionMuseum.setCreated(created);
-        try {
-            from = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("05/01/2017");
-        } catch (ParseException ex) {
-            Logger.getLogger(TripDaoTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        excursionMuseum.setFrom(from);
-        excursionMuseum.setDuration(3);
-        excursionMuseum.setPlace("Musem of Science");
-        excursionMuseum.setDescription("Visit the best museum in Brno");
-        excursionMuseum.setPrice(35);
-       
-        excursionFootballMatch = new Excursion();
-        excursionFootballMatch.setCreated(created);
-        try {
-            from = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("07/05/2017");
-        } catch (ParseException ex) {
-            Logger.getLogger(TripDaoTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        excursionFootballMatch.setFrom(from);
-        excursionFootballMatch.setDuration(3);
-        excursionFootballMatch.setPlace("Football Stadion Dolany");
-        excursionFootballMatch.setDescription("Thrilling match");
-        excursionFootballMatch.setPrice(20);
-        
-        Set<Excursion> excursionsBrno = new HashSet<>();
-        excursionsBrno.add(excursionMuseum);
-        
-        Set<Excursion> excursionsDolany = new HashSet<>();
-        excursionsDolany.add(excursionFootballMatch);
-        
-        tripBrno.setPossibleExcursions(excursionsBrno);
-        tripDolany.setPossibleExcursions(excursionsDolany);*/
-        
+
         addressCustomer = new Address();
         addressCustomer.setCity("Tirane");
         addressCustomer.setCountry("Albania");
@@ -179,9 +139,6 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
         
         tripDao.create(tripBrno);
         tripDao.create(tripDolany);
-        
-       /* excursionDao.create(excursionMuseum);
-        excursionDao.create(excursionFootballMatch);*/
     }
 
     @Test(expectedExceptions=ConstraintViolationException.class)
@@ -204,8 +161,6 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
         
         reservationDao.create(reservation1);
     }
-    
-    
     
     @Test
     public void testUpdate(){

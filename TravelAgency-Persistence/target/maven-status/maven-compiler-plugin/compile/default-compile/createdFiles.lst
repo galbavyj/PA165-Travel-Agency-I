@@ -4,6 +4,7 @@ cz\muni\fi\pa165\travelAgency\persistence\dao\UserDao.class
 cz\muni\fi\pa165\travelAgency\persistence\dao\ReservationDaoImpl.class
 cz\muni\fi\pa165\travelAgency\persistence\entity\Excursion.class
 cz\muni\fi\pa165\travelAgency\persistence\dao\ExcursionDao.class
+enums\ExcursionType.class
 cz\muni\fi\pa165\travelAgency\persistence\entity\Trip.class
 cz\muni\fi\pa165\travelAgency\persistence\entity\Reservation.class
 travelAgency\TravelAgencyPersistenceContext.class
