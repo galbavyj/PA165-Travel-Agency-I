@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -53,7 +54,7 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
     
     private Address addressHotelBrno, addressHotelDolany,addressCustomer;
     private Trip tripBrno, tripDolany;
-    private Reservation reservationBrno, reservationDolany;
+    private Reservation reservation1, reservation2;
     private Customer customerMilan,customerPetr;
     
     @BeforeMethod
@@ -125,47 +126,114 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
         customerPetr.setUserRole(UserRole.CUSTOMER);
         customerPetr.setCreated(created);
         
-        reservationBrno = new Reservation();
-        reservationBrno.setTrip(tripBrno);
-        reservationBrno.setCustomer(customerMilan);
-        reservationBrno.setCreated(created);    
+        reservation1 = new Reservation();
+        reservation1.setTrip(tripBrno);
+        reservation1.setCustomer(customerMilan);
+        reservation1.setCreated(created);    
         
-        reservationDolany = new Reservation();
-        reservationDolany.setTrip(tripDolany);
-        reservationDolany.setCustomer(customerPetr);
-        reservationDolany.setCreated(created);   
+        reservation2 = new Reservation();
+        reservation2.setTrip(tripDolany);
+        reservation2.setCustomer(customerPetr);
+        reservation2.setCreated(created);   
         
         
         userDao.create(customerMilan);
         userDao.create(customerPetr);
+        
+        tripDao.create(tripBrno);
+        tripDao.create(tripDolany);
     }
 
-    @Test
-    public void create(){
-        reservationDao.create(reservationBrno);
+    @Test(expectedExceptions=ConstraintViolationException.class)
+    public void createWithNullTrip(){
+        reservation1.setTrip(null);
+        
+        reservationDao.create(reservation1);
     }
     
     @Test
     public void testUpdate(){
-       reservationDao.create(reservationBrno);
-       reservationBrno.setTrip(tripDolany);
-       reservationDao.update(reservationBrno);
-       Reservation r = reservationDao.findById(reservationBrno.getId());
-       assertEquals(reservationBrno, r);  
+       reservationDao.create(reservation1);
+       reservation1.setTrip(tripDolany);
+       reservationDao.update(reservation1);
+       Reservation r = reservationDao.findById(reservation1.getId());
+       assertEquals(reservation1, r);  
     }
     
     @Test
     public void findAllReservations(){
-        reservationDao.create(reservationBrno);
-        reservationDao.create(reservationDolany);
+        reservationDao.create(reservation1);
+        reservationDao.create(reservation2);
         
         List<Reservation> reservationList = new ArrayList<>();
-        reservationList.add(reservationBrno);
-        reservationList.add(reservationDolany);
+        reservationList.add(reservation1);
+        reservationList.add(reservation2);
         
         List<Reservation> expectedList = reservationDao.findAllReservations();
        
         assertEquals(reservationList, expectedList);
     }
+    
+    @Test
+    public void remove(){
+        reservationDao.create(reservation1);
+        reservationDao.create(reservation2);
+        
+        List<Reservation> reservationList = new ArrayList<>();
+        reservationList.add(reservation1);
+        
+        reservationDao.remove(reservation2);
+        List<Reservation> expectedList = reservationDao.findAllReservations();
+        
+        assertEquals(reservationList, expectedList);
+    }
+    
+    @Test
+    public void findByCustomer(){
+        reservationDao.create(reservation1);
+        
+        reservation2.setCustomer(customerMilan);
+        
+        reservationDao.create(reservation2);
+        
+        List<Reservation> reservationList = new ArrayList<>();
+        reservationList.add(reservation1);
+        reservationList.add(reservation2);
+        
+        List<Reservation> expectedList = reservationDao.findReservationsByCustomer(customerMilan);
+        
+        assertEquals(reservationList, expectedList);
+    }
+    
+    @Test
+    public void findByTrip(){
+        reservationDao.create(reservation1);
+        
+        reservation2.setTrip(tripBrno);
+        
+        reservationDao.create(reservation2);
+        
+        List<Reservation> reservationList = new ArrayList<>();
+        reservationList.add(reservation1);
+        reservationList.add(reservation2);
+        
+        List<Reservation> expectedList = reservationDao.findReservationsByTrip(tripBrno);
+        
+        assertEquals(reservationList, expectedList);
+    }
+    
+    @Test
+    public void findById(){
+        reservationDao.create(reservation1);
+        reservationDao.create(reservation2);
+        
+        Reservation expected1 = reservationDao.findById(reservation1.getId());
+        Reservation expected2 = reservationDao.findById(reservation2.getId());
+        
+        assertEquals(reservation1, expected1);
+        assertEquals(reservation2, expected2);
+       
+    }
+    
     
 }
