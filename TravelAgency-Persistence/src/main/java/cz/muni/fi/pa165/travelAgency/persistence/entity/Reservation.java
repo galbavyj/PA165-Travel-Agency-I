@@ -23,7 +23,7 @@ public class Reservation {
 
     @NotNull
     @ManyToOne
-    private Customer user;
+    private Customer customer;
 
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
@@ -40,9 +40,8 @@ public class Reservation {
 
     public Reservation(){}
 
-    public Reservation(long id, Customer user,Date created, Trip trip, Set<Excursion> excursions){
-        this.id = id;
-        this.user = user;
+    public Reservation(Customer customer,Date created, Trip trip, Set<Excursion> excursions){
+        this.customer = customer;
         this.trip = trip;
         this.excursions = excursions;
         this.created = created;
@@ -56,12 +55,12 @@ public class Reservation {
         this.id = id;
     }
 
-    public Customer getUser() {
-        return user;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setUser(Customer user) {
-        this.user = user;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public Date getCreated() {
@@ -96,6 +95,7 @@ public class Reservation {
         this.excursions.remove(excursion);
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -104,20 +104,21 @@ public class Reservation {
         Reservation that = (Reservation) o;
 
         if (getId() != that.getId()) return false;
-        if (!getUser().equals(that.getUser())) return false;
-        if (!getCreated().equals(that.getCreated())) return false;
-        if (!getTrip().equals(that.getTrip())) return false;
-        return getExcursions().equals(that.getExcursions());
+        if (getCustomer() != null ? !getCustomer().equals(that.getCustomer()) : that.getCustomer() != null)
+            return false;
+        if (getCreated() != null ? !getCreated().equals(that.getCreated()) : that.getCreated() != null) return false;
+        if (getTrip() != null ? !getTrip().equals(that.getTrip()) : that.getTrip() != null) return false;
+        return getExcursions() != null ? getExcursions().equals(that.getExcursions()) : that.getExcursions() == null;
 
     }
 
     @Override
     public int hashCode() {
         int result = (int) (getId() ^ (getId() >>> 32));
-        result = 31 * result + getUser().hashCode();
-        result = 31 * result + getCreated().hashCode();
-        result = 31 * result + getTrip().hashCode();
-        result = 31 * result + getExcursions().hashCode();
+        result = 31 * result + (getCustomer() != null ? getCustomer().hashCode() : 0);
+        result = 31 * result + (getCreated() != null ? getCreated().hashCode() : 0);
+        result = 31 * result + (getTrip() != null ? getTrip().hashCode() : 0);
+        result = 31 * result + (getExcursions() != null ? getExcursions().hashCode() : 0);
         return result;
     }
 
@@ -125,7 +126,7 @@ public class Reservation {
     public String toString() {
         return "Reservation{" +
                 "id=" + id +
-                ", user=" + user +
+                ", customer=" + customer +
                 ", created=" + created +
                 ", trip=" + trip +
                 ", excursions=" + excursions +
