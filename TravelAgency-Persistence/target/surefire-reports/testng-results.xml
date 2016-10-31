@@ -1,55 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" total="3" passed="3">
   <reporter-output>
   </reporter-output>
-  <suite name="Surefire suite" duration-ms="3231" started-at="2016-10-30T19:42:18Z" finished-at="2016-10-30T19:42:21Z">
+  <suite name="Surefire suite" duration-ms="3315" started-at="2016-10-31T17:29:33Z" finished-at="2016-10-31T17:29:37Z">
     <groups>
     </groups>
-    <test name="Surefire test" duration-ms="3231" started-at="2016-10-30T19:42:18Z" finished-at="2016-10-30T19:42:21Z">
-      <class name="cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest">
-        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest@18eed359]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="8" started-at="2016-10-30T20:42:18Z" finished-at="2016-10-30T20:42:18Z">
+    <test name="Surefire test" duration-ms="3315" started-at="2016-10-31T17:29:33Z" finished-at="2016-10-31T17:29:37Z">
+      <class name="cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest">
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest@5a8e6209]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="0" started-at="2016-10-31T18:29:33Z" finished-at="2016-10-31T18:29:33Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextBeforeTestClass -->
-        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest@18eed359]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="2979" started-at="2016-10-30T20:42:18Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2016-10-30T20:42:21Z">
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest@5a8e6209]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="2903" started-at="2016-10-31T18:29:33Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2016-10-31T18:29:36Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextPrepareTestInstance -->
-        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest@18eed359]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="120" started-at="2016-10-30T20:42:21Z" finished-at="2016-10-30T20:42:21Z">
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest@5a8e6209]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="113" started-at="2016-10-31T18:29:36Z" finished-at="2016-10-31T18:29:36Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[public void cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest.testUpdate()]]>
+                <![CDATA[public void cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest.create()]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextBeforeTestMethod -->
-        <test-method status="PASS" signature="setUp()[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest@18eed359]" name="setUp" is-config="true" duration-ms="12" started-at="2016-10-30T20:42:21Z" finished-at="2016-10-30T20:42:21Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest@5a8e6209]" name="setUp" is-config="true" duration-ms="83" started-at="2016-10-31T18:29:36Z" finished-at="2016-10-31T18:29:36Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="testUpdate()[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest@18eed359]" name="testUpdate" duration-ms="94" started-at="2016-10-30T20:42:21Z" finished-at="2016-10-30T20:42:21Z">
+        <test-method status="PASS" signature="create()[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest@5a8e6209]" name="create" duration-ms="21" started-at="2016-10-31T18:29:36Z" finished-at="2016-10-31T18:29:36Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testUpdate -->
-        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest@18eed359]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="8" started-at="2016-10-30T20:42:21Z" finished-at="2016-10-30T20:42:21Z">
+        </test-method> <!-- create -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest@5a8e6209]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="9" started-at="2016-10-31T18:29:36Z" finished-at="2016-10-31T18:29:36Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[public void cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest.testUpdate()]]>
+                <![CDATA[public void cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest.create()]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextAfterTestMethod -->
-        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest@18eed359]" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2016-10-30T20:42:21Z" finished-at="2016-10-30T20:42:21Z">
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest@5a8e6209]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="2" started-at="2016-10-31T18:29:36Z" finished-at="2016-10-31T18:29:36Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest.findAllReservations()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest@5a8e6209]" name="setUp" is-config="true" duration-ms="8" started-at="2016-10-31T18:29:36Z" finished-at="2016-10-31T18:29:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="findAllReservations()[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest@5a8e6209]" name="findAllReservations" duration-ms="137" started-at="2016-10-31T18:29:36Z" finished-at="2016-10-31T18:29:37Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- findAllReservations -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest@5a8e6209]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="4" started-at="2016-10-31T18:29:37Z" finished-at="2016-10-31T18:29:37Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest.findAllReservations()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest@5a8e6209]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="2" started-at="2016-10-31T18:29:37Z" finished-at="2016-10-31T18:29:37Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest.testUpdate()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest@5a8e6209]" name="setUp" is-config="true" duration-ms="12" started-at="2016-10-31T18:29:37Z" finished-at="2016-10-31T18:29:37Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="testUpdate()[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest@5a8e6209]" name="testUpdate" duration-ms="2" started-at="2016-10-31T18:29:37Z" finished-at="2016-10-31T18:29:37Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testUpdate -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest@5a8e6209]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="0" started-at="2016-10-31T18:29:37Z" finished-at="2016-10-31T18:29:37Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest.testUpdate()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest@5a8e6209]" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2016-10-31T18:29:37Z" finished-at="2016-10-31T18:29:37Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- springTestContextAfterTestClass -->
-      </class> <!-- cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest -->
+      </class> <!-- cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest -->
     </test> <!-- Surefire test -->
   </suite> <!-- Surefire suite -->
 </testng-results>

@@ -5,127 +5,167 @@
  */
 package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
+/**
+ *
+ * @author Martin
+ */
+
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Address;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
-import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
 import enums.UserRole;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
+import org.springframework.transaction.annotation.Transactional;
+import org.testng.Assert;
+import static org.testng.Assert.assertEquals;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import travelAgency.TravelAgencyPersistenceContext;
 
-/**
- *
- * @author Patrik Behrami
- */
-public class ReservationDaoTest {
-    @Autowired
-    public UserDao userDao;
+@ContextConfiguration(classes = TravelAgencyPersistenceContext.class)
+@TestExecutionListeners(TransactionalTestExecutionListener.class)
+@Transactional
+public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
     
     @Autowired
-    public TripDao tripDao;
+    private TripDao tripDao;
     
     @Autowired
-    public ExcursionDao excursionDao;
+    private ReservationDao reservationDao;
     
     @Autowired
-    public ReservationDao reservationDao;
+    private UserDao userDao;
     
-    private Customer u1,u2;
-    private Reservation r1,r2;
-    private Trip t1;
-    private Excursion e1;
-    private Address a1;
-    private Address a2;
+    private Address addressHotelBrno, addressHotelDolany,addressCustomer;
+    private Trip tripBrno, tripDolany;
+    private Reservation reservationBrno, reservationDolany;
+    private Customer customerMilan,customerPetr;
     
-    @BeforeMethod 
-    public void prepare() throws ParseException{
-        a1 = new Address();
-        a1.setCountry("Czech Republic");
-        a1.setCity("Brno");
-        a1.setStreet("Lidicka");
-        a1.setNumberOfHouse(3);
+    @BeforeMethod
+    public void setUp(){
+        addressHotelBrno = new Address();
+        addressHotelBrno.setCity("Brno");
+        addressHotelBrno.setCountry("Czech republic");
+        addressHotelBrno.setNumberOfHouse(3);
+        addressHotelBrno.setStreet("Lidicka");
         
-        a2 = new Address();
-        a2.setCountry("Albania");
-        a1.setCity("Tirane");
-        a1.setStreet("Rruga Myslym Shyri");
-        a1.setNumberOfHouse(10);
+        addressHotelDolany = new Address();
+        addressHotelDolany.setCity("Dolany");
+        addressHotelDolany.setCountry("Czech republic");
+        addressHotelDolany.setNumberOfHouse(9);
+        addressHotelDolany.setStreet("U hospody");
         
-        Calendar cal = Calendar.getInstance();
-        cal.set(2016, 1, 1);
-        Date date1 = cal.getTime();
+        Date from = new Date();
+        Date to = new Date();
+        Date created = new Date();
         
-        u1 = new Customer();
-        u1.setAddress(a1);
-        u1.setFirstName("Milan");
-        u1.setLastName("Peterka");
-        u1.setEmail("milan.peterka@seznam.cz");
-        u1.setPhoneNumber("+420777852974");
-        u1.setUserRole(UserRole.CUSTOMER);
-        u1.setCreated(date1);
+        tripBrno = new Trip();
+        tripBrno.setAddressOfHotel(addressHotelBrno);
+        try {
+            from = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2017");
+            to = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("10/01/2017");
+            created = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("30/10/2016");
+        } catch (ParseException ex) {
+            Logger.getLogger(TripDaoTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tripBrno.setCreated(created);
+        tripBrno.setFrom(from);
+        tripBrno.setTo(to);
+        tripBrno.setPrice(BigDecimal.TEN);
         
-        cal.set(2016, 2, 1);
-        date1 = cal.getTime();
+        tripDolany = new Trip();
+        tripDolany.setAddressOfHotel(addressHotelDolany);
+        try {
+            from = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("02/05/2017");
+            to = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("09/05/2017");
+        } catch (ParseException ex) {
+            Logger.getLogger(TripDaoTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tripDolany.setCreated(created);
+        tripDolany.setFrom(from);
+        tripDolany.setTo(to);
+        tripDolany.setPrice(BigDecimal.ONE);
         
-        u2 = new Customer();
-        u2.setAddress(a1);
-        u2.setFirstName("Petr");
-        u2.setLastName("Petrenec");
-        u2.setEmail("petr.petrenec@seznam.cz");
-        u2.setPhoneNumber("+420777842974");
-        u2.setUserRole(UserRole.CUSTOMER);
-        u2.setCreated(date1);
+        addressCustomer = new Address();
+        addressCustomer.setCity("Tirane");
+        addressCustomer.setCountry("Albania");
+        addressCustomer.setNumberOfHouse(10);
+        addressCustomer.setStreet("Rozsygo");
         
-        cal.set(2016, 10, 29);
-        Date date2 = cal.getTime();
-        
-        e1 = new Excursion();
-        e1.setCreated(date2);
-        e1.setFrom((Date) new SimpleDateFormat("dd/MM/yyyy").parse("05/11/2016"));
-        e1.setDuration(2);
-        e1.setPlace("National Science Museum in Tirane");
-        e1.setDescription("Visit the biggest museum in whole Albania");
-        e1.setPrice(2000);
-        
-        Set<Excursion> excursionSet = new HashSet<>();
-        excursionSet.add(e1);
-        
-        cal.set(2016, 10, 15);
-        Date date3 = cal.getTime();
-       
-        t1 = new Trip();
-        t1.setAddressOfHotel(a2);
-        t1.setCreated((Date) new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2016"));
-        t1.setFrom((Date) new SimpleDateFormat("dd/MM/yyyy").parse("31/10/2016"));
-        t1.setTo((Date) new SimpleDateFormat("dd/MM/yyyy").parse("10/11/2016"));
-        t1.setPrice(BigDecimal.TEN);
-        
+        customerMilan = new Customer();
+        customerMilan.setAddress(addressCustomer);
+        customerMilan.setFirstName("Milan");
+        customerMilan.setLastName("Peterka");
+        customerMilan.setEmail("milan.peterka@seznam.cz");
+        customerMilan.setPhoneNumber("+420777852974");
+        customerMilan.setUserRole(UserRole.CUSTOMER);
+        customerMilan.setCreated(created);
 
-        cal.set(2016, 10, 20);
-        Date date4 = cal.getTime();
+        customerPetr = new Customer();
+        customerPetr.setAddress(addressCustomer);
+        customerPetr.setFirstName("Petr");
+        customerPetr.setLastName("Milanka");
+        customerPetr.setEmail("petr.milanka@seznam.cz");
+        customerPetr.setPhoneNumber("+420608999974");
+        customerPetr.setUserRole(UserRole.CUSTOMER);
+        customerPetr.setCreated(created);
         
-        r1 = new Reservation();
-        r1.setCreated(date4);
-        r1.setExcursions(excursionSet);
-        r1.setTrip(t1);
-        r1.setCustomer(u1);
+        reservationBrno = new Reservation();
+        reservationBrno.setTrip(tripBrno);
+        reservationBrno.setCustomer(customerMilan);
+        reservationBrno.setCreated(created);    
+        
+        reservationDolany = new Reservation();
+        reservationDolany.setTrip(tripDolany);
+        reservationDolany.setCustomer(customerPetr);
+        reservationDolany.setCreated(created);   
         
         
-        userDao.create(u1);
-     //   tripDao.create(t1);
+        userDao.create(customerMilan);
+        userDao.create(customerPetr);
+    }
+
+    @Test
+    public void create(){
+        reservationDao.create(reservationBrno);
     }
     
     @Test
-    public void create(){
-        reservationDao.create(r1);
+    public void testUpdate(){
+       reservationDao.create(reservationBrno);
+       reservationBrno.setTrip(tripDolany);
+       reservationDao.update(reservationBrno);
+       Reservation r = reservationDao.findById(reservationBrno.getId());
+       assertEquals(reservationBrno, r);  
     }
+    
+    @Test
+    public void findAllReservations(){
+        reservationDao.create(reservationBrno);
+        reservationDao.create(reservationDolany);
+        
+        List<Reservation> reservationList = new ArrayList<>();
+        reservationList.add(reservationBrno);
+        reservationList.add(reservationDolany);
+        
+        List<Reservation> expectedList = reservationDao.findAllReservations();
+       
+        assertEquals(reservationList, expectedList);
+    }
+    
 }

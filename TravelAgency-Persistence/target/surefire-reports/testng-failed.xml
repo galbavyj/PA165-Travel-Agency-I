@@ -3,17 +3,17 @@
 <suite thread-count="1" verbose="0" name="Failed suite [Surefire suite]">
   <test name="Surefire test(failed)">
     <classes>
-      <class name="cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest">
+      <class name="cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest">
         <methods>
           <include name="springTestContextBeforeTestClass"/>
+          <include name="findAllReservations"/>
           <include name="springTestContextPrepareTestInstance"/>
+          <include name="setUp"/>
           <include name="springTestContextAfterTestClass"/>
           <include name="springTestContextBeforeTestMethod"/>
-          <include name="testUpdate"/>
           <include name="springTestContextAfterTestMethod"/>
-          <include name="setUp"/>
         </methods>
-      </class> <!-- cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest -->
+      </class> <!-- cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest -->
     </classes>
   </test> <!-- Surefire test(failed) -->
 </suite> <!-- Failed suite [Surefire suite] -->
