@@ -123,14 +123,14 @@ public class ExcursionDaoTest extends AbstractTestNGSpringContextTests{
 
 
     @Test
-    public void excursionCreate(){
+    public void create(){
         excursionDao.create(excursion1);
         assertTrue(excursionDao.findAllExcursions().contains(excursion1));
         assertTrue(excursionDao.findAllExcursions().size() == 1);
     }
 
     @Test
-    public void eUpdate(){
+    public void update(){
         excursionDao.create(excursion1);
         assertEquals(excursionDao.findExcursionById(excursion1.getId()).getPlace(), "Greenwich");
         excursion1.setPlace("BigBen");
