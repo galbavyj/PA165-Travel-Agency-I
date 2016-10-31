@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
 /**
@@ -190,11 +185,27 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
     }
 
     @Test(expectedExceptions=ConstraintViolationException.class)
-    public void createWithNullTrip(){
+    public void testCreateWithNullTrip(){
         reservation1.setTrip(null);
         
         reservationDao.create(reservation1);
     }
+    
+    @Test(expectedExceptions=ConstraintViolationException.class)
+    public void testCreateWithNullCreated(){
+        reservation1.setCreated(null);
+        
+        reservationDao.create(reservation1);
+    }
+    
+    @Test(expectedExceptions=ConstraintViolationException.class)
+    public void testCreateWithNullCustomer(){
+        reservation1.setCustomer(null);
+        
+        reservationDao.create(reservation1);
+    }
+    
+    
     
     @Test
     public void testUpdate(){
@@ -206,7 +217,7 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
     }
     
     @Test
-    public void findAllReservations(){
+    public void testFindAllReservations(){
         reservationDao.create(reservation1);
         reservationDao.create(reservation2);
         
@@ -220,7 +231,7 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
     }
     
     @Test
-    public void remove(){
+    public void testRemove(){
         reservationDao.create(reservation1);
         reservationDao.create(reservation2);
         
@@ -234,7 +245,7 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
     }
     
     @Test
-    public void findByCustomer(){
+    public void testFindByCustomer(){
         reservationDao.create(reservation1);
         
         reservation2.setCustomer(customerMilan);
@@ -251,7 +262,7 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
     }
     
     @Test
-    public void findByTrip(){
+    public void testFindByTrip(){
         reservationDao.create(reservation1);
         
         reservation2.setTrip(tripBrno);
@@ -268,7 +279,7 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
     }
     
     @Test
-    public void findById(){
+    public void testFindById(){
         reservationDao.create(reservation1);
         reservationDao.create(reservation2);
         
