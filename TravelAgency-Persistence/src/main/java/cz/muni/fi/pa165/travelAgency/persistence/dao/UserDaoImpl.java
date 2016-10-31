@@ -38,13 +38,18 @@ public class UserDaoImpl implements UserDao {
     }
 
     public List<Customer> findAllCustomers() {
-        final Query query = em.createQuery("SELECT u FROM User as u WHERE u.userRole = :userRole");
+        final Query query = em.createQuery("SELECT u FROM Customer as u WHERE u.userRole = :userRole");
         query.setParameter("userRole", UserRole.CUSTOMER);
         return query.getResultList();
     }
 
     public Customer findByEmail(String email) {
-        return em.createQuery("SELECT u FROM User as u WHERE u.email = :email",Customer.class)
+        return em.createQuery("SELECT u FROM Customer as u WHERE u.email = :email",Customer.class)
                 .setParameter("email", email).getSingleResult();
+    }
+
+    public Customer findById(Long id) {
+        return em.createQuery("SELECT u FROM Customer as u WHERE u.id = :id",Customer.class)
+                .setParameter("id", id).getSingleResult();
     }
 }
