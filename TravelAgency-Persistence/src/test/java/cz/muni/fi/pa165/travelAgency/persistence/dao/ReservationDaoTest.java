@@ -12,6 +12,7 @@ package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Address;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
+import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
 import enums.UserRole;
@@ -22,7 +23,9 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.validation.ConstraintViolationException;
@@ -52,10 +55,14 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
     @Autowired
     private UserDao userDao;
     
+    @Autowired
+    private ExcursionDao excursionDao;
+    
     private Address addressHotelBrno, addressHotelDolany,addressCustomer;
     private Trip tripBrno, tripDolany;
     private Reservation reservation1, reservation2;
     private Customer customerMilan,customerPetr;
+    private Excursion excursionMuseum, excursionFootballMatch;
     
     @BeforeMethod
     public void setUp(){
@@ -70,6 +77,7 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
         addressHotelDolany.setCountry("Czech republic");
         addressHotelDolany.setNumberOfHouse(9);
         addressHotelDolany.setStreet("U hospody");
+
         
         Date from = new Date();
         Date to = new Date();
@@ -101,6 +109,41 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
         tripDolany.setFrom(from);
         tripDolany.setTo(to);
         tripDolany.setPrice(BigDecimal.ONE);
+        
+        /*excursionMuseum = new Excursion();
+        excursionMuseum.setCreated(created);
+        try {
+            from = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("05/01/2017");
+        } catch (ParseException ex) {
+            Logger.getLogger(TripDaoTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        excursionMuseum.setFrom(from);
+        excursionMuseum.setDuration(3);
+        excursionMuseum.setPlace("Musem of Science");
+        excursionMuseum.setDescription("Visit the best museum in Brno");
+        excursionMuseum.setPrice(35);
+       
+        excursionFootballMatch = new Excursion();
+        excursionFootballMatch.setCreated(created);
+        try {
+            from = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("07/05/2017");
+        } catch (ParseException ex) {
+            Logger.getLogger(TripDaoTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        excursionFootballMatch.setFrom(from);
+        excursionFootballMatch.setDuration(3);
+        excursionFootballMatch.setPlace("Football Stadion Dolany");
+        excursionFootballMatch.setDescription("Thrilling match");
+        excursionFootballMatch.setPrice(20);
+        
+        Set<Excursion> excursionsBrno = new HashSet<>();
+        excursionsBrno.add(excursionMuseum);
+        
+        Set<Excursion> excursionsDolany = new HashSet<>();
+        excursionsDolany.add(excursionFootballMatch);
+        
+        tripBrno.setPossibleExcursions(excursionsBrno);
+        tripDolany.setPossibleExcursions(excursionsDolany);*/
         
         addressCustomer = new Address();
         addressCustomer.setCity("Tirane");
@@ -141,6 +184,9 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
         
         tripDao.create(tripBrno);
         tripDao.create(tripDolany);
+        
+       /* excursionDao.create(excursionMuseum);
+        excursionDao.create(excursionFootballMatch);*/
     }
 
     @Test(expectedExceptions=ConstraintViolationException.class)
