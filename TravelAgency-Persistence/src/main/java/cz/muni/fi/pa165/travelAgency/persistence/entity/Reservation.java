@@ -29,10 +29,9 @@ public class Reservation {
     private Date created;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     private Trip trip;
 
-    @NotNull
     @ManyToMany
     private Set<Excursion> excursions = new HashSet<>();
 

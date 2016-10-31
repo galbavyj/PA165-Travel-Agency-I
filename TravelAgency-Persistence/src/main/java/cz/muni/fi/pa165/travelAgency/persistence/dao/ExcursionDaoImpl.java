@@ -12,11 +12,15 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Lucia
  */
+@Repository
+@Transactional
 public class ExcursionDaoImpl implements ExcursionDao {
 
     @PersistenceContext

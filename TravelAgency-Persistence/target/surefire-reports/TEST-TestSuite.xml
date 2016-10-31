@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestSuite" time="0.358" tests="34" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_101\jre\bin"/>
+    <property name="java.vm.version" value="25.101-b13"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="CZ"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="C:\Users\behra\OneDrive\Dokumenty\NetBeansProjects\PA165-Travel-Agency-I"/>
+    <property name="java.runtime.version" value="1.8.0_101-b13"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_101\jre\lib\endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\behra\AppData\Local\Temp\"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="maven.ext.class.path" value="C:\Program Files\NetBeans 8.2\java\maven-nblib\netbeans-eventspy.jar"/>
+    <property name="classworlds.conf" value="C:\Program Files\NetBeans 8.2\java\maven\bin\m2.conf"/>
+    <property name="sun.jnu.encoding" value="Cp1250"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_101\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Python27;C:\Program Files\Java\jdk1.8.0_101\bin;C:\Program Files (x86)\swipl\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Skype\Phone\;C:\WINDOWS\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Users\behra\AppData\Local\Programs\Python\Python35-32;C:\Users\behra\AppData\Local\Programs\Python\Python35-32\Scripts;C:\Program Files\Git\cmd;C:\Users\behra\AppData\Local\Microsoft\WindowsApps;;."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.0"/>
+    <property name="user.home" value="C:\Users\behra"/>
+    <property name="user.timezone" value="Europe/Prague"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="user.name" value="behra"/>
+    <property name="java.class.path" value="C:\Program Files\NetBeans 8.2\java\maven\boot\plexus-classworlds-2.4.jar"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_101\jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.2\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 clean install"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="cs"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.8.0_101"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_101\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_101\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_101\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_101\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_101\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_101\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_101\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_101\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_101\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="C:\Program Files\NetBeans 8.2\java\maven"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase name="testCreateWithNullCreated" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest" time="0.019"/>
+  <testcase name="testCreateWithNullCustomer" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest" time="0.001"/>
+  <testcase name="testCreateWithNullTrip" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest" time="0.001"/>
+  <testcase name="testFindAllReservations" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest" time="0.128"/>
+  <testcase name="testFindByCustomer" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest" time="0.025"/>
+  <testcase name="testFindById" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest" time="0.007"/>
+  <testcase name="testFindByTrip" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest" time="0.011"/>
+  <testcase name="testRemove" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest" time="0.036"/>
+  <testcase name="testUpdate" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDaoTest" time="0.004"/>
+  <testcase name="testCreate" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest" time="0.006"/>
+  <testcase name="testFindAll" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest" time="0.011"/>
+  <testcase name="testFindByCountry" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest" time="0.015"/>
+  <testcase name="testFindById" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest" time="0.004"/>
+  <testcase name="testNegativePrice" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest" time="0.003"/>
+  <testcase name="testNullCreated" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest" time="0.002"/>
+  <testcase name="testNullFrom" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest" time="0.001"/>
+  <testcase name="testNullPrice" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest" time="0"/>
+  <testcase name="testNullTo" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest" time="0"/>
+  <testcase name="testPastFromDate" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest" time="0"/>
+  <testcase name="testPastToDate" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest" time="0"/>
+  <testcase name="testRemove" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest" time="0.019"/>
+  <testcase name="testUpdate" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.TripDaoTest" time="0"/>
+  <testcase name="createTest" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.UserDaoTest" time="0.016"/>
+  <testcase name="findAllCustomersTest" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.UserDaoTest" time="0.011"/>
+  <testcase name="findByEmailTest" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.UserDaoTest" time="0.002"/>
+  <testcase name="findByIdTest" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.UserDaoTest" time="0.009"/>
+  <testcase name="removeTest" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.UserDaoTest" time="0.007"/>
+  <testcase name="testNullAddress" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.UserDaoTest" time="0"/>
+  <testcase name="testNullCreated" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.UserDaoTest" time="0.001"/>
+  <testcase name="testNullLastName" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.UserDaoTest" time="0.001"/>
+  <testcase name="testNullPhoneNumber" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.UserDaoTest" time="0.001"/>
+  <testcase name="testNullUserRole" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.UserDaoTest" time="0.002"/>
+  <testcase name="testNullfirstName" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.UserDaoTest" time="0.001"/>
+  <testcase name="updateTest" classname="cz.muni.fi.pa165.travelAgency.persistence.dao.UserDaoTest" time="0.014"/>
+</testsuite>
