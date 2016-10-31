@@ -95,6 +95,7 @@ public class Reservation {
         this.excursions.remove(excursion);
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -103,20 +104,21 @@ public class Reservation {
         Reservation that = (Reservation) o;
 
         if (getId() != that.getId()) return false;
-        if (!getCustomer().equals(that.getCustomer())) return false;
-        if (!getCreated().equals(that.getCreated())) return false;
-        if (!getTrip().equals(that.getTrip())) return false;
-        return getExcursions().equals(that.getExcursions());
+        if (getCustomer() != null ? !getCustomer().equals(that.getCustomer()) : that.getCustomer() != null)
+            return false;
+        if (getCreated() != null ? !getCreated().equals(that.getCreated()) : that.getCreated() != null) return false;
+        if (getTrip() != null ? !getTrip().equals(that.getTrip()) : that.getTrip() != null) return false;
+        return getExcursions() != null ? getExcursions().equals(that.getExcursions()) : that.getExcursions() == null;
 
     }
 
     @Override
     public int hashCode() {
         int result = (int) (getId() ^ (getId() >>> 32));
-        result = 31 * result + getCustomer().hashCode();
-        result = 31 * result + getCreated().hashCode();
-        result = 31 * result + getTrip().hashCode();
-        result = 31 * result + getExcursions().hashCode();
+        result = 31 * result + (getCustomer() != null ? getCustomer().hashCode() : 0);
+        result = 31 * result + (getCreated() != null ? getCreated().hashCode() : 0);
+        result = 31 * result + (getTrip() != null ? getTrip().hashCode() : 0);
+        result = 31 * result + (getExcursions() != null ? getExcursions().hashCode() : 0);
         return result;
     }
 
