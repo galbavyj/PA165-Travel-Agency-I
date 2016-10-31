@@ -8,6 +8,7 @@ package cz.muni.fi.pa165.travelAgency.persistence.dao;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Address;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
+import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
 import enums.UserRole;
 import java.text.ParseException;
@@ -27,6 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNull;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import travelAgency.TravelAgencyPersistenceContext;
 
@@ -46,8 +48,9 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests{
     private Customer cust2;
     private Address address;
     private Date created;
+    private Reservation res;
     
-    @BeforeClass
+    @BeforeMethod
     public void setup(){
         address = new Address();
         address.setCity("Brno");
@@ -83,6 +86,8 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests{
         cust2.setPhoneNumber("725555777");
         cust2.setUserRole(UserRole.CUSTOMER);
         
+        res = new Reservation();
+        
         
     }
     
@@ -96,6 +101,7 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests{
     @Test
     public void updateTest(){
         userDao.create(cust2);
+        userDao.update(cust2);
         cust2.setFirstName("Fedor");
         userDao.update(cust2);
         Customer c = userDao.findByEmail(cust2.getEmail());
@@ -106,7 +112,7 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests{
     public void removeTest(){
         userDao.create(cust2);
         userDao.remove(cust2);
-        assertNull(userDao.findByEmail(cust2.getEmail()));
+        assertEquals(userDao.findAllCustomers().size(), 0);
     }
     
     @Test
@@ -124,11 +130,42 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests{
         assertEquals(c.getEmail(), cust.getEmail());     
     }
     
-    @Test(expectedExceptions = ConstraintViolationException.class )
-    public void uniqueEmailTest() {
+    
+    
+    @Test(expectedExceptions=ConstraintViolationException.class)
+     public void testNullAddress(){
+        cust.setAddress(null);
         userDao.create(cust);
-        cust2.setEmail(cust.getEmail());
-        userDao.create(cust2);    
-    }
+      }
+     
+     @Test(expectedExceptions=ConstraintViolationException.class)
+     public void testNullfirstName(){
+        cust.setFirstName(null);
+        userDao.create(cust);
+      }
+     
+     @Test(expectedExceptions=ConstraintViolationException.class)
+     public void testNullLastName(){
+        cust.setLastName(null);
+        userDao.create(cust);
+      }
+     
+     @Test(expectedExceptions=ConstraintViolationException.class)
+     public void testNullPhoneNumber(){
+        cust.setPhoneNumber(null);
+        userDao.create(cust);
+      }
+     
+     @Test(expectedExceptions=ConstraintViolationException.class)
+     public void testNullCreated(){
+        cust.setCreated(null);
+        userDao.create(cust);
+      }
+     
+     @Test(expectedExceptions=ConstraintViolationException.class)
+     public void testNullUserRole(){
+        cust.setUserRole(null);
+        userDao.create(cust);
+      }
     
 }
