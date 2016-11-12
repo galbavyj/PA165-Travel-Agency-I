@@ -18,14 +18,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.inject.Inject;
 import javax.validation.ConstraintViolationException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
-import org.testng.Assert;
 import static org.testng.Assert.assertEquals;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -36,7 +35,7 @@ import travelAgency.TravelAgencyPersistenceContext;
 @Transactional
 public class TripDaoTest extends AbstractTestNGSpringContextTests{
     
-    @Autowired
+    @Inject
     private TripDao tripDao;
     
     private Address address;
@@ -130,6 +129,25 @@ public class TripDaoTest extends AbstractTestNGSpringContextTests{
     public void testNullCreated(){
         trip.setCreated(null);
         tripDao.create(trip);
+    }
+    
+    @Test(expectedExceptions=IllegalArgumentException.class)
+    public void testCreateNull(){
+        tripDao.create(null);
+    }
+    
+    @Test(expectedExceptions=IllegalArgumentException.class)
+    public void testUpdateNull(){
+        tripDao.create(trip);
+        trip = null;
+        tripDao.update(trip);
+    }
+    
+    @Test(expectedExceptions=IllegalArgumentException.class)
+    public void testRemoveNull(){
+        tripDao.create(trip);
+        tripDao.remove(null);
+        assertEquals(tripDao.findAllTrips().size(), 0);
     }
     
     @Test(expectedExceptions=ConstraintViolationException.class)

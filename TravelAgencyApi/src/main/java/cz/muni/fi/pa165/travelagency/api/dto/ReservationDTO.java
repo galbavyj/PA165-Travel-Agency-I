@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package enums;
+package cz.muni.fi.pa165.travelagency.api.dto;
 
 /**
  *
  * @author Martin
  */
-public enum UserRole {
-    ADMIN, CUSTOMER
+public class ReservationDTO {
+    
 }
