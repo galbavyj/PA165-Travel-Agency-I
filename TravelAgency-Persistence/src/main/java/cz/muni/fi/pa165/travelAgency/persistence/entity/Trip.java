@@ -43,7 +43,7 @@ public class Trip {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
     
-    @OneToMany
+    @OneToMany(mappedBy="trip")
     private Set<Excursion> possibleExcursions;
     
     @Embedded

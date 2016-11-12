@@ -7,9 +7,7 @@ package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Address;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
-import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
-import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
 import enums.UserRole;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,7 +15,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.persistence.NoResultException;
 import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -26,8 +23,6 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNull;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import travelAgency.TravelAgencyPersistenceContext;
@@ -127,7 +122,7 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests{
     public void findByEmailTest(){
         userDao.create(cust);
         Customer c = userDao.findByEmail(cust.getEmail());
-        assertEquals(c.getEmail(), cust.getEmail());     
+        assertEquals(c, cust);     
     }
     
     
@@ -172,7 +167,7 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests{
     public void findByIdTest(){
         userDao.create(cust);
         Customer c = userDao.findById(cust.getId());
-        assertEquals(c.getId(), cust.getId());     
+        assertEquals(c, cust);     
     }
     
 }
