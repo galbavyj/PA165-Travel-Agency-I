@@ -6,7 +6,7 @@
 package cz.muni.fi.pa165.travelAgency.persistence.entity;
 
     
-import enums.ExcursionType;
+import cz.muni.fi.pa165.travelagency.api.enums.ExcursionType;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Date;

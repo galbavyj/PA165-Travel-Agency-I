@@ -5,7 +5,7 @@
  */
 package cz.muni.fi.pa165.travelAgency.persistence.entity;
 
-import enums.UserRole;
+import cz.muni.fi.pa165.travelagency.api.enums.CustomerRole;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
@@ -21,6 +21,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 /**
  *
@@ -42,6 +43,7 @@ public class Customer {
     private String lastName;
 
     @Column(unique = true)
+    @Pattern(regexp=".+@.+\\.[a-z]+", message="Invalid email address!")
     private String email;
 
     @NotNull
@@ -60,7 +62,7 @@ public class Customer {
     @Enumerated
     @NotNull
     @Column(nullable = false)
-    private UserRole userRole;
+    private CustomerRole customerRole;
 
     @OneToMany()
     private Set<Reservation> reservations;
@@ -125,12 +127,12 @@ public class Customer {
         this.created = created;
     }
 
-    public UserRole getUserRole() {
-        return userRole;
+    public CustomerRole getcustomerRole() {
+        return customerRole;
     }
 
-    public void setUserRole(UserRole userRole) {
-        this.userRole = userRole;
+    public void setCustomerRole(CustomerRole customerRole) {
+        this.customerRole = customerRole;
     }
 
     public Set<Reservation> getReservations() {
@@ -144,14 +146,12 @@ public class Customer {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + (this.id != null ? this.id.hashCode() : 0);
         hash = 59 * hash + (this.firstName != null ? this.firstName.hashCode() : 0);
         hash = 59 * hash + (this.lastName != null ? this.lastName.hashCode() : 0);
         hash = 59 * hash + (this.email != null ? this.email.hashCode() : 0);
         hash = 59 * hash + (this.address != null ? this.address.hashCode() : 0);
         hash = 59 * hash + (this.phoneNumber != null ? this.phoneNumber.hashCode() : 0);
-        hash = 59 * hash + (this.created != null ? this.created.hashCode() : 0);
-        hash = 59 * hash + (this.userRole != null ? this.userRole.hashCode() : 0);
+        hash = 59 * hash + (this.customerRole != null ? this.customerRole.hashCode() : 0);
         hash = 59 * hash + (this.reservations != null ? this.reservations.hashCode() : 0);
         return hash;
     }
@@ -164,7 +164,7 @@ public class Customer {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (!(obj instanceof Customer)) {
             return false;
         }
         final Customer other = (Customer) obj;
@@ -180,16 +180,10 @@ public class Customer {
         if ((this.phoneNumber == null) ? (other.phoneNumber != null) : !this.phoneNumber.equals(other.phoneNumber)) {
             return false;
         }
-        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
-            return false;
-        }
         if (this.address != other.address && (this.address == null || !this.address.equals(other.address))) {
             return false;
         }
-        if (this.created != other.created && (this.created == null || !this.created.equals(other.created))) {
-            return false;
-        }
-        if (this.userRole != other.userRole) {
+        if (this.customerRole != other.customerRole) {
             return false;
         }
         if (this.reservations != other.reservations && (this.reservations == null || !this.reservations.equals(other.reservations))) {
@@ -200,6 +194,6 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", address=" + address.toString() + ", phoneNumber=" + phoneNumber + ", created=" + created.toString() + ", userRole=" + userRole.toString();
+        return "customer firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", address=" + address.toString() + ", phoneNumber=" + phoneNumber + ", created=" + created.toString() + ", customerRole=" + customerRole.toString();
     }
 }

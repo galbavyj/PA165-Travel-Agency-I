@@ -81,7 +81,7 @@ public class Address {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (!(obj instanceof Address)) {
             return false;
         }
         final Address other = (Address) obj;

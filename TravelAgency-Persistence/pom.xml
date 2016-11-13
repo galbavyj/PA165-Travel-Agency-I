@@ -11,7 +11,7 @@
     <artifactId>persistence</artifactId>
 	<packaging>jar</packaging>
 
-	<name>Persistence Layer and Beans Validation</name>
+	<name>TravelAgencyPersistence</name>
 
 	<dependencies>
 		<dependency>
@@ -93,6 +93,17 @@
 			<artifactId>derby</artifactId>
 			<version>10.10.2.0</version>
 		</dependency>
-
+	 <dependency>
+	  <groupId>javax.inject</groupId>
+	  <artifactId>javax.inject</artifactId>
+	  <version>1</version>
+	  <scope>test</scope>
+	  <type>jar</type>
+	 </dependency>
+	 <dependency>
+	  <groupId>${project.groupId}</groupId>
+	  <artifactId>TravelAgencyApi</artifactId>
+	  <version>${project.version}</version>
+	 </dependency>
 	</dependencies>
 </project>
