@@ -190,6 +190,11 @@ public class Excursion {
 				return false;
 		} else if (!description.equals(other.getDescription()))
 			return false;
+                if (price == null) {
+			if (other.getPrice() != null)
+				return false;
+		} else if (!price.equals(other.getPrice()))
+			return false;
 		return true;
 	}
         
