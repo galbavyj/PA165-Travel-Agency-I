@@ -85,7 +85,7 @@ public class Reservation {
         this.excursions = excursions;
     }
 
-    public void addExcursions(Excursion excursion) {
+    public void addExcursion(Excursion excursion) {
         this.excursions.add(excursion);
     }
 

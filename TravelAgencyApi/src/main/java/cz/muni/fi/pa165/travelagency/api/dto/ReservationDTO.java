@@ -5,10 +5,84 @@
  */
 package cz.muni.fi.pa165.travelagency.api.dto;
 
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  *
- * @author Martin
+ * @author Juraj
  */
 public class ReservationDTO {
-    
+
+    private long id;
+    private CustomerDTO customer;
+    private Date created;
+    private TripDTO trip;
+    private Set<ExcursionDTO> excursions = new HashSet<>();
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public CustomerDTO getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(CustomerDTO customer) {
+        this.customer = customer;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public TripDTO getTrip() {
+        return trip;
+    }
+
+    public void setTrip(TripDTO trip) {
+        this.trip = trip;
+    }
+
+    public Set<ExcursionDTO> getExcursions() {
+        return excursions;
+    }
+
+    public void setExcursions(Set<ExcursionDTO> excursions) {
+        this.excursions = excursions;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ReservationDTO)) return false;
+
+        ReservationDTO that = (ReservationDTO) o;
+
+        if (getCustomer() != null ? !getCustomer().equals(that.getCustomer()) : that.getCustomer() != null)
+            return false;
+        if (getCreated() != null ? !getCreated().equals(that.getCreated()) : that.getCreated() != null) return false;
+        if (getTrip() != null ? !getTrip().equals(that.getTrip()) : that.getTrip() != null) return false;
+        return getExcursions() != null ? getExcursions().equals(that.getExcursions()) : that.getExcursions() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getCustomer() != null ? getCustomer().hashCode() : 0;
+        result = 31 * result + (getCreated() != null ? getCreated().hashCode() : 0);
+        result = 31 * result + (getTrip() != null ? getTrip().hashCode() : 0);
+        result = 31 * result + (getExcursions() != null ? getExcursions().hashCode() : 0);
+        return result;
+    }
 }
