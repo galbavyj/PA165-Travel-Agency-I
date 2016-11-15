@@ -65,7 +65,7 @@ public class Excursion {
     @ManyToOne(cascade= CascadeType.ALL)
     private Trip trip;
     
-    @ManyToMany()
+    @ManyToMany(mappedBy="trip")
     private Set<Reservation> reservations;
     
     @NotNull
