@@ -10,13 +10,13 @@ import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
-import enums.ExcursionType;
-import enums.UserRole;
+import cz.muni.fi.pa165.travelagency.api.enums.ExcursionType;
+import cz.muni.fi.pa165.travelagency.api.enums.CustomerRole;
 import java.math.BigDecimal;
-import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -33,6 +33,7 @@ import static org.testng.Assert.assertEquals;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import travelAgency.TravelAgencyPersistenceContext;
+import static org.testng.Assert.assertEquals;
 
 @ContextConfiguration(classes = TravelAgencyPersistenceContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
@@ -46,7 +47,7 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
     private ReservationDao reservationDao;
     
     @Autowired
-    private UserDao userDao;
+    private CustomerDao customerDao;
     
     @Autowired
     private ExcursionDao excursionDao;
@@ -152,7 +153,7 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
         customerMilan.setLastName("Peterka");
         customerMilan.setEmail("milan.peterka@seznam.cz");
         customerMilan.setPhoneNumber("+420777852974");
-        customerMilan.setUserRole(UserRole.CUSTOMER);
+        customerMilan.setCustomerRole(CustomerRole.CUSTOMER);
         customerMilan.setCreated(created);
 
         customerPetr = new Customer();
@@ -161,7 +162,7 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
         customerPetr.setLastName("Milanka");
         customerPetr.setEmail("petr.milanka@seznam.cz");
         customerPetr.setPhoneNumber("+420608999974");
-        customerPetr.setUserRole(UserRole.CUSTOMER);
+        customerPetr.setCustomerRole(CustomerRole.CUSTOMER);
         customerPetr.setCreated(created);
         
         reservation1 = new Reservation();
@@ -174,8 +175,8 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
         reservation2.setCustomer(customerPetr);
         reservation2.setCreated(created);        
         
-        userDao.create(customerMilan);
-        userDao.create(customerPetr);
+        customerDao.create(customerMilan);
+        customerDao.create(customerPetr);
         
         tripDao.create(tripBrno);
         tripDao.create(tripDolany);

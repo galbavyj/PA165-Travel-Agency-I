@@ -6,23 +6,20 @@
 package cz.muni.fi.pa165.travelAgency.persistence.entity;
 
     
-import enums.ExcursionType;
-import enums.UserRole;
+import cz.muni.fi.pa165.travelagency.api.enums.ExcursionType;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMin;
@@ -65,7 +62,7 @@ public class Excursion {
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
 
-    @ManyToOne()
+    @ManyToOne(cascade= CascadeType.ALL)
     private Trip trip;
     
     @ManyToMany()
@@ -192,6 +189,11 @@ public class Excursion {
 			if (other.getDescription() != null)
 				return false;
 		} else if (!description.equals(other.getDescription()))
+			return false;
+                if (price == null) {
+			if (other.getPrice() != null)
+				return false;
+		} else if (!price.equals(other.getPrice()))
 			return false;
 		return true;
 	}

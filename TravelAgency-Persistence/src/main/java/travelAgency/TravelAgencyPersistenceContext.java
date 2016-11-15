@@ -1,6 +1,5 @@
 package travelAgency;
 
-import cz.muni.fi.pa165.travelAgency.persistence.dao.UserDao;
 import javax.sql.DataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
@@ -16,11 +15,12 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import cz.muni.fi.pa165.travelAgency.persistence.dao.CustomerDao;
 
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories
-@ComponentScan(basePackageClasses={UserDao.class})
+@ComponentScan(basePackageClasses={CustomerDao.class})
 public class TravelAgencyPersistenceContext {
 	
 	@Bean 

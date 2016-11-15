@@ -7,17 +7,14 @@ package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Address;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
-import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
-import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
-import enums.UserRole;
+import cz.muni.fi.pa165.travelagency.api.enums.CustomerRole;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.persistence.NoResultException;
 import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -26,11 +23,10 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNull;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import travelAgency.TravelAgencyPersistenceContext;
+import static org.testng.Assert.assertEquals;
 
 /**
  *
@@ -40,9 +36,9 @@ import travelAgency.TravelAgencyPersistenceContext;
 @ContextConfiguration(classes = TravelAgencyPersistenceContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
-public class UserDaoTest extends AbstractTestNGSpringContextTests{
+public class CustomerDaoTest extends AbstractTestNGSpringContextTests{
     @Autowired
-    private UserDao userDao;
+    private CustomerDao customerDao;
     
     private Customer cust;
     private Customer cust2;
@@ -70,7 +66,7 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests{
         }
         cust.setCreated(created);
         cust.setPhoneNumber("725555666");
-        cust.setUserRole(UserRole.CUSTOMER);
+        cust.setCustomerRole(CustomerRole.CUSTOMER);
         
         cust2 = new Customer();
         cust2.setFirstName("Jozko");
@@ -84,7 +80,7 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests{
         }
         cust2.setCreated(created);
         cust2.setPhoneNumber("725555777");
-        cust2.setUserRole(UserRole.CUSTOMER);
+        cust2.setCustomerRole(CustomerRole.CUSTOMER);
         
         res = new Reservation();
         
@@ -93,86 +89,86 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests{
     
     @Test
     public void createTest(){
-        userDao.create(cust);
-        Customer c = userDao.findByEmail(cust.getEmail());
+        customerDao.create(cust);
+        Customer c = customerDao.findByEmail(cust.getEmail());
         assertEquals(c, cust);
     }
     
     @Test
     public void updateTest(){
-        userDao.create(cust2);
-        userDao.update(cust2);
+        customerDao.create(cust2);
+        customerDao.update(cust2);
         cust2.setFirstName("Fedor");
-        userDao.update(cust2);
-        Customer c = userDao.findByEmail(cust2.getEmail());
+        customerDao.update(cust2);
+        Customer c = customerDao.findByEmail(cust2.getEmail());
         assertEquals(c, cust2);
     }
     
     @Test 
     public void removeTest(){
-        userDao.create(cust2);
-        userDao.remove(cust2);
-        assertEquals(userDao.findAllCustomers().size(), 0);
+        customerDao.create(cust2);
+        customerDao.remove(cust2);
+        assertEquals(customerDao.findAllCustomers().size(), 0);
     }
     
     @Test
     public void findAllCustomersTest(){
-        userDao.create(cust);
-        userDao.create(cust2);
-        List<Customer> found = userDao.findAllCustomers();
+        customerDao.create(cust);
+        customerDao.create(cust2);
+        List<Customer> found = customerDao.findAllCustomers();
         assertEquals(found.size(), 2);
     }
     
     @Test
     public void findByEmailTest(){
-        userDao.create(cust);
-        Customer c = userDao.findByEmail(cust.getEmail());
-        assertEquals(c.getEmail(), cust.getEmail());     
+        customerDao.create(cust);
+        Customer c = customerDao.findByEmail(cust.getEmail());
+        assertEquals(c, cust);     
     }
     
     
     @Test(expectedExceptions=ConstraintViolationException.class)
      public void testNullAddress(){
         cust.setAddress(null);
-        userDao.create(cust);
+        customerDao.create(cust);
       }
      
      @Test(expectedExceptions=ConstraintViolationException.class)
      public void testNullfirstName(){
         cust.setFirstName(null);
-        userDao.create(cust);
+        customerDao.create(cust);
       }
      
      @Test(expectedExceptions=ConstraintViolationException.class)
      public void testNullLastName(){
         cust.setLastName(null);
-        userDao.create(cust);
+        customerDao.create(cust);
       }
      
      @Test(expectedExceptions=ConstraintViolationException.class)
      public void testNullPhoneNumber(){
         cust.setPhoneNumber(null);
-        userDao.create(cust);
+        customerDao.create(cust);
       }
      
      @Test(expectedExceptions=ConstraintViolationException.class)
      public void testNullCreated(){
         cust.setCreated(null);
-        userDao.create(cust);
+        customerDao.create(cust);
       }
      
      @Test(expectedExceptions=ConstraintViolationException.class)
-     public void testNullUserRole(){
-        cust.setUserRole(null);
-        userDao.create(cust);
+     public void testNullcustomerRole(){
+        cust.setCustomerRole(null);
+        customerDao.create(cust);
       }
 
 	
     @Test
     public void findByIdTest(){
-        userDao.create(cust);
-        Customer c = userDao.findById(cust.getId());
-        assertEquals(c.getId(), cust.getId());     
+        customerDao.create(cust);
+        Customer c = customerDao.findById(cust.getId());
+        assertEquals(c, cust);     
     }
     
 }

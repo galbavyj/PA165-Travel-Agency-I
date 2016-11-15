@@ -1,37 +1,26 @@
 package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
-import cz.muni.fi.pa165.travelAgency.persistence.dao.ExcursionDao;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Address;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
-import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
-
-
-import enums.ExcursionType;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
-import org.springframework.transaction.annotation.Transactional;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-import travelAgency.TravelAgencyPersistenceContext;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.validation.ConstraintViolationException;
-import javax.xml.bind.ValidationException;
+import cz.muni.fi.pa165.travelagency.api.enums.ExcursionType;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
+import javax.validation.ConstraintViolationException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
+import org.springframework.transaction.annotation.Transactional;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-import static org.testng.Assert.assertFalse;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import travelAgency.TravelAgencyPersistenceContext;
 
 
 
@@ -123,14 +112,14 @@ public class ExcursionDaoTest extends AbstractTestNGSpringContextTests{
 
 
     @Test
-    public void excursionCreate(){
+    public void create(){
         excursionDao.create(excursion1);
         assertTrue(excursionDao.findAllExcursions().contains(excursion1));
         assertTrue(excursionDao.findAllExcursions().size() == 1);
     }
 
     @Test
-    public void eUpdate(){
+    public void update(){
         excursionDao.create(excursion1);
         assertEquals(excursionDao.findExcursionById(excursion1.getId()).getPlace(), "Greenwich");
         excursion1.setPlace("BigBen");

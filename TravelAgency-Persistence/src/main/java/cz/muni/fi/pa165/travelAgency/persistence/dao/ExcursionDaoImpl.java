@@ -6,9 +6,7 @@
 package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
-import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import java.util.List;
-import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -42,10 +40,10 @@ public class ExcursionDaoImpl implements ExcursionDao {
     }
 
     @Override
-    public Set<Excursion> findAllExcursions() {
+    public List<Excursion> findAllExcursions() {
         TypedQuery<Excursion> query = em.createQuery("SELECT e FROM Excursion e",
 				Excursion.class);
-		return (Set<Excursion>) query.getResultList();
+		return (List<Excursion>) query.getResultList();
     }
     
 

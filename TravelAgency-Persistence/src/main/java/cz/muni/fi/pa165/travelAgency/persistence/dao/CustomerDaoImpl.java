@@ -6,7 +6,7 @@
 package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
-import enums.UserRole;
+import cz.muni.fi.pa165.travelagency.api.enums.CustomerRole;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,26 +20,26 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class UserDaoImpl implements UserDao {
+public class CustomerDaoImpl implements CustomerDao {
 
     @PersistenceContext
     private EntityManager em;
 
-    public void create(Customer user) {
-        em.persist(user);
+    public void create(Customer customer) {
+        em.persist(customer);
     }
 
-    public void remove(Customer user) {
-        em.remove(user);
+    public void remove(Customer customer) {
+        em.remove(customer);
     }
 
-    public Customer update(Customer user) {
-        return em.merge(user);
+    public Customer update(Customer customer) {
+        return em.merge(customer);
     }
 
     public List<Customer> findAllCustomers() {
-        final Query query = em.createQuery("SELECT u FROM Customer as u WHERE u.userRole = :userRole");
-        query.setParameter("userRole", UserRole.CUSTOMER);
+        final Query query = em.createQuery("SELECT u FROM Customer as u WHERE u.customerRole = :customerRole");
+        query.setParameter("customerRole", CustomerRole.CUSTOMER);
         return query.getResultList();
     }
 
