@@ -143,6 +143,10 @@ public class Customer {
         this.reservations = reservations;
     }
 
+    public void addReservation(Reservation reservation){
+        this.reservations.add(reservation);
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;

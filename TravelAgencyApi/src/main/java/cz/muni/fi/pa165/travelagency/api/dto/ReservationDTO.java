@@ -15,17 +15,17 @@ import java.util.Set;
  */
 public class ReservationDTO {
 
-    private long id;
+    private Long id;
     private CustomerDTO customer;
     private Date created;
     private TripDTO trip;
     private Set<ExcursionDTO> excursions = new HashSet<>();
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
