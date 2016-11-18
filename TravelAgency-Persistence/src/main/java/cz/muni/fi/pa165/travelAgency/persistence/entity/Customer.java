@@ -41,6 +41,8 @@ public class Customer {
     @NotNull
     @Column(nullable = false)
     private String lastName;
+    
+    private String passwordHash;
 
     @Column(unique = true)
     @Pattern(regexp=".+@.+\\.[a-z]+", message="Invalid email address!")
@@ -93,6 +95,14 @@ public class Customer {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 
     public String getEmail() {

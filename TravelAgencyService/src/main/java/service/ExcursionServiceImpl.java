@@ -49,5 +49,11 @@ public class ExcursionServiceImpl implements ExcursionService {
     public Excursion findExcursionById(Long exId) {
         return excursionDao.findExcursionById(exId);
     }
+
+    @Override
+    public Long updateExcursion(Excursion ex) {
+        excursionDao.update(ex);
+        return ex.getId();
+    }
     
 }

@@ -7,6 +7,7 @@ package facade;
 
 import cz.muni.fi.pa165.travelagency.api.dto.CustomerDTO;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
+import cz.muni.fi.pa165.travelagency.api.dto.CustomerAuthenticateDTO;
 import cz.muni.fi.pa165.travelagency.api.facade.CustomerFacade;
 import cz.muni.fi.pa165.travelagency.travelagencyservice.MappingService;
 import java.util.List;
@@ -29,28 +30,43 @@ public class CustomerFacadeImpl implements CustomerFacade{
     private CustomerService customerService;
 
     @Override
-    public void updateCustomer(CustomerDTO u) {
-        customerService.updateCustomer(mappingService.mapTo(u, Customer.class));
+    public void registerCustomer(CustomerDTO c, String plainTextPassword) {
+        Customer customer = mappingService.mapTo(c, Customer.class);
+        customerService.registerCustomer(customer, plainTextPassword);
+    }
+
+    @Override
+    public boolean authenticateCustomer(CustomerAuthenticateDTO c) {
+        return customerService.authenticateCustomer(
+                customerService.findById(c.getId()), c.getPasswordHash());
+    }
+
+    @Override
+    public void updateCustomer(CustomerDTO c) {
+        Customer customer = mappingService.mapTo(c, Customer.class);
+        customerService.updateCustomer(customer);
     }
 
     @Override
     public void removeCustomer(CustomerDTO c) {
-        throw new UnsupportedOperationException("Not yet, bitch!");
+        Customer customer = mappingService.mapTo(c, Customer.class);
+        customerService.removeCustomer(customer);
     }
 
     @Override
-    public List<CustomerDTO> getAllCustomers() {
-        throw new UnsupportedOperationException("Not yet, bitch!");
+    public List<CustomerDTO> findAllCustomers() {
+        return mappingService.mapTo(customerService.findAll(), CustomerDTO.class);
     }
 
     @Override
-    public CustomerDTO getCustomerById(Long customerId) {
-        throw new UnsupportedOperationException("Not yet, bitch!");
+    public CustomerDTO findCustomerByEmail(String email) {
+        Customer customer = customerService.findByEmail(email);
+        return (customer == null) ? null : mappingService.mapTo(customer, CustomerDTO.class);
     }
 
     @Override
-    public CustomerDTO getCustomerByEmail(String email) {
-        throw new UnsupportedOperationException("Not yet, bitch!");
+    public CustomerDTO findCustomerById(Long customerId) {
+        Customer customer = customerService.findById(customerId);
+        return (customer == null) ? null : mappingService.mapTo(customer, CustomerDTO.class);
     }
-    
 }

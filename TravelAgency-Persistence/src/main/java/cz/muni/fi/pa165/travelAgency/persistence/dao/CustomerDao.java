@@ -19,7 +19,7 @@ public interface CustomerDao {
      *
      * @param customer customer to be added into database
      */
-    public void create(Customer customer);
+    void create(Customer customer);
 
     /**
      * Removes customer from database
@@ -27,7 +27,7 @@ public interface CustomerDao {
      * @param customer customer to be removed from database
      * @throws IllegalArgumentException in case customer is not found
      */
-    public void remove(Customer customer);
+    void remove(Customer customer);
 
     /**
      * Add new customer into database
@@ -36,7 +36,7 @@ public interface CustomerDao {
      * @return updated Customer
      * @throws IllegalArgumentException in case customer is not found
      */
-    public Customer update(Customer customer);
+    Customer update(Customer customer);
 
     
     /**
@@ -44,7 +44,7 @@ public interface CustomerDao {
      *
      * @return all customers
      */
-    public List<Customer> findAllCustomers();
+    List<Customer> findAllCustomers();
     
     /**
      * find customer by email in database
@@ -53,7 +53,7 @@ public interface CustomerDao {
      * @return customer with given email
      * @throws IllegalArgumentException in case customer is not found
      */
-    public Customer findByEmail(String email);
+    Customer findByEmail(String email);
     
     /**
      * find customer by id in database
@@ -62,6 +62,6 @@ public interface CustomerDao {
      * @return customer with given id
      * @throws IllegalArgumentException in case customer is not found
      */
-    public Customer findById(Long id);
+    Customer findById(Long id);
 
 }

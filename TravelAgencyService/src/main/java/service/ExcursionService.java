@@ -56,4 +56,12 @@ public interface ExcursionService {
      */
     public Excursion findExcursionById(Long exId); 
     
+    /**
+     * Update excursion
+     * 
+     * @param ex Excursion to be updated
+     * @return updated id of excursion
+     */
+    public Long updateExcursion(Excursion ex);
+    
 }
