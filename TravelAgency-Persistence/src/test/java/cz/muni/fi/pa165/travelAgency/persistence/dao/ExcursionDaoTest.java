@@ -1,27 +1,29 @@
 package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
-import cz.muni.fi.pa165.travelAgency.persistence.entity.Address;
-import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
-import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
+import cz.muni.fi.pa165.travelAgency.persistence.entity.*;
+
+
+import cz.muni.fi.pa165.travelagency.api.enums.CustomerRole;
 import cz.muni.fi.pa165.travelagency.api.enums.ExcursionType;
-import java.math.BigDecimal;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import travelAgency.TravelAgencyPersistenceContext;
 
+import javax.validation.ConstraintViolationException;
+import java.math.BigDecimal;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 
 /**
@@ -42,7 +44,9 @@ public class ExcursionDaoTest extends AbstractTestNGSpringContextTests{
     private Excursion excursion2;
 
     private Trip trip1;
-    private Address address;
+    private Address address, addressCustomer;
+    private Customer customer;
+    private Reservation r1, r2;
 
 
 
@@ -108,6 +112,32 @@ public class ExcursionDaoTest extends AbstractTestNGSpringContextTests{
         trip1.setPrice(BigDecimal.valueOf(15000));
         trip1.setAddressOfHotel(address);
 
+
+        addressCustomer = new Address();
+        addressCustomer.setCity("Prievidza");
+        addressCustomer.setCountry("Slovensko");
+        addressCustomer.setNumberOfHouse(10);
+        addressCustomer.setStreet("Dolná");
+
+        customer = new Customer();
+        customer.setAddress(addressCustomer);
+        customer.setFirstName("Albert");
+        customer.setLastName("Forest");
+        customer.setEmail("albert.forest@centrum.cz");
+        customer.setPhoneNumber("+420756847374");
+        customer.setCustomerRole(CustomerRole.CUSTOMER);
+        customer.setCreated(created1);
+
+        r1 = new Reservation();
+        r1.setTrip(trip1);
+        r1.setCustomer(customer);
+        r1.setCreated(created1);
+        r1.setExcursions(excursions);
+
+        Set<Reservation> reservations = new HashSet<>();
+        reservations.add(r1);
+
+        excursion1.setReservations(reservations);
     }
 
 

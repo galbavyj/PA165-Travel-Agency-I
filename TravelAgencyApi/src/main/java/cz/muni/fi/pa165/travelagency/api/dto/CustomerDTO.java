@@ -8,6 +8,7 @@ package cz.muni.fi.pa165.travelagency.api.dto;
 import cz.muni.fi.pa165.travelagency.api.enums.CustomerRole;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -19,15 +20,16 @@ public class CustomerDTO {
     private Long id;
     private String firstName;
     private String lastName;
+    private String passwordHash;
     private String email;
-    //private Address address;
+    private AddressDTO address;
     private String phoneNumber;
     private Date created;
     private CustomerRole customerRole;
     private Set<ReservationDTO> reservations;
 
     public CustomerDTO() {
-        //reservations = new HashSet<>();
+        reservations = new HashSet<>();
     }
 
     public Long getId() {
@@ -62,13 +64,13 @@ public class CustomerDTO {
         this.email = email;
     }
 
-//    public Address getAddress() {
-//        return address;
-//    }
-//
-//    public void setAddress(Address address) {
-//        this.address = address;
-//    }
+    public AddressDTO getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressDTO address) {
+        this.address = address;
+    }
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -84,6 +86,16 @@ public class CustomerDTO {
 
     public void setCreated(Date created) {
         this.created = created;
+    }
+    
+    
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 
     public CustomerRole getcustomerRole() {
@@ -108,7 +120,7 @@ public class CustomerDTO {
         hash = 59 * hash + (this.firstName != null ? this.firstName.hashCode() : 0);
         hash = 59 * hash + (this.lastName != null ? this.lastName.hashCode() : 0);
         hash = 59 * hash + (this.email != null ? this.email.hashCode() : 0);
-        //hash = 59 * hash + (this.address != null ? this.address.hashCode() : 0);
+        hash = 59 * hash + (this.address != null ? this.address.hashCode() : 0);
         hash = 59 * hash + (this.phoneNumber != null ? this.phoneNumber.hashCode() : 0);
         hash = 59 * hash + (this.customerRole != null ? this.customerRole.hashCode() : 0);
         hash = 59 * hash + (this.reservations != null ? this.reservations.hashCode() : 0);
@@ -139,9 +151,9 @@ public class CustomerDTO {
         if ((this.phoneNumber == null) ? (other.phoneNumber != null) : !this.phoneNumber.equals(other.phoneNumber)) {
             return false;
         }
-//        if (this.address != other.address && (this.address == null || !this.address.equals(other.address))) {
-//            return false;
-//        }
+        if (this.address != other.address && (this.address == null || !this.address.equals(other.address))) {
+            return false;
+        }
         if (this.customerRole != other.customerRole) {
             return false;
         }
@@ -153,6 +165,6 @@ public class CustomerDTO {
 
     @Override
     public String toString() {
-        return "customer firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", address=" /**+ address.toString()**/ + ", phoneNumber=" + phoneNumber + ", created=" + created.toString() + ", customerRole=" + customerRole.toString();
+        return "customer firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", address=" + address.toString() + ", phoneNumber=" + phoneNumber + ", created=" + created.toString() + ", customerRole=" + customerRole.toString();
     }
 }
