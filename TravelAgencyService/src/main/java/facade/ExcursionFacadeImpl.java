@@ -12,7 +12,6 @@ import cz.muni.fi.pa165.travelagency.travelagencyservice.MappingService;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.inject.Inject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import service.ExcursionService;
@@ -25,7 +24,7 @@ import service.ExcursionService;
 @Transactional
 public class ExcursionFacadeImpl implements ExcursionFacade {
     
-    @Autowired
+    @Inject
     private MappingService mappingService;
     
     @Inject

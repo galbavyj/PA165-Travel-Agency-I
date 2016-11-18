@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.travelagency.api.facade;
 
 import cz.muni.fi.pa165.travelagency.api.dto.ExcursionDTO;
+import cz.muni.fi.pa165.travelagency.api.enums.ExcursionType;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -60,5 +61,6 @@ public interface ExcursionFacade {
      * 
      * @param ex DTO of excursion to be updated
      */
-    void updateExcursion(ExcursionDTO ex);
+    public void updateExcursion(ExcursionDTO ex);
+   
 }

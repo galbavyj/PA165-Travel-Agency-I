@@ -7,6 +7,7 @@ package cz.muni.fi.pa165.travelagency.api.dto;
 
 import cz.muni.fi.pa165.travelagency.api.enums.ExcursionType;
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Set;
 
@@ -94,7 +95,7 @@ public class ExcursionDTO {
     }
 
     public Set<ReservationDTO> getReservations() {
-        return reservations;
+        return Collections.unmodifiableSet(reservations);
     }
 
     public void setReservations(Set<ReservationDTO> reservations) {
