@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.travelagency.api.dto;
 
 import javax.validation.constraints.NotNull;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +17,7 @@ public class ReservationCreateDTO {
     @NotNull
     private Long tripId;
 
-    private Set<Long> excursionsId = new HashSet<>();
+    private Set<Long> excursionIDs = new HashSet<>();
 
 
     public Long getCustomerId() {
@@ -27,12 +28,12 @@ public class ReservationCreateDTO {
         this.customerId = customerId;
     }
 
-    public Set<Long> getExcursionsId() {
-        return excursionsId;
+    public Set<Long> getExcursionIDs() {
+        return Collections.unmodifiableSet(excursionIDs);
     }
 
-    public void setExcursionsId(Set<Long> excursionsId) {
-        this.excursionsId = excursionsId;
+    public void setExcursionIDs(Set<Long> excursionIDs) {
+        this.excursionIDs = excursionIDs;
     }
 
     public Long getTripId() {
@@ -52,7 +53,7 @@ public class ReservationCreateDTO {
 
         if (getCustomerId() != that.getCustomerId()) return false;
         if (getTripId() != that.getTripId()) return false;
-        return getExcursionsId() != null ? getExcursionsId().equals(that.getExcursionsId()) : that.getExcursionsId() == null;
+        return getExcursionIDs() != null ? getExcursionIDs().equals(that.getExcursionIDs()) : that.getExcursionIDs() == null;
 
     }
 
@@ -60,7 +61,7 @@ public class ReservationCreateDTO {
     public int hashCode() {
         int result = (int) (getCustomerId() ^ (getCustomerId() >>> 32));
         result = 31 * result + (int) (getTripId() ^ (getTripId() >>> 32));
-        result = 31 * result + (getExcursionsId() != null ? getExcursionsId().hashCode() : 0);
+        result = 31 * result + (getExcursionIDs() != null ? getExcursionIDs().hashCode() : 0);
         return result;
     }
 
@@ -69,7 +70,7 @@ public class ReservationCreateDTO {
         return "ReservationCreateDTO{" +
                 "customerId=" + customerId +
                 ", tripId=" + tripId +
-                ", excursionsId=" + excursionsId +
+                ", excursionIDs=" + excursionIDs +
                 '}';
     }
 }

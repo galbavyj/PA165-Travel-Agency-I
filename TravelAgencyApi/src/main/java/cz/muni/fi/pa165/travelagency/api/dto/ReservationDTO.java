@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa165.travelagency.api.dto;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -54,7 +55,7 @@ public class ReservationDTO {
     }
 
     public Set<ExcursionDTO> getExcursions() {
-        return excursions;
+        return Collections.unmodifiableSet(excursions);
     }
 
     public void setExcursions(Set<ExcursionDTO> excursions) {

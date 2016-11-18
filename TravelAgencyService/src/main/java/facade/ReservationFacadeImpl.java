@@ -63,8 +63,8 @@ public class ReservationFacadeImpl implements ReservationFacade {
         Reservation reservation = new Reservation(customer, new Date(), trip, new HashSet<>());
 
 
-        if (r.getExcursionsId() != null) {
-            for (Long excursionId : r.getExcursionsId()) {
+        if (r.getExcursionIDs() != null) {
+            for (Long excursionId : r.getExcursionIDs()) {
                 Excursion ex = excursionService.findExcursionById(excursionId);
                 reservation.addExcursion(ex);
             }
@@ -74,8 +74,8 @@ public class ReservationFacadeImpl implements ReservationFacade {
         customer.addReservation(reservation);
         customerService.updateCustomer(customer);
 
-        if (r.getExcursionsId() != null) {
-            for (Long excursionId : r.getExcursionsId()) {
+        if (r.getExcursionIDs() != null) {
+            for (Long excursionId : r.getExcursionIDs()) {
                 Excursion excursion = excursionService.findExcursionById(excursionId);
                 excursion.addReservation(reservation);
                 excursionService.updateExcursion(excursion);
