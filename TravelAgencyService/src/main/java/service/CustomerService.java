@@ -14,32 +14,30 @@ import java.util.List;
  */
 public interface CustomerService {
 
-
-    /**
-     * Authenticate customer
-     *
-     * @param u customer to authenticate
-     * @param password password to check
-     * @return true if password is correct, false otherwise
-     */
-    boolean authoriseCustomer(Customer u, String password);
-
-
     /**
      * Create new customer
      * 
      * @param c Customer to be created
-     * @return created customer
+     * @param plainTextPassword password of Customer to be encrypted
      */
-    Customer registerCustomer(Customer c, String plainTextPassword);
+    void registerCustomer(Customer c, String plainTextPassword);
+
+    /**
+     * Authenticate customer
+     *
+     * @param c customer to authenticate
+     * @param password password to check
+     * @return true if password is correct, false if authentication failed
+     */
+    boolean authenticateCustomer(Customer c, String password);
+
 
     /**
      * Update customer
      * 
      * @param c Customer to be updated
-     * @return updated customer
      */
-    Customer updateCustomer(Customer c);
+    void updateCustomer(Customer c);
     
     /**
      * Remove customer
@@ -49,14 +47,14 @@ public interface CustomerService {
     void removeCustomer(Customer c);
 
     /**
-     * Finds and returns all customers
+     * Find all customers
      * 
      * @return list of all customers
      */
     List<Customer> findAll();
     
     /**
-     * Finds and returns customer with specified id
+     * Find customer with given id
      * 
      * @param customerId Customer id
      * @return customer with specified id
@@ -64,10 +62,10 @@ public interface CustomerService {
     Customer findById(Long customerId);
     
     /**
-     * Finds and returns customer with specified email
+     * Finds and returns customer with given email
      * 
      * @param email Email of customer
-     * @return list of customers with specified email
+     * @return customer with given email
      */
     Customer findByEmail(String email);    
 }
