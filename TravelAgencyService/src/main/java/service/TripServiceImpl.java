@@ -4,7 +4,7 @@ import cz.muni.fi.pa165.travelAgency.persistence.dao.TripDao;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
 import java.math.BigDecimal;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TripServiceImpl implements TripService {
 
-    @Autowired
+    @Inject
     TripDao tripDao;
     
     @Override
