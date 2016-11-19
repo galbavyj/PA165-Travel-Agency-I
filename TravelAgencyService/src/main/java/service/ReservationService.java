@@ -59,14 +59,14 @@ public interface ReservationService {
      * @param customer customer
      * @return List of Reservations
      */
-    public List<Reservation> findReservationsByCustomer(Customer customer);
+    List<Reservation> findReservationsByCustomer(Customer customer);
 
     /**
      * Find Reservation by {@link Trip}
      * @param trip trip
      * @return List of Reservations
      */
-    public List<Reservation> findReservationsByTrip(Trip trip);
+    List<Reservation> findReservationsByTrip(Trip trip);
 
 
     /**
