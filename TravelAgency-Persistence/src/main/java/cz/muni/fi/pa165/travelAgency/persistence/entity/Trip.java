@@ -109,6 +109,15 @@ public class Trip {
         this.possibleExcursions = possibleExcursions;
     }
 
+    public void addPossibleExcursion(Excursion possibleExcursion){
+        this.possibleExcursions.add(possibleExcursion);
+    }
+    
+    public void removePossibleExcursion(Excursion possibleExcursion){
+        this.possibleExcursions.remove(possibleExcursion);
+    }
+    
+    
     public Address getAddressOfHotel() {
         return addressOfHotel;
     }
