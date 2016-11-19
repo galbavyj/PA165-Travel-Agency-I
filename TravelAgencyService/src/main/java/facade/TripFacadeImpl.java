@@ -7,12 +7,16 @@ import cz.muni.fi.pa165.travelagency.travelagencyservice.MappingService;
 import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import service.TripService;
 
 /**
  *
  * @author Patrik Behrami
  */
+@Service
+@Transactional
 public class TripFacadeImpl implements TripFacade {
     
     @Autowired

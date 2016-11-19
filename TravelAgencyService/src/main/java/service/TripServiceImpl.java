@@ -5,11 +5,13 @@ import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
 import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Patrik Behrami
  */
+@Service
 public class TripServiceImpl implements TripService {
 
     @Autowired
