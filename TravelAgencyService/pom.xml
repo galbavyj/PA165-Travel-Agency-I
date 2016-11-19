@@ -26,7 +26,6 @@
             <type>jar</type>
         </dependency>
         <dependency>
-<<<<<<< HEAD
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>4.2.7.RELEASE</version>
@@ -39,8 +38,6 @@
             <type>jar</type>
         </dependency>
         <dependency>
-=======
->>>>>>> refs/remotes/origin/master
             <groupId>${project.groupId}</groupId>
             <artifactId>persistence</artifactId>
             <version>${project.version}</version>

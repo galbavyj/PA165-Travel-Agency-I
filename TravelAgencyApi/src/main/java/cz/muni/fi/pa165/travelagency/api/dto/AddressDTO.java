@@ -6,13 +6,6 @@
 package cz.muni.fi.pa165.travelagency.api.dto;
 
 /**
- *
-<<<<<<< HEAD
- * @author behra
- */
-class AddressDTO {
-    
-=======
  * @author Martin
  */
 public class AddressDTO {
@@ -95,5 +88,4 @@ public class AddressDTO {
     public String toString() {
         return "Address{" + " country=" + country + ", city=" + city + ", street=" + street + ", numberOfHouse=" + numberOfHouse.toString() + '}';
     }
->>>>>>> refs/remotes/origin/master
 }
