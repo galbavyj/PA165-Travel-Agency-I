@@ -6,7 +6,6 @@
 package cz.muni.fi.pa165.travelagency.api.dto;
 
 /**
- *
  * @author Martin
  */
 public class AddressDTO {
