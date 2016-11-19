@@ -1,7 +1,6 @@
 package service;
 
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
-<<<<<<< HEAD
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -63,14 +62,5 @@ public interface TripService {
      * @param price New price
      */
     public void changePrice(Trip trip, BigDecimal price);
-=======
 
-/**
- *  @author
- */
-public interface TripService {
-
-    Trip findTripById(Long id);
-
->>>>>>> refs/remotes/origin/master
 }
