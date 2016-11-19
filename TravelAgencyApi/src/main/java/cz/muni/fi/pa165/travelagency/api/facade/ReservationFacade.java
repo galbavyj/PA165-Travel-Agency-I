@@ -1,0 +1,76 @@
+package cz.muni.fi.pa165.travelagency.api.facade;
+
+import cz.muni.fi.pa165.travelagency.api.dto.CustomerDTO;
+import cz.muni.fi.pa165.travelagency.api.dto.ReservationCreateDTO;
+import cz.muni.fi.pa165.travelagency.api.dto.ReservationDTO;
+import cz.muni.fi.pa165.travelagency.api.dto.ReservationTotalPriceDTO;
+
+import java.util.List;
+
+/**
+ * @author Juraj
+ */
+public interface ReservationFacade {
+
+
+    /**
+     * Create reservation
+     * @param reservation DTO of reservation to be created
+     * @return id of created reservation
+     */
+    Long createReservation(ReservationCreateDTO reservation);
+
+    /**
+     * Update reservation
+     * @param reservation DTO of reservation to be updated
+     */
+    void updateReservation(ReservationDTO reservation);
+
+    /**
+     * Delete reservation
+     * @param reservationId id of reservation to be removed
+     */
+    void removeReservation(Long reservationId);
+
+    /**
+     * Add excursion to reservation
+     * @param reservationId Id of reservation
+     * @param excursionId Id of excursion to be added to reservation
+     */
+    void addExcursion(Long reservationId, Long excursionId);
+
+    /**
+     * Get All reservations
+     * @return List of reservations
+     */
+    List<ReservationDTO> getAllReservations();
+
+    /**
+     * Get DTO of reservation by Id
+     * @param reservationId
+     * @return DTO of reservation
+     */
+    ReservationDTO getReservationsById(Long reservationId);
+
+    /**
+     * Get reservations by trip
+     * @param tripId Id of trip
+     * @return  List of reservations
+     */
+    List<ReservationDTO> getReservationsByTrip(Long tripId);
+
+    /**
+     * Get reservations by Customer
+     * @param customerId customer Id
+     * @return list of reservations
+     */
+    List<ReservationDTO> getReservationsByCustomer(Long customerId);
+
+    /**
+     * Total price of reservation
+     *
+     * @param Id Id of reservation
+     * @return total price of specified reservation
+     */
+    ReservationTotalPriceDTO getTotalPriceOfReservation(Long Id);
+}

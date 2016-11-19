@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa165.travelagency.api.dto;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,17 +16,17 @@ import java.util.Set;
  */
 public class ReservationDTO {
 
-    private long id;
+    private Long id;
     private CustomerDTO customer;
     private Date created;
     private TripDTO trip;
     private Set<ExcursionDTO> excursions = new HashSet<>();
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -54,7 +55,7 @@ public class ReservationDTO {
     }
 
     public Set<ExcursionDTO> getExcursions() {
-        return excursions;
+        return Collections.unmodifiableSet(excursions);
     }
 
     public void setExcursions(Set<ExcursionDTO> excursions) {
