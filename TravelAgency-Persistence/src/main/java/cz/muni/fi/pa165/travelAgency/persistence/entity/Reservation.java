@@ -41,8 +41,10 @@ public class Reservation {
     public Reservation(Customer customer,Date created, Trip trip, Set<Excursion> excursions){
         this.customer = customer;
         this.trip = trip;
-        this.excursions = excursions;
         this.created = created;
+        if (excursions != null){
+            this.excursions = excursions;
+        }
     }
 
     public long getId() {
