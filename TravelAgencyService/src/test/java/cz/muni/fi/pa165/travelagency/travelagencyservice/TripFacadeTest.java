@@ -42,17 +42,11 @@ import service.TripService;
  * @author Martin
  */
 @ContextConfiguration(classes = ServiceConfiguration.class)
-public class TripFacadeTest extends AbstractTransactionalTestNGSpringContextTests{
-        @Mock
+public class TripFacadeTest extends AbstractTransactionalTestNGSpringContextTests {
+
+    @Mock
     private TripService tripService;
-    @Mock
-    private ReservationService reservationService;
-    @Mock
-    private CustomerService customerService;
-
-    @Mock
-    private ExcursionService excursionService;
-
+    
     @Mock
     private MappingService mappingService;
 
@@ -71,7 +65,7 @@ public class TripFacadeTest extends AbstractTransactionalTestNGSpringContextTest
     private AddressDTO address2DTO;
     private TripDTO trip1DTO;
     private TripDTO trip2DTO;
-    
+
     @BeforeClass
     public void setUpClass() throws ServiceException {
         MockitoAnnotations.initMocks(this);
@@ -84,25 +78,25 @@ public class TripFacadeTest extends AbstractTransactionalTestNGSpringContextTest
         address1.setCountry("Czech republic");
         address1.setNumberOfHouse(68);
         address1.setStreet("Botanicka");
-        
+
         address2 = new Address();
         address2.setCity("Athens");
         address2.setCountry("Greece");
         address2.setNumberOfHouse(69);
         address2.setStreet("Oidipus street");
-        
+
         address1DTO = new AddressDTO();
         address1DTO.setCity(address1.getCity());
         address1DTO.setCountry(address1.getCountry());
         address1DTO.setStreet(address1.getStreet());
         address1DTO.setNumberOfHouse(address1.getNumberOfHouse());
-        
+
         address2DTO = new AddressDTO();
         address2DTO.setCity(address2.getCity());
         address2DTO.setCountry(address2.getCountry());
         address2DTO.setStreet(address2.getStreet());
         address2DTO.setNumberOfHouse(address2.getNumberOfHouse());
-        
+
         trip1 = new Trip();
         trip1.setAddressOfHotel(address1);
         try {
@@ -117,7 +111,7 @@ public class TripFacadeTest extends AbstractTransactionalTestNGSpringContextTest
         trip1.setTo(to);
         trip1.setPrice(BigDecimal.TEN);
         trip1.setFilePathToPicture("C:/petrov");
-        
+
         trip2 = new Trip();
         trip2.setAddressOfHotel(address2);
         trip2.setCreated(created);
@@ -125,62 +119,59 @@ public class TripFacadeTest extends AbstractTransactionalTestNGSpringContextTest
         trip2.setTo(to);
         trip2.setPrice(new BigDecimal(1000));
         trip2.setFilePathToPicture("C:/sea");
-        
-        trip1DTO = new TripDTO();
-        trip1DTO.setAddressOfHotel(address1DTO);
-        trip1DTO.setCreatedDate(trip1.getCreated());
-        trip1DTO.setFilePathToPicture(trip1.getFilePathToPicture());
-        trip1DTO.setFromDate(trip1.getFrom());
-        trip1DTO.setPrice(trip1.getPrice());
-        trip1DTO.setToDate(trip1.getTo());
-        
-        trip2DTO = new TripDTO();
-        trip2DTO.setAddressOfHotel(address2DTO);
-        trip2DTO.setCreatedDate(trip2.getCreated());
-        trip2DTO.setFilePathToPicture(trip2.getFilePathToPicture());
-        trip2DTO.setFromDate(trip2.getFrom());
-        trip2DTO.setPrice(trip2.getPrice());
-        trip2DTO.setToDate(trip2.getTo());
+
+        trip1DTO = mappingService.mapTo(trip1, TripDTO.class);
+        trip2DTO = mappingService.mapTo(trip2, TripDTO.class);
     }
-    
+
     @Test
-    public void testCreateTrip(TripDTO trip){
+    public void testCreateTrip(TripDTO trip) {
+        when(mappingService.mapTo(trip1DTO, Trip.class)).thenReturn(trip1);
         tripFacade.createTrip(trip1DTO);
         verify(tripService).createTrip(trip1);
     }
-    
+
     @Test
-    public void testRemoveTrip(TripDTO trip){
+    public void testRemoveTrip(TripDTO trip) {
+        when(mappingService.mapTo(trip1DTO, Trip.class)).thenReturn(trip1);
         tripFacade.removeTrip(trip1DTO);
         verify(tripService).removeTrip(trip1);
     }
-    
+
     @Test
-    public void testUpdateTrip(TripDTO trip){
-        
+    public void testUpdateTrip(TripDTO trip) {
+        when(mappingService.mapTo(trip1DTO, Trip.class)).thenReturn(trip1);
+        tripFacade.updateTrip(trip1DTO);
+        verify(tripService).updateTrip(trip1);
     }
-    
+
     @Test
-    public void testFindTripById(Long id){
+    public void testFindTripById(Long id) {
         tripFacade.createTrip(trip1DTO);
         tripFacade.createTrip(trip2DTO);
         assertEquals(tripFacade.findTripById(trip1DTO.getId()), trip1DTO);
+        verify(tripService).findTripById(trip1DTO.getId());
     }
-    
+
     @Test
-    public void findAllTrips(){
+    public void testFindAllTrips() {
         List<Trip> allTrips = Arrays.asList(trip1, trip2);
         List<TripDTO> allDTOTrips = Arrays.asList(trip1DTO, trip2DTO);
         when(tripService.findAllTrips()).thenReturn(allTrips);
         when(mappingService.mapTo(allTrips, TripDTO.class)).thenReturn(allDTOTrips);
         tripFacade.createTrip(trip1DTO);
         tripFacade.createTrip(trip2DTO);
-        verify(tripService).findAllTrips();
-        assertEquals(tripFacade.findAllTrips().size(), 2);
+        assertEquals(tripFacade.findAllTrips(), allDTOTrips);
     }
-    
+
     @Test
-    public void findTripsByCountry(String country){
-        
+    public void testFindTripsByCountry(String country) {
+        List<Trip> allTripsToGreece = Arrays.asList(trip1, trip2);
+        List<TripDTO> allDTOTripsToGreece = Arrays.asList(trip1DTO, trip2DTO);
+        when(tripService.findTripsByCountry("Greece")).thenReturn(allTripsToGreece);
+        when(mappingService.mapTo(allTripsToGreece, TripDTO.class)).thenReturn(allDTOTripsToGreece);
+        tripFacade.createTrip(trip1DTO);
+        tripFacade.createTrip(trip2DTO);
+        assertEquals(tripFacade.findTripsByCountry("Greece"), allDTOTripsToGreece);
     }
 }
