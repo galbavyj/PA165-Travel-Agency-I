@@ -1,10 +1,9 @@
 package cz.muni.fi.pa165.travelagency.api.facade;
 
-import cz.muni.fi.pa165.travelagency.api.dto.CustomerDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.ReservationCreateDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.ReservationDTO;
-import cz.muni.fi.pa165.travelagency.api.dto.ReservationTotalPriceDTO;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -72,5 +71,5 @@ public interface ReservationFacade {
      * @param Id Id of reservation
      * @return total price of specified reservation
      */
-    ReservationTotalPriceDTO getTotalPriceOfReservation(Long Id);
+    BigDecimal getTotalPriceOfReservation(Long Id);
 }
