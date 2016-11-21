@@ -1,12 +1,66 @@
 package service;
 
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
+import java.math.BigDecimal;
+import java.util.List;
 
 /**
- *  @author
+ *
+ * @author Patrik Behrami
  */
 public interface TripService {
+    /**
+     * Create new Trip
+     *
+     * @param trip Trip to be created
+     */
+    void createTrip(Trip trip);
 
-    Trip findTripById(Long id);
+    /**
+     * Removes Trip
+     *
+     * @param trip Trip to be removed
+     */
+    void removeTrip(Trip trip);
+
+    /**
+     * Updates Trip
+     *
+     * @param trip trip to be updated
+     * @return updated Trip
+     */
+    Trip updateTrip(Trip trip);
+
+    
+    /**
+     * Finds Trip by specified id
+     * 
+     * @param id of a Trip we are looking for
+     * @return Trip with specified id
+     */
+    public Trip findTripById(Long id);
+    
+    /**
+     * Find all trips
+     *
+     * @return All trips in a List
+     */
+    public List<Trip> findAllTrips();
+   
+    /**
+     * Find all trips that are taking place in a certain country
+     * 
+     * @param countryName Name of the country we want to find Trips to.
+     * @return List of Trips available in demanded country
+     */
+    public List<Trip> findTripsByCountry(String countryName);
+    
+    /**
+     * Changes price of specified Trip
+     * 
+     * @param trip Trip to have its price changed
+     * @param price New price
+     */
+    public void changePrice(Trip trip, BigDecimal price);
 
 }
