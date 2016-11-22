@@ -7,7 +7,6 @@ import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
 import cz.muni.fi.pa165.travelagency.api.dto.ExcursionDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.ReservationCreateDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.ReservationDTO;
-import cz.muni.fi.pa165.travelagency.api.dto.ReservationTotalPriceDTO;
 import cz.muni.fi.pa165.travelagency.api.facade.ReservationFacade;
 import cz.muni.fi.pa165.travelagency.travelagencyservice.MappingService;
 import org.springframework.stereotype.Service;
@@ -152,13 +151,9 @@ public class ReservationFacadeImpl implements ReservationFacade {
     }
 
     @Override
-    public ReservationTotalPriceDTO getTotalPriceOfReservation(Long reservationId) {
+    public BigDecimal getTotalPriceOfReservation(Long reservationId) {
         Reservation reservation = reservationService.findReservationById(reservationId);
-        BigDecimal totalPrice = reservationService.getTotalPrice(reservation);
-        ReservationTotalPriceDTO reservationTotalPriceDTO = new ReservationTotalPriceDTO();
-        reservationTotalPriceDTO.setReservation(beanMappingService.mapTo(reservation, ReservationDTO.class));
-        reservationTotalPriceDTO.setPrice(totalPrice);
 
-        return reservationTotalPriceDTO;
+        return reservationService.getTotalPrice(reservation);
     }
 }
