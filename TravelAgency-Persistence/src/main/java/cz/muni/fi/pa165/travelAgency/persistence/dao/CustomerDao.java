@@ -6,6 +6,7 @@
 package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
+import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import java.util.List;
 
 /**
@@ -63,5 +64,14 @@ public interface CustomerDao {
      * @throws IllegalArgumentException in case customer is not found
      */
     Customer findById(Long id);
+    
+    /**
+     * adds reservation to customer
+     *
+     * @param customer customer of new reservation
+     * @param reservation reservation to be added
+     * @throws IllegalArgumentException in case customer is not found
+     */
+    void addReservation(Customer customer, Reservation reservation);
 
 }

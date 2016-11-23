@@ -37,6 +37,7 @@ import java.util.logging.Logger;
 import javax.inject.Inject;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import static org.testng.Assert.assertEquals;
 import service.TripService;
 /**
@@ -44,7 +45,7 @@ import service.TripService;
  * @author Martin
  */
 @ContextConfiguration(classes = ServiceConfiguration.class)
-public class TripServiceTest extends AbstractTransactionalTestNGSpringContextTests {
+public class TripServiceTest extends AbstractTestNGSpringContextTests {
 
     @Mock
     private TripDao tripDao;
@@ -151,30 +152,77 @@ public class TripServiceTest extends AbstractTransactionalTestNGSpringContextTes
     }
     
     @Test
-    public void createTrip(Trip trip){
+    public void createTrip(){
         tripService.createTrip(trip1);
         verify(tripDao).create(trip1);
     }
     
-    @Test
-    public void removeTrip(Trip trip){
+    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void createNullTrip(){
+        tripService.createTrip(null);
+    }
+    
+    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void removeTrip(){
         tripService.createTrip(trip1);
-        verify(tripDao).create(trip1);
+        tripService.removeTrip(trip1);
+        verify(tripDao).remove(trip1);
+    }
+    
+    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void removeNullTrip(){
+        tripService.removeTrip(null);
     }
 
     @Test
-    public void updateTrip(Trip trip){
+    public void updateTrip(){
+        tripService.createTrip(trip1);
         trip1.setPrice(new BigDecimal("5000"));
         tripService.updateTrip(trip1);
         verify(tripDao).update(trip1);
     }
     
+    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void updateNullTrip(){
+        tripService.updateTrip(null);
+    }
+    
+    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void updateTripWithNullParameter(){
+        tripService.createTrip(trip1);
+        trip1.setAddressOfHotel(address);
+        tripService.updateTrip(trip1);
+    }
+    
+    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void updateTripWithNegativePrice(){
+        tripService.createTrip(trip1);
+        trip1.setPrice(new BigDecimal("-10"));
+        tripService.updateTrip(trip1);
+    }
+    
+    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void updateTripWithWrongDates(){
+        tripService.createTrip(trip1);
+        try {
+            trip1.setTo((java.util.Date) new SimpleDateFormat("dd/MM/yyyy").parse("10/01/2010"));
+        } catch (ParseException ex) {
+            Logger.getLogger(TripServiceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tripService.updateTrip(trip1);
+    }
+    
     @Test
-    public void  findTripById(Long id){
+    public void  findTripById(){
         trip1.setId(10L);
         when(tripDao.findById(trip1.getId())).thenReturn(trip1);
         Trip trip = tripService.findTripById(trip1.getId());
         assertEquals(trip, trip1);
+    }
+    
+    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void  findTripByInvalidId(){
+        tripService.findTripById(-10L);
     }
     
     @Test
@@ -184,8 +232,13 @@ public class TripServiceTest extends AbstractTransactionalTestNGSpringContextTes
     }
    
     @Test
-    public void  findTripsByCountry(String countryName){
+    public void  findTripsByCountry(){
         when(tripDao.findTripsByCountry("Greece")).thenReturn(Arrays.asList(trip2));
-        assertEquals(tripService.findAllTrips(), Arrays.asList(trip2));
+        assertEquals(tripService.findTripsByCountry("Greece"), Arrays.asList(trip2));
+    }
+    
+    @Test
+    public void testAddExcursionToTrip() {
+        
     }
 }

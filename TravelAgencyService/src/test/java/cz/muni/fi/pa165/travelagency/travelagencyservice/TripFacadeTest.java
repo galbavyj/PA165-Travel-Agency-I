@@ -8,7 +8,9 @@ package cz.muni.fi.pa165.travelagency.travelagencyservice;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Address;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
 import cz.muni.fi.pa165.travelagency.api.dto.AddressDTO;
+import cz.muni.fi.pa165.travelagency.api.dto.ExcursionDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.TripDTO;
+import cz.muni.fi.pa165.travelagency.api.enums.ExcursionType;
 import cz.muni.fi.pa165.travelagency.api.facade.TripFacade;
 import facade.TripFacadeImpl;
 import java.math.BigDecimal;
@@ -65,7 +67,8 @@ public class TripFacadeTest extends AbstractTransactionalTestNGSpringContextTest
     private AddressDTO address2DTO;
     private TripDTO trip1DTO;
     private TripDTO trip2DTO;
-
+    private ExcursionDTO excursion1;
+            
     @BeforeClass
     public void setUpClass() throws ServiceException {
         MockitoAnnotations.initMocks(this);
@@ -120,35 +123,59 @@ public class TripFacadeTest extends AbstractTransactionalTestNGSpringContextTest
         trip2.setPrice(new BigDecimal(1000));
         trip2.setFilePathToPicture("C:/sea");
 
-        trip1DTO = mappingService.mapTo(trip1, TripDTO.class);
-        trip2DTO = mappingService.mapTo(trip2, TripDTO.class);
+        trip1DTO = new TripDTO();
+        trip1DTO.setAddressOfHotel(address1DTO);
+        trip1DTO.setCreatedDate(trip1.getCreated());
+        trip1DTO.setFilePathToPicture(trip1.getFilePathToPicture());
+        trip1DTO.setFromDate(trip1.getFrom());
+        trip1DTO.setPrice(trip1.getPrice());
+        trip1DTO.setToDate(trip1.getTo());
+        
+        trip2DTO = new TripDTO();
+        trip2DTO.setAddressOfHotel(address2DTO);
+        trip2DTO.setCreatedDate(trip2.getCreated());
+        trip2DTO.setFilePathToPicture(trip2.getFilePathToPicture());
+        trip2DTO.setFromDate(trip2.getFrom());
+        trip2DTO.setPrice(trip2.getPrice());
+        trip2DTO.setToDate(trip2.getTo());
+        
+        excursion1 = new ExcursionDTO();
+        excursion1.setCreated(created);
+        excursion1.setDescription("Good enough");
+        excursion1.setDurationInHours(10);
+        excursion1.setFromDate(from);
+        excursion1.setPlace("Greenwich");
+        excursion1.setPrice(BigDecimal.valueOf(1500));
+        excursion1.setExcursionType(ExcursionType.CULTURE);
     }
 
     @Test
-    public void testCreateTrip(TripDTO trip) {
+    public void testCreateTrip() {
         when(mappingService.mapTo(trip1DTO, Trip.class)).thenReturn(trip1);
         tripFacade.createTrip(trip1DTO);
         verify(tripService).createTrip(trip1);
     }
 
     @Test
-    public void testRemoveTrip(TripDTO trip) {
+    public void testRemoveTrip() {
         when(mappingService.mapTo(trip1DTO, Trip.class)).thenReturn(trip1);
         tripFacade.removeTrip(trip1DTO);
         verify(tripService).removeTrip(trip1);
     }
 
     @Test
-    public void testUpdateTrip(TripDTO trip) {
+    public void testUpdateTrip() {
         when(mappingService.mapTo(trip1DTO, Trip.class)).thenReturn(trip1);
         tripFacade.updateTrip(trip1DTO);
         verify(tripService).updateTrip(trip1);
     }
 
     @Test
-    public void testFindTripById(Long id) {
-        tripFacade.createTrip(trip1DTO);
-        tripFacade.createTrip(trip2DTO);
+    public void testFindTripById() {
+        trip1DTO.setId(1L);
+        trip1.setId(1L);
+        when(tripService.findTripById(1L)).thenReturn(trip1);
+        when(mappingService.mapTo(trip1, TripDTO.class)).thenReturn(trip1DTO);
         assertEquals(tripFacade.findTripById(trip1DTO.getId()), trip1DTO);
         verify(tripService).findTripById(trip1DTO.getId());
     }
@@ -165,7 +192,7 @@ public class TripFacadeTest extends AbstractTransactionalTestNGSpringContextTest
     }
 
     @Test
-    public void testFindTripsByCountry(String country) {
+    public void testFindTripsByCountry() {
         List<Trip> allTripsToGreece = Arrays.asList(trip1, trip2);
         List<TripDTO> allDTOTripsToGreece = Arrays.asList(trip1DTO, trip2DTO);
         when(tripService.findTripsByCountry("Greece")).thenReturn(allTripsToGreece);
@@ -173,5 +200,10 @@ public class TripFacadeTest extends AbstractTransactionalTestNGSpringContextTest
         tripFacade.createTrip(trip1DTO);
         tripFacade.createTrip(trip2DTO);
         assertEquals(tripFacade.findTripsByCountry("Greece"), allDTOTripsToGreece);
+    }
+
+    @Test
+    public void testAddExcursionToTrip() {
+        
     }
 }
