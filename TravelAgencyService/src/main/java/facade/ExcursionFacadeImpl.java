@@ -38,9 +38,9 @@ public class ExcursionFacadeImpl implements ExcursionFacade {
     }
 
     @Override
-    public void deleteExcursion(ExcursionDTO ex) {
+    public void removeExcursion(ExcursionDTO ex) {
         Excursion mappedExcursion = mappingService.mapTo(ex, Excursion.class);
-        excursionService.deleteExcursion(mappedExcursion);
+        excursionService.removeExcursion(mappedExcursion);
     }
 
     @Override
