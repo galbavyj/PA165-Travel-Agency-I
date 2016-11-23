@@ -2,6 +2,7 @@ package service;
 
 import cz.muni.fi.pa165.travelAgency.persistence.dao.TripDao;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
+import cz.muni.fi.pa165.travelagency.travelagencyservice.TravelAgencyPersistenceException;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.inject.Inject;
@@ -19,39 +20,73 @@ public class TripServiceImpl implements TripService {
     
     @Override
     public void createTrip(Trip trip) {
-        tripDao.create(trip);
+        try{
+            tripDao.create(trip);
+        }
+        catch(Exception ex){
+            throw new TravelAgencyPersistenceException("Failed to create trip" + trip.toString() + ex.getMessage(), ex.getCause());
+        }   
     }
 
     @Override
     public void removeTrip(Trip trip) {
-        tripDao.remove(trip);
+        try{
+            tripDao.remove(trip);
+        }
+        catch(Exception ex){
+            throw new TravelAgencyPersistenceException("Failed to remove trip" + trip.toString() + ex.getMessage(), ex.getCause());
+        }   
     }
 
     @Override
     public Trip updateTrip(Trip trip) {
-        Trip updatedTrip = tripDao.update(trip);
-        return updatedTrip;
+        try{
+            return tripDao.update(trip);
+        }
+        catch(Exception ex){
+            throw new TravelAgencyPersistenceException("Failed to update trip" + trip.toString() + ex.getMessage(), ex.getCause());
+        }   
     }
 
     @Override
     public Trip findTripById(Long id) {
-        return tripDao.findById(id);
+        try{
+            return tripDao.findById(id);
+        }
+        catch(Exception ex){
+            throw new TravelAgencyPersistenceException("Failed to find trip by id" + id.toString() + ex.getMessage(), ex.getCause());
+        }   
     }
 
     @Override
     public List<Trip> findAllTrips() {
-        return tripDao.findAllTrips();
+        try{
+            return tripDao.findAllTrips();
+        }
+        catch(Exception ex){
+            throw new TravelAgencyPersistenceException("Failed to find all trips" + ex.getMessage(), ex.getCause());
+        }  
     }
 
     @Override
     public List<Trip> findTripsByCountry(String countryName) {
-        return tripDao.findTripsByCountry(countryName);
+        try{
+            return tripDao.findTripsByCountry(countryName);
+        }
+        catch(Exception ex){
+            throw new TravelAgencyPersistenceException("Failed to find trip by country name " + countryName + ex.getMessage(), ex.getCause());
+        }  
     }
 
     @Override
     public void changePrice(Trip trip, BigDecimal price) {
-        trip.setPrice(price);
-        tripDao.update(trip);
+        try{
+             trip.setPrice(price);
+             tripDao.update(trip);
+        }
+        catch(Exception ex){
+            throw new TravelAgencyPersistenceException("Failed to change price at trip " + trip.toString() + ex.getMessage(), ex.getCause());
+        }  
     }
 
    
