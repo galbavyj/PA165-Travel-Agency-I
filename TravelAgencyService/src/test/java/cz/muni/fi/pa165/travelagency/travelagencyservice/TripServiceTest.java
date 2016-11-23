@@ -162,7 +162,7 @@ public class TripServiceTest extends AbstractTestNGSpringContextTests {
         tripService.createTrip(null);
     }
     
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    @Test
     public void removeTrip(){
         tripService.createTrip(trip1);
         tripService.removeTrip(trip1);
