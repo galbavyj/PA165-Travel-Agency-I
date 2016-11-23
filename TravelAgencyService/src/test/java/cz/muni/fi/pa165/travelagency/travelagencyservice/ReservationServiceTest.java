@@ -17,12 +17,14 @@ import cz.muni.fi.pa165.travelagency.api.enums.ExcursionType;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.validation.ConstraintViolationException;
 import org.hibernate.service.spi.ServiceException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -62,6 +64,7 @@ public class ReservationServiceTest extends AbstractTransactionalTestNGSpringCon
     private Trip trip;
     private Excursion excursion1;
     private Excursion excursion2;
+    private List<Reservation> listWithReserv;
     
     @BeforeMethod
     public void prepareTestReservation(){
@@ -129,8 +132,11 @@ public class ReservationServiceTest extends AbstractTransactionalTestNGSpringCon
         testReservation.setExcursions(excursions);
         testReservation.setTrip(trip);
         
-        
+        listWithReserv= new ArrayList<Reservation>();
+        listWithReserv.add(testReservation);
         when(reservationDao.findById(testReservation.getId())).thenReturn(testReservation);
+        when(reservationDao.findReservationsByCustomer(testReservation.getCustomer())).thenReturn(listWithReserv);
+        when(reservationDao.findReservationsByTrip(testReservation.getTrip())).thenReturn(listWithReserv);
     }
     
     @Test
@@ -140,38 +146,53 @@ public class ReservationServiceTest extends AbstractTransactionalTestNGSpringCon
     
     @Test
     public void createReservation() {
-        
-        
+        reservationService.createReservation(testReservation);
+        assertEquals(testReservation, reservationService.findReservationById(testReservation.getId())); 
     }
 
     @Test
     public void updateReservation() {
-        
+        reservationService.createReservation(testReservation);
+        assertEquals(testReservation, reservationService.findReservationById(testReservation.getId())); 
+        Excursion testExc = new Excursion();
+        testExc.setPlace("Dreams");
+        reservationService.addExcursionToReservation(testReservation, testExc);
+        assertEquals(testReservation, reservationService.findReservationById(testReservation.getId())); 
     }
 
     @Test
     public void removeReservation() {
-        
+        reservationService.createReservation(testReservation);
+        assertEquals(testReservation, reservationService.findReservationById(testReservation.getId()));
+        reservationService.removeReservation(testReservation);
+        assertEquals(reservationService.findAllReservations().size(), 0 );
     }
+      
 
     @Test
     public void addExcursionToReservation() {
-        
+        reservationService.createReservation(testReservation);
+        assertEquals(testReservation, reservationService.findReservationById(testReservation.getId()));
+        Excursion testExc = new Excursion();
+        testExc.setPlace("Dreams");
+        reservationService.addExcursionToReservation(testReservation, testExc);
+        assertEquals(testReservation.getExcursions(), reservationService.findReservationById(testReservation.getId()).getExcursions());
+
     }
 
     @Test
     public void findAllReservations() {
-        
+        assertEquals(testReservation, reservationService.findReservationById(testReservation.getId())); 
     }
 
     @Test
     public void findReservationsByCustomer() {
-        
+        assertEquals(listWithReserv, reservationService.findReservationsByCustomer(testReservation.getCustomer())); 
     }
 
     @Test
     public void findReservationsByTrip() {
-        
+        assertEquals(listWithReserv, reservationService.findReservationsByTrip(testReservation.getTrip())); 
     }
 
     @Test
@@ -185,4 +206,9 @@ public class ReservationServiceTest extends AbstractTransactionalTestNGSpringCon
         Assert.assertEquals(reservationService.getTotalPrice(testReservation), testPrice);
     }
     
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void getTotalPriceWithNullTest() {
+        reservationService.getTotalPrice(null);
+    }
 }
+    
