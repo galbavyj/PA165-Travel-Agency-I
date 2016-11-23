@@ -36,6 +36,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
+import org.testng.Assert;
 import static org.testng.Assert.*;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -183,10 +184,24 @@ public class ExcursionServiceTest extends AbstractTestNGSpringContextTests{
     
     @Test
     public void testFindById() {
-        excursion1.setId(1l);
+        excursion1.setId(new Long(1));
         when(excursionDao.findExcursionById(excursion1.getId())).thenReturn(excursion1);
         assertEquals(excursion1, excursionService.findExcursionById(excursion1.getId()));
     }
     
+    @Test
+    public void testChangeDescription(){
+        String newDescription = "Tour around polish museum";
+        excursionService.changeDescription(excursion1, newDescription);
+        verify(excursionDao).update(excursion1);
+        Assert.assertEquals(newDescription,excursion1.getDescription());
+    }
     
+    @Test
+    public void testChangePrice(){
+        BigDecimal newPrice = BigDecimal.valueOf(500);
+        excursionService.changePrice(excursion1, newPrice);
+        verify(excursionDao).update(excursion1);
+        Assert.assertEquals(newPrice,excursion1.getPrice());
+    }
 }

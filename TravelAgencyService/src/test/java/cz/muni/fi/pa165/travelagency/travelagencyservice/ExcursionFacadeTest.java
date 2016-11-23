@@ -107,6 +107,8 @@ public class ExcursionFacadeTest extends AbstractTestNGSpringContextTests {
     
     @Test
     public void testCreateExcursion(){
+        excursion1.setId(new Long(1));
+        when(excursionService.createExcursion(excursion1)).thenReturn(excursion1);
         excursionFacade.createExcursion(excursionDTO1);
         verify(excursionService).createExcursion(excursion1);
     }
@@ -140,5 +142,21 @@ public class ExcursionFacadeTest extends AbstractTestNGSpringContextTests {
         when(mappingService.mapTo(Arrays.asList(excursionDTO1,excursionDTO2), Excursion.class)).thenReturn(Arrays.asList(excursion1,excursion2));
         List<ExcursionDTO> excursionListReturned = excursionFacade.findAllExcursions();
         Assert.assertEquals(mappingService.mapTo(excursionListReturned, Excursion.class),excursionList);
+    }
+    
+    @Test
+    public void testChangeDescription(){
+        String newDescription = "Tour around polish museum";
+        excursionFacade.changeDescription(excursionDTO1, newDescription);
+        verify(excursionService).updateExcursion(excursion1);
+        Assert.assertEquals(newDescription,excursion1.getDescription());
+    }
+    
+    @Test
+    public void testChangePrice(){
+        BigDecimal newPrice = BigDecimal.valueOf(500);
+        excursionFacade.changePrice(excursionDTO1, newPrice);
+        verify(excursionService).updateExcursion(excursion1);
+        Assert.assertEquals(newPrice,excursion1.getPrice());
     }
 }
