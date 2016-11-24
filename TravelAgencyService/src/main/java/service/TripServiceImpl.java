@@ -1,6 +1,8 @@
 package service;
 
+import cz.muni.fi.pa165.travelAgency.persistence.dao.ExcursionDao;
 import cz.muni.fi.pa165.travelAgency.persistence.dao.TripDao;
+import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
 import cz.muni.fi.pa165.travelagency.travelagencyservice.TravelAgencyPersistenceException;
 import java.math.BigDecimal;
@@ -17,6 +19,9 @@ public class TripServiceImpl implements TripService {
 
     @Inject
     TripDao tripDao;
+    
+    @Inject
+    ExcursionDao excursionDao;
     
     @Override
     public void createTrip(Trip trip) {
@@ -89,5 +94,16 @@ public class TripServiceImpl implements TripService {
         }  
     }
 
-   
+    @Override
+    public void addExcursionToTrip(Trip trip,Excursion excursion){
+        try{
+            trip.addPossibleExcursion(excursion);
+            excursion.setTrip(trip);
+            tripDao.update(trip);
+            excursionDao.update(excursion);
+        }
+        catch(Exception ex){
+            throw new TravelAgencyPersistenceException("Failed to add possible excursion " + excursion.toString() + "to trip " + trip.toString() + ex.getMessage(), ex.getCause());
+        }
+    }
 }

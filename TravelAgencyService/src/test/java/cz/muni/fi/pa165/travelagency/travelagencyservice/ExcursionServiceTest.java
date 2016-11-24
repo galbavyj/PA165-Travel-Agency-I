@@ -51,7 +51,7 @@ public class ExcursionServiceTest extends AbstractTestNGSpringContextTests{
     @Mock
     private ExcursionDao excursionDao;
 
-    @Autowired
+    @Inject
     @InjectMocks
     private ExcursionService excursionService;
     
@@ -204,4 +204,36 @@ public class ExcursionServiceTest extends AbstractTestNGSpringContextTests{
         verify(excursionDao).update(excursion1);
         Assert.assertEquals(newPrice,excursion1.getPrice());
     }
+    
+    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void testCreateWithNull(){
+        excursionService.createExcursion(null);
+    }
+    
+    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void testRemoveWithNull(){
+        excursionService.removeExcursion(null);
+    }
+    
+    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void testUpdateWithNull(){
+        excursionService.updateExcursion(null);
+    }
+    
+    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void testFindByIdWithInvalidArgument(){
+        excursionService.findExcursionById(new Long(-1));
+    }
+    
+    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void testUpdateWithInvalidPrice(){
+        excursionService.createExcursion(excursion1);
+        excursion1.setPrice(BigDecimal.valueOf(-200));
+        excursionService.updateExcursion(excursion1);
+    }
+    
+    
+    
+  
+    
 }
