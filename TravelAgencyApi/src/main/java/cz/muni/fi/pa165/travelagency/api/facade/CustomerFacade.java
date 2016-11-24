@@ -7,6 +7,7 @@ package cz.muni.fi.pa165.travelagency.api.facade;
 
 import cz.muni.fi.pa165.travelagency.api.dto.CustomerAuthenticateDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.CustomerDTO;
+import cz.muni.fi.pa165.travelagency.api.dto.ReservationDTO;
 import java.util.List;
 
 /**
@@ -68,4 +69,13 @@ public interface CustomerFacade {
      * @return customer with given id
      */
     CustomerDTO findCustomerById(Long customerId);
+    
+    /**
+     * adds reservation to customer
+     *
+     * @param customer customer of new reservation
+     * @param reservation reservation to be added
+     * @throws IllegalArgumentException in case customer is not found
+     */
+    void addReservation(CustomerDTO customer, ReservationDTO reservation);
 }
