@@ -179,6 +179,7 @@ public class ExcursionServiceTest extends AbstractTestNGSpringContextTests{
     @Test
     public void testFindAll(){
         when(excursionDao.findAllExcursions()).thenReturn(Arrays.asList(excursion1,excursion2));
+        verify(excursionDao).findAllExcursions();
         assertEquals(excursionService.findAllExcursions(),Arrays.asList(excursion1,excursion2));
     }
     
@@ -186,6 +187,7 @@ public class ExcursionServiceTest extends AbstractTestNGSpringContextTests{
     public void testFindById() {
         excursion1.setId(new Long(1));
         when(excursionDao.findExcursionById(excursion1.getId())).thenReturn(excursion1);
+        verify(excursionDao).findExcursionById(excursion1.getId());
         assertEquals(excursion1, excursionService.findExcursionById(excursion1.getId()));
     }
     
@@ -205,6 +207,7 @@ public class ExcursionServiceTest extends AbstractTestNGSpringContextTests{
         Assert.assertEquals(newPrice,excursion1.getPrice());
     }
     
+    /*
     @Test(expectedExceptions = TravelAgencyPersistenceException.class)
     public void testCreateWithNull(){
         excursionService.createExcursion(null);
@@ -231,7 +234,7 @@ public class ExcursionServiceTest extends AbstractTestNGSpringContextTests{
         excursion1.setPrice(BigDecimal.valueOf(-200));
         excursionService.updateExcursion(excursion1);
     }
-    
+    */
     
     
   

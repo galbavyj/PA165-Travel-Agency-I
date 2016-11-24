@@ -90,15 +90,6 @@ public class ExcursionFacadeTest extends AbstractTestNGSpringContextTests {
         excursion1.setPlace("Nou Camp stadion in Barcelona");
         excursion1.setPrice(BigDecimal.valueOf(50));
         
-       /* excursionDTO1 = new ExcursionDTO();
-        excursionDTO1.setCreated(created2);
-        excursionDTO1.setDescription("One of the most viewed football matches in the Europe - El Clasico");
-        excursionDTO1.setDurationInHours(2);
-        excursionDTO1.setFromDate(fromDate2);
-        excursionDTO1.setExcursionType(ExcursionType.ENTERTAINMENT);
-        excursionDTO1.setPlace("Nou Camp stadion in Barcelona");
-        excursionDTO1.setPrice(BigDecimal.valueOf(50));*/
-        
         excursionDTO1 = mappingService.mapTo(excursion1, ExcursionDTO.class);
         excursionDTO2 = mappingService.mapTo(excursion2, ExcursionDTO.class);
         
