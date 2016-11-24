@@ -7,7 +7,9 @@ package facade;
 
 import cz.muni.fi.pa165.travelagency.api.dto.CustomerDTO;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
+import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import cz.muni.fi.pa165.travelagency.api.dto.CustomerAuthenticateDTO;
+import cz.muni.fi.pa165.travelagency.api.dto.ReservationDTO;
 import cz.muni.fi.pa165.travelagency.api.facade.CustomerFacade;
 import cz.muni.fi.pa165.travelagency.travelagencyservice.MappingService;
 import java.util.List;
@@ -68,5 +70,12 @@ public class CustomerFacadeImpl implements CustomerFacade{
     public CustomerDTO findCustomerById(Long customerId) {
         Customer customer = customerService.findById(customerId);
         return (customer == null) ? null : mappingService.mapTo(customer, CustomerDTO.class);
+    }
+
+    @Override
+    public void addReservation(CustomerDTO c, ReservationDTO r) {
+        Customer customer = mappingService.mapTo(c, Customer.class);
+        Reservation reservation = mappingService.mapTo(r, Reservation.class);
+        customerService.addReservationToCustomer(customer, reservation);
     }
 }

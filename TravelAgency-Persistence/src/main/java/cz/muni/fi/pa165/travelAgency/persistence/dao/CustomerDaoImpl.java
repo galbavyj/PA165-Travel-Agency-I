@@ -6,6 +6,7 @@
 package cz.muni.fi.pa165.travelAgency.persistence.dao;
 
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
+import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import cz.muni.fi.pa165.travelagency.api.enums.CustomerRole;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -51,5 +52,11 @@ public class CustomerDaoImpl implements CustomerDao {
     public Customer findById(Long id) {
         return em.createQuery("SELECT u FROM Customer as u WHERE u.id = :id",Customer.class)
                 .setParameter("id", id).getSingleResult();
+    }
+
+    @Override
+    public void addReservation(Customer customer, Reservation reservation) {
+        customer.addReservation(reservation);
+        em.merge(customer);
     }
 }
