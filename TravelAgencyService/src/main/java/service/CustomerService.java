@@ -6,6 +6,7 @@
 package service;
 
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
+import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import java.util.List;
 
 /**
@@ -68,4 +69,14 @@ public interface CustomerService {
      * @return customer with given email
      */
     Customer findByEmail(String email);    
+    
+    
+    /**
+     * adds reservation to customer
+     *
+     * @param customer customer of new reservation
+     * @param reservation reservation to be added
+     * @throws IllegalArgumentException in case customer is not found
+     */
+    void addReservationToCustomer(Customer customer, Reservation reservation);
 }

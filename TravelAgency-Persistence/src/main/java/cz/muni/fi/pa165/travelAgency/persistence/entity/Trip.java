@@ -133,6 +133,14 @@ public class Trip {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
+    public String getFilePathToPicture() {
+        return filePathToPicture;
+    }
+
+    public void setFilePathToPicture(String filePathToPicture) {
+        this.filePathToPicture = filePathToPicture;
+    }
     
     @Override
     public int hashCode() {
