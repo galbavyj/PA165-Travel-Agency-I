@@ -12,12 +12,14 @@ import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
+import cz.muni.fi.pa165.travelagency.api.dto.ReservationCreateDTO;
 import cz.muni.fi.pa165.travelagency.api.enums.CustomerRole;
 import cz.muni.fi.pa165.travelagency.api.enums.ExcursionType;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -28,6 +30,7 @@ import javax.validation.ConstraintViolationException;
 import org.hibernate.service.spi.ServiceException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,7 +92,7 @@ public class ReservationServiceTest extends AbstractTransactionalTestNGSpringCon
         try {
              created = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("24/12/2017");
         } catch (ParseException ex) {
-            //Logger.getLogger(ReservationServiceTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReservationServiceTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         cust.setCreated(created);
         cust.setPhoneNumber("725555666");
@@ -134,45 +137,78 @@ public class ReservationServiceTest extends AbstractTransactionalTestNGSpringCon
         
         listWithReserv= new ArrayList<Reservation>();
         listWithReserv.add(testReservation);
+        
+        when(reservationDao.findReservationsByCustomer(cust)).thenReturn(Arrays.asList(testReservation));
+        when(reservationDao.findReservationsByTrip(trip)).thenReturn(Arrays.asList(testReservation));
+        when(reservationDao.findAllReservations()).thenReturn(Arrays.asList(testReservation));
         when(reservationDao.findById(testReservation.getId())).thenReturn(testReservation);
-        when(reservationDao.findReservationsByCustomer(testReservation.getCustomer())).thenReturn(listWithReserv);
-        when(reservationDao.findReservationsByTrip(testReservation.getTrip())).thenReturn(listWithReserv);
     }
     
     @Test
-    public void findReservationById() {
-        assertEquals(testReservation, reservationService.findReservationById(testReservation.getId())); 
+    public void testFindReservationById() {
+        reservationService.createReservation(testReservation);
+        Reservation res = reservationService.findReservationById(testReservation.getId());
+        assertEquals(res, testReservation);
     }
     
+    /*@Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void  findTripByInvalidId(){
+        reservationService.findReservationById(-10L);
+    }*/
+    
     @Test
-    public void createReservation() {
+    public void testCreateReservation() {
         reservationService.createReservation(testReservation);
-        assertEquals(testReservation, reservationService.findReservationById(testReservation.getId())); 
+        verify(reservationDao).create(testReservation);
     }
+    
+    /*@Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void testCreateNullReservation(){
+        reservationService.createReservation(null);
+    }*/
 
     @Test
-    public void updateReservation() {
+    public void testUpdateReservation() {     
         reservationService.createReservation(testReservation);
-        assertEquals(testReservation, reservationService.findReservationById(testReservation.getId())); 
-        Excursion testExc = new Excursion();
-        testExc.setPlace("Dreams");
-        reservationService.addExcursionToReservation(testReservation, testExc);
-        assertEquals(testReservation, reservationService.findReservationById(testReservation.getId())); 
+        Date created = new Date();
+        try {
+             created = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("24/12/2017");
+        } catch (ParseException ex) {
+            Logger.getLogger(ReservationServiceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        testReservation.setCreated(created);
+        reservationService.updateReservation(testReservation);
+        verify(reservationDao).update(testReservation);
     }
-
-    @Test
-    public void removeReservation() {
+    
+    /*@Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void testUpdateNullReservation(){
+        reservationService.updateReservation(null);
+    }*/
+    
+    /*@Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void testUpdateReservationWithNullParameter(){
         reservationService.createReservation(testReservation);
-        assertEquals(testReservation, reservationService.findReservationById(testReservation.getId()));
+        testReservation.setCreated(null);
+        reservationService.updateReservation(testReservation);
+    }*/
+    
+    @Test
+    public void testRemoveReservation() {
+        reservationService.createReservation(testReservation);
         reservationService.removeReservation(testReservation);
-        assertEquals(reservationService.findAllReservations().size(), 0 );
+        verify(reservationDao).remove(testReservation);
     }
+    
+    /*@Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void testRemoveNullReservation(){
+        reservationService.removeReservation(null);
+    }*/
       
 
     @Test
-    public void addExcursionToReservation() {
+    public void testAddExcursionToReservation() {
         reservationService.createReservation(testReservation);
-        assertEquals(testReservation, reservationService.findReservationById(testReservation.getId()));
         Excursion testExc = new Excursion();
         testExc.setPlace("Dreams");
         reservationService.addExcursionToReservation(testReservation, testExc);
@@ -181,22 +217,23 @@ public class ReservationServiceTest extends AbstractTransactionalTestNGSpringCon
     }
 
     @Test
-    public void findAllReservations() {
-        assertEquals(testReservation, reservationService.findReservationById(testReservation.getId())); 
+    public void testFindAllReservations() {
+        
+        assertEquals(reservationService.findAllReservations(), Arrays.asList(testReservation));
     }
 
     @Test
-    public void findReservationsByCustomer() {
-        assertEquals(listWithReserv, reservationService.findReservationsByCustomer(testReservation.getCustomer())); 
+    public void testFindReservationsByCustomer() {
+        assertEquals(reservationService.findReservationsByCustomer(testReservation.getCustomer()), Arrays.asList(testReservation)); 
     }
 
     @Test
-    public void findReservationsByTrip() {
-        assertEquals(listWithReserv, reservationService.findReservationsByTrip(testReservation.getTrip())); 
+    public void testFindReservationsByTrip() {
+        assertEquals(reservationService.findReservationsByTrip(testReservation.getTrip()), Arrays.asList(testReservation)); 
     }
 
     @Test
-    public void getTotalPriceTest() {
+    public void testGetTotalPriceTest() {
         
         BigDecimal testPrice = testReservation.getTrip().getPrice();
         for(Excursion excursion : testReservation.getExcursions()){
@@ -206,9 +243,9 @@ public class ReservationServiceTest extends AbstractTransactionalTestNGSpringCon
         Assert.assertEquals(reservationService.getTotalPrice(testReservation), testPrice);
     }
     
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void getTotalPriceWithNullTest() {
+    /*@Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void testGetTotalPriceWithNullTest() {
         reservationService.getTotalPrice(null);
-    }
+    }*/
 }
     
