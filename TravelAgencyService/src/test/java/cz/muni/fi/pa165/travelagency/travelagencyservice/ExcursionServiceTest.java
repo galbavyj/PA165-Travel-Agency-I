@@ -179,6 +179,8 @@ public class ExcursionServiceTest extends AbstractTestNGSpringContextTests{
     @Test
     public void testFindAll(){
         when(excursionDao.findAllExcursions()).thenReturn(Arrays.asList(excursion1,excursion2));
+        excursionService.findAllExcursions();
+        verify(excursionDao).findAllExcursions();
         assertEquals(excursionService.findAllExcursions(),Arrays.asList(excursion1,excursion2));
     }
     
@@ -186,6 +188,8 @@ public class ExcursionServiceTest extends AbstractTestNGSpringContextTests{
     public void testFindById() {
         excursion1.setId(new Long(1));
         when(excursionDao.findExcursionById(excursion1.getId())).thenReturn(excursion1);
+        excursionService.findExcursionById(excursion1.getId());
+        verify(excursionDao).findExcursionById(excursion1.getId());
         assertEquals(excursion1, excursionService.findExcursionById(excursion1.getId()));
     }
     
@@ -205,33 +209,41 @@ public class ExcursionServiceTest extends AbstractTestNGSpringContextTests{
         Assert.assertEquals(newPrice,excursion1.getPrice());
     }
     
+    
     @Test(expectedExceptions = TravelAgencyPersistenceException.class)
     public void testCreateWithNull(){
+        Mockito.doThrow(TravelAgencyPersistenceException.class).when(excursionDao).create(null);
         excursionService.createExcursion(null);
     }
     
     @Test(expectedExceptions = TravelAgencyPersistenceException.class)
     public void testRemoveWithNull(){
+        Mockito.doThrow(TravelAgencyPersistenceException.class).when(excursionDao).remove(null);
         excursionService.removeExcursion(null);
     }
     
     @Test(expectedExceptions = TravelAgencyPersistenceException.class)
     public void testUpdateWithNull(){
+        Mockito.doThrow(TravelAgencyPersistenceException.class).when(excursionDao).update(null);
         excursionService.updateExcursion(null);
     }
     
     @Test(expectedExceptions = TravelAgencyPersistenceException.class)
     public void testFindByIdWithInvalidArgument(){
-        excursionService.findExcursionById(new Long(-1));
+        Long id = new Long(-1);
+        when(excursionDao.findExcursionById(id)).thenThrow(IllegalArgumentException.class);
+        excursionService.findExcursionById(id);
     }
     
     @Test(expectedExceptions = TravelAgencyPersistenceException.class)
     public void testUpdateWithInvalidPrice(){
+        BigDecimal price = new BigDecimal(-200);
         excursionService.createExcursion(excursion1);
-        excursion1.setPrice(BigDecimal.valueOf(-200));
+        excursion1.setPrice(price);
+        when(excursionDao.update(excursion1)).thenThrow(IllegalArgumentException.class);
         excursionService.updateExcursion(excursion1);
     }
-    
+
     
     
   

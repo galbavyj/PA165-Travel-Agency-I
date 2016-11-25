@@ -20,5 +20,4 @@ public class TravelAgencyPersistenceException extends DataAccessException {
     public TravelAgencyPersistenceException(String msg, Throwable cause) {
         super(msg + "Exception thrown at persistance layer", cause);
     }
-    
 }
