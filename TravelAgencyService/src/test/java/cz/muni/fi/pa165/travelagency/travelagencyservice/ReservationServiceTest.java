@@ -27,6 +27,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -156,6 +158,12 @@ public class ReservationServiceTest extends AbstractTransactionalTestNGSpringCon
     }
 
     @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void testRemoveNull(){
+        Mockito.doThrow(NullPointerException.class).when(reservationDao).remove(null);
+        reservationService.removeReservation(null);
+    }
+
+    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
     public void  findTripByInvalidId(){
         when(reservationDao.findById(-10L)).thenThrow(new IllegalArgumentException());
         reservationService.findReservationById(-10L);
@@ -179,7 +187,6 @@ public class ReservationServiceTest extends AbstractTransactionalTestNGSpringCon
 
     @Test
     public void testUpdateReservation() {
-        reservationService.createReservation(testReservation);
         Date created = new Date();
         try {
             created = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("24/12/2017");
