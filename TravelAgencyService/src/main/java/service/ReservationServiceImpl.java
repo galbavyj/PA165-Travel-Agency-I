@@ -38,14 +38,6 @@ public class ReservationServiceImpl implements ReservationService {
             Customer c = customerDao.findById(reservation.getCustomer().getId());
             c.addReservation(reservation);
             customerDao.update(c);
-
-            if (reservation.getExcursions() != null) {
-                for (Excursion excursion : reservation.getExcursions()) {
-                    Excursion ex = excursionDao.findExcursionById(excursion.getId());
-                    ex.addReservation(reservation);
-                    excursionDao.update(ex);
-                }
-            }
         } catch(Exception e){
             throw new TravelAgencyPersistenceException("Failed to create reservation" + e);
         }

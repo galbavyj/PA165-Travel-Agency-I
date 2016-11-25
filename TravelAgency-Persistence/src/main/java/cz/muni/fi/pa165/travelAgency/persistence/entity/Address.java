@@ -62,7 +62,7 @@ public class Address {
     public void setNumberOfHouse(Integer numberOfHouse) {
         this.numberOfHouse = numberOfHouse;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 3;
