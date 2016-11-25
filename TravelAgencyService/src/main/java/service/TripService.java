@@ -1,5 +1,6 @@
 package service;
 
+import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
 import java.math.BigDecimal;
 import java.util.List;
@@ -63,4 +64,11 @@ public interface TripService {
      */
     public void changePrice(Trip trip, BigDecimal price);
 
+    /**
+     * Adds possible Excursion to a list of possible Excursions on a Trip.
+     * 
+     * @param trip Trip, whose list of possible Excursions should be updated
+     * @param excursion Excursion to add to list
+     */
+    public void addExcursionToTrip(Trip trip,Excursion excursion);
 }
