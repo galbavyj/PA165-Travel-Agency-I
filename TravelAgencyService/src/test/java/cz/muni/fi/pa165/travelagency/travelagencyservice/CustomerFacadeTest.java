@@ -113,7 +113,7 @@ public class CustomerFacadeTest {
         customerDTO1.setCreated(created1);
 
         customerAuthenticateDTO1 = new CustomerAuthenticateDTO();
-        customerAuthenticateDTO1.setPasswordHash(pass);
+        customerAuthenticateDTO1.setPassword(pass);
         customerAuthenticateDTO1.setId(10L);
 
         customerDTO2 = new CustomerDTO();

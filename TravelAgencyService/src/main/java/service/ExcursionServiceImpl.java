@@ -31,18 +31,14 @@ public class ExcursionServiceImpl implements ExcursionService {
     }
 
     @Override
-<<<<<<< HEAD
-    public void deleteExcursion(Excursion ex) {
+    public void removeExcursion(Excursion ex) {
         try {
              excursionDao.remove(ex);
         }
         catch (Exception e) {
             throw new TravelAgencyPersistenceException("Failed to create customer" + e.toString() + e.getMessage(), e.getCause());
         }
-=======
-    public void removeExcursion(Excursion ex) {
-        excursionDao.remove(ex);
->>>>>>> master
+
     }
 
     @Override
