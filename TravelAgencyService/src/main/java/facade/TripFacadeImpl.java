@@ -1,6 +1,8 @@
 package facade;
 
+import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
+import cz.muni.fi.pa165.travelagency.api.dto.ExcursionDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.TripDTO;
 import cz.muni.fi.pa165.travelagency.api.facade.TripFacade;
 import cz.muni.fi.pa165.travelagency.travelagencyservice.MappingService;
@@ -63,6 +65,10 @@ public class TripFacadeImpl implements TripFacade {
     @Override
     public void changePrice(TripDTO trip, BigDecimal price) {
         tripService.changePrice(mappingService.mapTo(trip, Trip.class), price);
+    }
+    
+    public void addExcursionToTrip(TripDTO trip, ExcursionDTO excursion){
+        tripService.addExcursionToTrip(mappingService.mapTo(trip, Trip.class), mappingService.mapTo(excursion, Excursion.class));
     }
     
 }

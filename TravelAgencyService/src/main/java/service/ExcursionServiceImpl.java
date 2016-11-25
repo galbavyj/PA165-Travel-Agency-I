@@ -2,6 +2,7 @@ package service;
 
 import cz.muni.fi.pa165.travelAgency.persistence.dao.ExcursionDao;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
+import cz.muni.fi.pa165.travelagency.travelagencyservice.TravelAgencyPersistenceException;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.inject.Inject;
@@ -19,40 +20,81 @@ public class ExcursionServiceImpl implements ExcursionService {
 
     @Override
     public Excursion createExcursion(Excursion excursion) {
-        excursionDao.create(excursion);
+        try {
+             excursionDao.create(excursion);
+        }
+        catch (Exception e) {
+            throw new TravelAgencyPersistenceException("Failed to create customer" + e.toString() + e.getMessage(), e.getCause());
+        }
+        
         return excursion;
     }
 
     @Override
+<<<<<<< HEAD
     public void deleteExcursion(Excursion ex) {
+        try {
+             excursionDao.remove(ex);
+        }
+        catch (Exception e) {
+            throw new TravelAgencyPersistenceException("Failed to create customer" + e.toString() + e.getMessage(), e.getCause());
+        }
+=======
+    public void removeExcursion(Excursion ex) {
         excursionDao.remove(ex);
+>>>>>>> master
     }
 
     @Override
     public void changeDescription(Excursion excursion, String description) {
         excursion.setDescription(description);
-        excursionDao.update(excursion);
+        try {
+             excursionDao.update(excursion);
+        }
+        catch (Exception e) {
+            throw new TravelAgencyPersistenceException("Failed to create customer" + e.toString() + e.getMessage(), e.getCause());
+        }
     }
 
     @Override
     public void changePrice(Excursion excursion, BigDecimal price) {
         excursion.setPrice(price);
-        excursionDao.update(excursion);
+        try {
+             excursionDao.update(excursion);
+        }
+        catch (Exception e) {
+            throw new TravelAgencyPersistenceException("Failed to create customer" + e.toString() + e.getMessage(), e.getCause());
+        }
     }
 
     @Override
     public List<Excursion> findAllExcursions() {
-        return excursionDao.findAllExcursions();
+        try {
+             return excursionDao.findAllExcursions();
+        }
+        catch (Exception e) {
+            throw new TravelAgencyPersistenceException("Failed to create customer" + e.toString() + e.getMessage(), e.getCause());
+        }
     }
 
     @Override
     public Excursion findExcursionById(Long exId) {
-        return excursionDao.findExcursionById(exId);
+        try {
+             return excursionDao.findExcursionById(exId);
+        }
+        catch (Exception e) {
+            throw new TravelAgencyPersistenceException("Failed to create customer" + e.toString() + e.getMessage(), e.getCause());
+        }
     }
 
     @Override
     public Long updateExcursion(Excursion ex) {
-        excursionDao.update(ex);
+        try {
+             excursionDao.update(ex);
+        }
+        catch (Exception e) {
+            throw new TravelAgencyPersistenceException("Failed to create customer" + e.toString() + e.getMessage(), e.getCause());
+        }
         return ex.getId();
     }
     

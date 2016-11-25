@@ -38,22 +38,22 @@ public class ExcursionFacadeImpl implements ExcursionFacade {
     }
 
     @Override
-    public void deleteExcursion(ExcursionDTO ex) {
+    public void removeExcursion(ExcursionDTO ex) {
         Excursion mappedExcursion = mappingService.mapTo(ex, Excursion.class);
-        excursionService.deleteExcursion(mappedExcursion);
+        excursionService.removeExcursion(mappedExcursion);
     }
 
     @Override
     public void changeDescription(ExcursionDTO excursion, String description) {
         Excursion mappedExcursion = mappingService.mapTo(excursion, Excursion.class);
-        excursion.setDescription(description);
+        mappedExcursion.setDescription(description);
         excursionService.updateExcursion(mappedExcursion);
     }
 
     @Override
     public void changePrice(ExcursionDTO excursion, BigDecimal price) {
         Excursion mappedExcursion = mappingService.mapTo(excursion, Excursion.class);
-        excursion.setPrice(price);
+        mappedExcursion.setPrice(price);
         excursionService.updateExcursion(mappedExcursion);
     }
 
