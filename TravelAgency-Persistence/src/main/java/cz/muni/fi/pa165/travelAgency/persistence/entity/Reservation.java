@@ -103,7 +103,6 @@ public class Reservation {
 
         Reservation that = (Reservation) o;
 
-        if (getId() != that.getId()) return false;
         if (getCustomer() != null ? !getCustomer().equals(that.getCustomer()) : that.getCustomer() != null)
             return false;
         if (getCreated() != null ? !getCreated().equals(that.getCreated()) : that.getCreated() != null) return false;
@@ -114,8 +113,7 @@ public class Reservation {
 
     @Override
     public int hashCode() {
-        int result = (int) (getId() ^ (getId() >>> 32));
-        result = 31 * result + (getCustomer() != null ? getCustomer().hashCode() : 0);
+        int result = getCustomer() != null ? getCustomer().hashCode() : 0;
         result = 31 * result + (getCreated() != null ? getCreated().hashCode() : 0);
         result = 31 * result + (getTrip() != null ? getTrip().hashCode() : 0);
         result = 31 * result + (getExcursions() != null ? getExcursions().hashCode() : 0);

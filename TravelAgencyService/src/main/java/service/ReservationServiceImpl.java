@@ -1,5 +1,7 @@
 package service;
 
+import cz.muni.fi.pa165.travelAgency.persistence.dao.CustomerDao;
+import cz.muni.fi.pa165.travelAgency.persistence.dao.ExcursionDao;
 import cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDao;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
@@ -22,10 +24,28 @@ public class ReservationServiceImpl implements ReservationService {
     @Inject
     private ReservationDao reservationDao;
 
+    @Inject
+    private CustomerDao customerDao;
+
+    @Inject
+    private ExcursionDao excursionDao;
+
+
     @Override
     public Reservation createReservation(Reservation reservation) {
         try {
             reservationDao.create(reservation);
+            Customer c = customerDao.findById(reservation.getCustomer().getId());
+            c.addReservation(reservation);
+            customerDao.update(c);
+
+            if (reservation.getExcursions() != null) {
+                for (Excursion excursion : reservation.getExcursions()) {
+                    Excursion ex = excursionDao.findExcursionById(excursion.getId());
+                    ex.addReservation(reservation);
+                    excursionDao.update(ex);
+                }
+            }
             return reservation;
         } catch(Exception e){
             throw new TravelAgencyPersistenceException("Failed to create reservation" + e);

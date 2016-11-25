@@ -140,6 +140,10 @@ public class Excursion {
     public void addReservation(Reservation reservation){
         this.reservations.add(reservation);
     }
+
+    public void removeReservation(Reservation reservation) {
+        this.reservations.remove(reservation);
+    }
     
     public Long getId() {
         return id;

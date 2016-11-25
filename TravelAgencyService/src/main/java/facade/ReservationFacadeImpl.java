@@ -61,7 +61,6 @@ public class ReservationFacadeImpl implements ReservationFacade {
 
         Reservation reservation = new Reservation(customer, new Date(), trip, new HashSet<>());
 
-
         if (r.getExcursionIDs() != null) {
             for (Long excursionId : r.getExcursionIDs()) {
                 Excursion ex = excursionService.findExcursionById(excursionId);
@@ -70,16 +69,6 @@ public class ReservationFacadeImpl implements ReservationFacade {
         }
         reservationService.createReservation(reservation);
 
-        customer.addReservation(reservation);
-        customerService.updateCustomer(customer);
-
-        if (r.getExcursionIDs() != null) {
-            for (Long excursionId : r.getExcursionIDs()) {
-                Excursion excursion = excursionService.findExcursionById(excursionId);
-                excursion.addReservation(reservation);
-                excursionService.updateExcursion(excursion);
-            }
-        }
         return reservation.getId();
     }
 
@@ -95,7 +84,10 @@ public class ReservationFacadeImpl implements ReservationFacade {
 
         Set<ExcursionDTO> excursions = reservationDTO.getExcursions();
         for (ExcursionDTO excursionDTO : excursions){
-            reservation.addExcursion(beanMappingService.mapTo(excursionDTO, Excursion.class));
+            Excursion ex = beanMappingService.mapTo(excursionDTO, Excursion.class);
+            if(!reservation.getExcursions().contains(ex)){
+                reservation.addExcursion(ex);
+            }
         }
 
         reservationService.updateReservation(reservation);
@@ -107,11 +99,11 @@ public class ReservationFacadeImpl implements ReservationFacade {
 
         Set<Excursion> excursions = reservation.getExcursions();
         for(Excursion excursion : excursions){
-            excursion.getReservations().remove(reservation);
+            excursion.removeReservation(reservation);
             excursionService.updateExcursion(excursion);
         }
 
-        reservation.getCustomer().getReservations().remove(reservation);
+        reservation.getCustomer().removeReservation(reservation);
         customerService.updateCustomer(reservation.getCustomer());
 
         reservationService.removeReservation(reservation);
