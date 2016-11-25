@@ -23,7 +23,7 @@ public interface ExcursionService {
      *
      * @param ex excursion, which will be deleted
      */
-    public void deleteExcursion(Excursion ex);
+    public void removeExcursion(Excursion ex);
 
     /**
      * Change the description of the excursion

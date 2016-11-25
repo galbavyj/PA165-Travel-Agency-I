@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.travelagency.api.facade;
 
+import cz.muni.fi.pa165.travelagency.api.dto.ExcursionDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.TripDTO;
 import java.math.BigDecimal;
 import java.util.List;
@@ -60,4 +61,13 @@ public interface TripFacade {
      * @param price New price
      */
     public void changePrice(TripDTO trip, BigDecimal price);
+    
+    /**
+     * Add possible Excursion to a list of possible Excursion no a Trip
+     * 
+     * @param trip DTO of a Trip whose list of possible Excursions is to be updated
+     * @param excursion DTO of and Excursion to be added to list of possible Excursions on trip
+     */
+    public void addExcursionToTrip(TripDTO trip, ExcursionDTO excursion);
+    
 }

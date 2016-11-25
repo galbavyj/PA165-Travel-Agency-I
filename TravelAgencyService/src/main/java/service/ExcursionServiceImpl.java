@@ -31,6 +31,7 @@ public class ExcursionServiceImpl implements ExcursionService {
     }
 
     @Override
+<<<<<<< HEAD
     public void deleteExcursion(Excursion ex) {
         try {
              excursionDao.remove(ex);
@@ -38,6 +39,10 @@ public class ExcursionServiceImpl implements ExcursionService {
         catch (Exception e) {
             throw new TravelAgencyPersistenceException("Failed to create customer" + e.toString() + e.getMessage(), e.getCause());
         }
+=======
+    public void removeExcursion(Excursion ex) {
+        excursionDao.remove(ex);
+>>>>>>> master
     }
 
     @Override
