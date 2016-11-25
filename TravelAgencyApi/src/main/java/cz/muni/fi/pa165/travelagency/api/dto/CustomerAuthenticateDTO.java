@@ -11,7 +11,7 @@ package cz.muni.fi.pa165.travelagency.api.dto;
  */
 public class CustomerAuthenticateDTO {
     private Long id;
-    private String passwordHash;
+    private String password;
 
     public Long getId() {
         return id;
@@ -21,11 +21,11 @@ public class CustomerAuthenticateDTO {
         this.id = id;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

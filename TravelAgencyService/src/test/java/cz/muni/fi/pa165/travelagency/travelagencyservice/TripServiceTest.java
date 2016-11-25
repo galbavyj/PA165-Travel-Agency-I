@@ -35,6 +35,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
+import org.mockito.Mockito;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -168,11 +169,6 @@ public class TripServiceTest extends AbstractTestNGSpringContextTests {
         tripService.removeTrip(trip1);
         verify(tripDao).remove(trip1);
     }
-    
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
-    public void removeNullTrip(){
-        tripService.removeTrip(null);
-    }
 
     @Test
     public void updateTrip(){
@@ -184,13 +180,15 @@ public class TripServiceTest extends AbstractTestNGSpringContextTests {
     
     @Test(expectedExceptions = TravelAgencyPersistenceException.class)
     public void updateNullTrip(){
+        when(tripDao.update(null)).thenThrow(new NullPointerException());
         tripService.updateTrip(null);
     }
     
     @Test(expectedExceptions = TravelAgencyPersistenceException.class)
     public void updateTripWithNullParameter(){
         tripService.createTrip(trip1);
-        trip1.setAddressOfHotel(address);
+        trip1.setAddressOfHotel(null);
+        when(tripDao.update(trip1)).thenThrow(new IllegalArgumentException());
         tripService.updateTrip(trip1);
     }
     
@@ -198,6 +196,7 @@ public class TripServiceTest extends AbstractTestNGSpringContextTests {
     public void updateTripWithNegativePrice(){
         tripService.createTrip(trip1);
         trip1.setPrice(new BigDecimal("-10"));
+        when(tripDao.update(trip1)).thenThrow(new IllegalArgumentException());
         tripService.updateTrip(trip1);
     }
     
@@ -209,6 +208,7 @@ public class TripServiceTest extends AbstractTestNGSpringContextTests {
         } catch (ParseException ex) {
             Logger.getLogger(TripServiceTest.class.getName()).log(Level.SEVERE, null, ex);
         }
+        when(tripDao.update(trip1)).thenThrow(new IllegalArgumentException());
         tripService.updateTrip(trip1);
     }
     
@@ -222,6 +222,7 @@ public class TripServiceTest extends AbstractTestNGSpringContextTests {
     
     @Test(expectedExceptions = TravelAgencyPersistenceException.class)
     public void  findTripByInvalidId(){
+        when(tripDao.findById(-10L)).thenThrow(new IllegalArgumentException());
         tripService.findTripById(-10L);
     }
     
@@ -239,6 +240,8 @@ public class TripServiceTest extends AbstractTestNGSpringContextTests {
     
     @Test
     public void testAddExcursionToTrip() {
-        
+        tripService.addExcursionToTrip(trip1, excursion1);
+        verify(tripDao.update(trip1));
+        verify(excursionDao.update(excursion1));
     }
 }
