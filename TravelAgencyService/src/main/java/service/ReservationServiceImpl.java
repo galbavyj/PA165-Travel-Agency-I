@@ -73,7 +73,9 @@ public class ReservationServiceImpl implements ReservationService {
     public void addExcursionToReservation(Reservation reservation, Excursion excursion) {
         try {
             reservation.addExcursion(excursion);
+            excursion.addReservation(reservation);
             reservationDao.update(reservation);
+            excursionDao.update(excursion);
         } catch(Exception e){
             throw new TravelAgencyPersistenceException("Failed to add excursion to reservation" + e);
         }
