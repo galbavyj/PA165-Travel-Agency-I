@@ -21,14 +21,14 @@ public interface ReservationService {
      * @param reservation reservation to be created
      * @return created reservation
      */
-    Reservation createReservation(Reservation reservation);
+    void createReservation(Reservation reservation);
 
     /**
      * Update new reservation
      * @param reservation reservation to be updated
      * @return updated reservation
      */
-    Reservation updateReservation(Reservation reservation);
+    void updateReservation(Reservation reservation);
 
     /**
      * Delete reservation

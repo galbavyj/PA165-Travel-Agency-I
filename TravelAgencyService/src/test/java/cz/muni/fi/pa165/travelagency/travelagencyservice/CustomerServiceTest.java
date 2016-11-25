@@ -164,37 +164,15 @@ public class CustomerServiceTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test(expectedExceptions = TravelAgencyPersistenceException.class)
-    public void testRegisterWithNullCustomer(){
-        customerService.registerCustomer(null, pass);
-    }
-
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
-    public void testRegisterWithNullPassword(){
-        customerService.registerCustomer(customer1, null);
-    }
-
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
-    public void testAuthenticateWithNullCustomer(){
-        customerService.authenticateCustomer(null, pass);
-    }
-
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
-    public void testRemoveNull(){
-        customerService.removeCustomer(null);
-    }
-
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
     public void testFindByIdNull(){
+        when(customerDao.findById(null)).thenThrow(new IllegalArgumentException());
         customerService.findById(null);
     }
 
     @Test(expectedExceptions = TravelAgencyPersistenceException.class)
     public void testFindByEmailNull(){
+        when(customerDao.findByEmail(null)).thenThrow(new IllegalArgumentException());
         customerService.findByEmail(null);
     }
 
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
-    public void testAddNullReservationToCustomer() {
-        customerService.addReservationToCustomer(customer1, null);
-    }
 }
