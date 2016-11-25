@@ -14,13 +14,8 @@ import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
 import cz.muni.fi.pa165.travelagency.api.enums.CustomerRole;
 import cz.muni.fi.pa165.travelagency.api.enums.ExcursionType;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.JDBCType;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import javax.inject.Inject;
@@ -28,14 +23,11 @@ import org.hibernate.service.spi.ServiceException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
 import org.testng.Assert;
 import static org.testng.Assert.*;
 import org.testng.annotations.BeforeClass;
@@ -44,7 +36,7 @@ import org.testng.annotations.Test;
 import service.ExcursionService;
 /**
  *
- * @author Martin
+ * @author Patrik Behrami
  */
 @ContextConfiguration(classes = ServiceConfiguration.class)
 public class ExcursionServiceTest extends AbstractTestNGSpringContextTests{
