@@ -1,6 +1,5 @@
 package cz.muni.fi.pa165.travelagency.api.facade;
 
-import cz.muni.fi.pa165.travelagency.api.dto.ReservationCreateDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.ReservationDTO;
 
 import java.math.BigDecimal;
@@ -17,7 +16,7 @@ public interface ReservationFacade {
      * @param reservation DTO of reservation to be created
      * @return id of created reservation
      */
-    Long createReservation(ReservationCreateDTO reservation);
+    void createReservation(ReservationDTO reservation);
 
     /**
      * Update reservation
@@ -27,9 +26,9 @@ public interface ReservationFacade {
 
     /**
      * Delete reservation
-     * @param reservationId id of reservation to be removed
+     * @param reservation DTO of reservation to be removed
      */
-    void removeReservation(Long reservationId);
+    void removeReservation(ReservationDTO reservation);
 
     /**
      * Add excursion to reservation
