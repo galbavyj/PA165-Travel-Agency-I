@@ -29,7 +29,7 @@ public class TripServiceImpl implements TripService {
             tripDao.create(trip);
         }
         catch(Exception ex){
-            throw new TravelAgencyPersistenceException("Failed to create trip" + trip.toString() + ex.getMessage(), ex.getCause());
+            throw new TravelAgencyPersistenceException("Failed to create trip" + ex.getMessage(), ex.getCause());
         }   
     }
 
@@ -39,7 +39,7 @@ public class TripServiceImpl implements TripService {
             tripDao.remove(trip);
         }
         catch(Exception ex){
-            throw new TravelAgencyPersistenceException("Failed to remove trip" + trip.toString() + ex.getMessage(), ex.getCause());
+            throw new TravelAgencyPersistenceException("Failed to remove trip"  + ex.getMessage(), ex.getCause());
         }   
     }
 
@@ -49,7 +49,7 @@ public class TripServiceImpl implements TripService {
             return tripDao.update(trip);
         }
         catch(Exception ex){
-            throw new TravelAgencyPersistenceException("Failed to update trip" + trip.toString() + ex.getMessage(), ex.getCause());
+            throw new TravelAgencyPersistenceException("Failed to update trip"  + ex.getMessage(), ex.getCause());
         }   
     }
 
@@ -59,7 +59,7 @@ public class TripServiceImpl implements TripService {
             return tripDao.findById(id);
         }
         catch(Exception ex){
-            throw new TravelAgencyPersistenceException("Failed to find trip by id" + id.toString() + ex.getMessage(), ex.getCause());
+            throw new TravelAgencyPersistenceException("Failed to find trip by id"  + ex.getMessage(), ex.getCause());
         }   
     }
 
