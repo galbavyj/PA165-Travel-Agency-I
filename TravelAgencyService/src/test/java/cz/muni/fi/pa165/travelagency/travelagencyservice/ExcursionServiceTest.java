@@ -230,13 +230,17 @@ public class ExcursionServiceTest extends AbstractTestNGSpringContextTests{
     
     @Test(expectedExceptions = TravelAgencyPersistenceException.class)
     public void testFindByIdWithInvalidArgument(){
-        excursionService.findExcursionById(new Long(-1));
+        Long id = new Long(-1);
+        when(excursionDao.findExcursionById(id)).thenThrow(IllegalArgumentException.class);
+        excursionService.findExcursionById(id);
     }
     
     @Test(expectedExceptions = TravelAgencyPersistenceException.class)
     public void testUpdateWithInvalidPrice(){
+        BigDecimal price = new BigDecimal(-200);
         excursionService.createExcursion(excursion1);
-        excursion1.setPrice(BigDecimal.valueOf(-200));
+        excursion1.setPrice(price);
+        when(excursionDao.update(excursion1)).thenThrow(IllegalArgumentException.class);
         excursionService.updateExcursion(excursion1);
     }
 
