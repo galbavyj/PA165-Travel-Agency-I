@@ -36,5 +36,4 @@ public class MappingServiceImpl implements MappingService{
     public Mapper getMapper() {
         return dozer;
     }
-    
 }
