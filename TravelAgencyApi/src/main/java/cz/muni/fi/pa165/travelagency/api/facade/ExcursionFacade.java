@@ -23,7 +23,7 @@ public interface ExcursionFacade {
      *
      * @param ex DTO of excursion, which will be deleted
      */
-    public void deleteExcursion(ExcursionDTO ex);
+    public void removeExcursion(ExcursionDTO ex);
 
     /**
      * Change the description of the excursion

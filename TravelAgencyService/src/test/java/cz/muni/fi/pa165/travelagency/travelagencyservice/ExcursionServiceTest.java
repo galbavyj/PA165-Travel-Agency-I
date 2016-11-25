@@ -15,6 +15,7 @@ import cz.muni.fi.pa165.travelagency.api.enums.CustomerRole;
 import cz.muni.fi.pa165.travelagency.api.enums.ExcursionType;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.JDBCType;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,12 +28,15 @@ import org.hibernate.service.spi.ServiceException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
+import org.testng.Assert;
 import static org.testng.Assert.*;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -47,7 +51,7 @@ public class ExcursionServiceTest extends AbstractTestNGSpringContextTests{
     @Mock
     private ExcursionDao excursionDao;
 
-    @Autowired
+    @Inject
     @InjectMocks
     private ExcursionService excursionService;
     
@@ -81,9 +85,7 @@ public class ExcursionServiceTest extends AbstractTestNGSpringContextTests{
         calendar.set(2017, Calendar.APRIL, 20, 8, 0);
         java.util.Date endTrip = calendar.getTime();
 
-        Set<Excursion> excursions = new HashSet<>();
-        excursions.add(excursion1);
-        excursions.add(excursion2);
+        Set<Excursion> excursions = new HashSet<>();    
 
         excursion1 = new Excursion();
         excursion1.setCreated(created1);
@@ -104,6 +106,9 @@ public class ExcursionServiceTest extends AbstractTestNGSpringContextTests{
         excursion2.setPrice(BigDecimal.valueOf(2000));
         excursion2.setTrip(trip1);
         excursion2.setExcursionType(ExcursionType.ENTERTAINMENT);
+        
+        excursions.add(excursion1);
+        excursions.add(excursion2);
 
         trip1 = new Trip();
         address = new Address();
@@ -149,10 +154,86 @@ public class ExcursionServiceTest extends AbstractTestNGSpringContextTests{
     public void setupMocks() throws ServiceException {
         MockitoAnnotations.initMocks(this);
     }
+    
+    @Test
+    public void testCreateExcursion(){
+        excursionService.createExcursion(excursion1);
+        verify(excursionDao).create(excursion1);
+    }
+    
+    @Test
+    public void testRemoveExcursion(){
+        excursionService.createExcursion(excursion1);
+        
+        excursionService.removeExcursion(excursion1);
+        verify(excursionDao).remove(excursion1);
+    }
+    
+    @Test
+    public void testUpdateExcursion(){
+        excursion1.setPrice(BigDecimal.valueOf(1000));
+        excursionService.updateExcursion(excursion1);
+        verify(excursionDao).update(excursion1);
+    }
+    
+    @Test
+    public void testFindAll(){
+        when(excursionDao.findAllExcursions()).thenReturn(Arrays.asList(excursion1,excursion2));
+        assertEquals(excursionService.findAllExcursions(),Arrays.asList(excursion1,excursion2));
+    }
+    
     @Test
     public void testFindById() {
-        excursion1.setId(1l);
+        excursion1.setId(new Long(1));
         when(excursionDao.findExcursionById(excursion1.getId())).thenReturn(excursion1);
         assertEquals(excursion1, excursionService.findExcursionById(excursion1.getId()));
     }
+    
+    @Test
+    public void testChangeDescription(){
+        String newDescription = "Tour around polish museum";
+        excursionService.changeDescription(excursion1, newDescription);
+        verify(excursionDao).update(excursion1);
+        Assert.assertEquals(newDescription,excursion1.getDescription());
+    }
+    
+    @Test
+    public void testChangePrice(){
+        BigDecimal newPrice = BigDecimal.valueOf(500);
+        excursionService.changePrice(excursion1, newPrice);
+        verify(excursionDao).update(excursion1);
+        Assert.assertEquals(newPrice,excursion1.getPrice());
+    }
+    
+    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void testCreateWithNull(){
+        excursionService.createExcursion(null);
+    }
+    
+    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void testRemoveWithNull(){
+        excursionService.removeExcursion(null);
+    }
+    
+    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void testUpdateWithNull(){
+        excursionService.updateExcursion(null);
+    }
+    
+    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void testFindByIdWithInvalidArgument(){
+        excursionService.findExcursionById(new Long(-1));
+    }
+    
+    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void testUpdateWithInvalidPrice(){
+        excursionService.createExcursion(excursion1);
+        excursion1.setPrice(BigDecimal.valueOf(-200));
+        excursionService.updateExcursion(excursion1);
+    }
+    
+    
+    
+  
+    
 }
