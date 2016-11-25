@@ -29,12 +29,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void registerCustomer(Customer c, String plainTextPassword) {
-        c.setPasswordHash(createHash(plainTextPassword));
         try {
+            c.setPasswordHash(createHash(plainTextPassword));
             customerDao.create(c);
         }
         catch (Exception e) {
-            throw new TravelAgencyPersistenceException("Failed to create customer" + c.toString() + e.getMessage(), e.getCause());
+            throw new TravelAgencyPersistenceException("Failed to create customer" + e.getMessage(), e.getCause());
         }
     }
     
@@ -57,7 +57,7 @@ public class CustomerServiceImpl implements CustomerService {
             customerDao.update(c);
         }
         catch (Exception e) {
-            throw new TravelAgencyPersistenceException("Failed to update customer" + c.toString() + e.getMessage(), e.getCause());
+            throw new TravelAgencyPersistenceException("Failed to update customer" + e.getMessage(), e.getCause());
         }
     }
 
@@ -67,7 +67,7 @@ public class CustomerServiceImpl implements CustomerService {
             customerDao.remove(c);
         }
         catch (Exception e) {
-            throw new TravelAgencyPersistenceException("Failed to remove customer" + c.toString() + e.getMessage(), e.getCause());
+            throw new TravelAgencyPersistenceException("Failed to remove customer" + e.getMessage(), e.getCause());
         }
     }
 

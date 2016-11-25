@@ -17,6 +17,7 @@ import service.CustomerService;
 
 import java.math.BigDecimal;
 import java.util.*;
+import org.mockito.Mockito;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -162,11 +163,24 @@ public class CustomerServiceTest extends AbstractTestNGSpringContextTests {
         when(customerDao.findById(customer1.getId())).thenReturn(customer1);
         assertEquals(customerService.findById(customer1.getId()).getReservations(), customer1.getReservations());
     }
+    
+    @Test
+    public void testAddReservationToCustomerNull(){
+        Mockito.doThrow(NullPointerException.class).when(customerDao).addReservation(null, null);
+        customerService.addReservationToCustomer(customer1, reservation);        
+    }
 
     @Test(expectedExceptions = TravelAgencyPersistenceException.class)
     public void testFindByIdNull(){
         when(customerDao.findById(null)).thenThrow(new IllegalArgumentException());
         customerService.findById(null);
+    }
+    
+    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void testFindByIdInvalid(){
+        Long id = new Long(-1);
+        when(customerDao.findById(id)).thenThrow(IllegalArgumentException.class);
+        customerService.findById(id);
     }
 
     @Test(expectedExceptions = TravelAgencyPersistenceException.class)
@@ -175,4 +189,21 @@ public class CustomerServiceTest extends AbstractTestNGSpringContextTests {
         customerService.findByEmail(null);
     }
 
+    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void testCreateWithNull(){
+        Mockito.doThrow(NullPointerException.class).when(customerDao).create(null);
+        customerService.registerCustomer(null,null);
+    }
+    
+    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void testRemoveWithNull(){
+        Mockito.doThrow(NullPointerException.class).when(customerDao).remove(null);
+        customerService.removeCustomer(null);
+    }
+    
+    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    public void testUpdateWithNull(){
+        Mockito.doThrow(NullPointerException.class).when(customerDao).update(null);
+        customerService.updateCustomer(null);
+    }   
 }
