@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
+ *
  * @author Juraj
  */
 @Service
@@ -29,7 +30,6 @@ public class ReservationServiceImpl implements ReservationService {
         } catch(Exception e){
             throw new TravelAgencyPersistenceException("Failed to create reservation" + e);
         }
-
     }
 
     @Override
@@ -48,13 +48,10 @@ public class ReservationServiceImpl implements ReservationService {
         } catch(Exception e){
             throw new TravelAgencyPersistenceException("Failed to remove reservation" + e);
         }
-
-
     }
 
     @Override
     public void addExcursionToReservation(Reservation reservation, Excursion excursion) {
-
         try {
             reservation.addExcursion(excursion);
             reservationDao.update(reservation);
@@ -111,7 +108,6 @@ public class ReservationServiceImpl implements ReservationService {
             for(Excursion excursion : reservation.getExcursions()){
                 totalPrice = totalPrice.add(excursion.getPrice());
             }
-
             return totalPrice;
         }catch(Exception e){
             throw new TravelAgencyPersistenceException("Failed to get total price" + e);

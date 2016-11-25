@@ -10,6 +10,8 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
+ * Service for reservation
+ *
  * @author Juraj
  */
 public interface ReservationService {

@@ -21,7 +21,6 @@ import java.util.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 /**
  * @author Juraj
@@ -177,11 +176,6 @@ public class CustomerServiceTest extends AbstractTestNGSpringContextTests {
     @Test(expectedExceptions = TravelAgencyPersistenceException.class)
     public void testAuthenticateWithNullCustomer(){
         customerService.authenticateCustomer(null, pass);
-    }
-
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
-    public void testAuthenticateWithNullPassword(){
-        customerService.authenticateCustomer(customer1, pass);
     }
 
     @Test(expectedExceptions = TravelAgencyPersistenceException.class)

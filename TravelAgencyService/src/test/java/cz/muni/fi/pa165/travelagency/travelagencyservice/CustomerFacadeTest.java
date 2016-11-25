@@ -1,6 +1,5 @@
 package cz.muni.fi.pa165.travelagency.travelagencyservice;
 
-import cz.muni.fi.pa165.travelAgency.persistence.dao.CustomerDao;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Address;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
 import cz.muni.fi.pa165.travelagency.api.dto.AddressDTO;
@@ -44,8 +43,6 @@ public class CustomerFacadeTest {
     @InjectMocks
     private CustomerFacade customerFacade = new CustomerFacadeImpl();
 
-
-
     private Address addressCustomer2, addressCustomer1;
     private Customer customer2, customer1;
     private AddressDTO addressDTOCustomer1, addressDTOCustomer2;
@@ -63,7 +60,6 @@ public class CustomerFacadeTest {
 
     @BeforeMethod
     public void setup() {
-
         Calendar calendar = Calendar.getInstance();
         calendar.set(2017, Calendar.JANUARY, 10, 8, 16);
         java.util.Date created1 = calendar.getTime();
@@ -96,9 +92,6 @@ public class CustomerFacadeTest {
         addressCustomer1.setStreet("Dolná");
         pass = "Tralala/ZloziteHeslo12345";
 
-
-
-
         customer1 = new Customer();
         customer1.setId(10l);
         customer1.setAddress(addressCustomer1);
@@ -122,7 +115,6 @@ public class CustomerFacadeTest {
         customerAuthenticateDTO1 = new CustomerAuthenticateDTO();
         customerAuthenticateDTO1.setPasswordHash(pass);
         customerAuthenticateDTO1.setId(10L);
-
 
         customerDTO2 = new CustomerDTO();
         customerDTO2.setAddress(addressDTOCustomer2);
@@ -150,20 +142,21 @@ public class CustomerFacadeTest {
 
         customersDTO.add(customerDTO1);
         customersDTO.add(customerDTO2);
-
     }
 
 
     @Test
-    public void testRegisterAndAuthenticateCustomer(){
+    public void testRegisterCustomer(){
         when(mappingService.mapTo(customerDTO1, Customer.class)).thenReturn(customer1);
         customerFacade.registerCustomer(customerDTO1, pass);
         verify(customerService).registerCustomer(customer1, pass);
-        System.out.println("wtf");
-        //customerAuthenticateDTO1.setId();
-        //customerAuthenticateDTO1.setPasswordHash("1000:3d30b037da4965ddbaa7ef8479d5e5a9ec156eb1821bdbba:033260df4b4682cf15aad9baff44d9b92439a834fc2c04a4");
-        //System.out.println(customerAuthenticateDTO1.getPasswordHash());
-        assertEquals(customerFacade.authenticateCustomer(customerAuthenticateDTO1), true);
+    }
+
+    @Test
+    public void testAuthenticateCustomer(){
+        when(customerService.findById(customer1.getId())).thenReturn(customer1);
+        customerFacade.authenticateCustomer(customerAuthenticateDTO1);
+        verify(customerService).authenticateCustomer(customer1, pass);
     }
 
 
