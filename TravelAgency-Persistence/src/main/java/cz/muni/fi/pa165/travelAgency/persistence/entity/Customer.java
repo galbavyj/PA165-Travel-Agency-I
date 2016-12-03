@@ -157,6 +157,10 @@ public class Customer {
         this.reservations.add(reservation);
     }
 
+    public void removeReservation(Reservation reservation){
+        this.reservations.remove(reservation);
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;

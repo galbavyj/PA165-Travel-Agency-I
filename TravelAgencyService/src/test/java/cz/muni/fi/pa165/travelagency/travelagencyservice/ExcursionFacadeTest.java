@@ -15,14 +15,12 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import javax.inject.Inject;
 import org.hibernate.service.spi.ServiceException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
@@ -89,15 +87,6 @@ public class ExcursionFacadeTest extends AbstractTestNGSpringContextTests {
         excursion1.setExcursionType(ExcursionType.ENTERTAINMENT);
         excursion1.setPlace("Nou Camp stadion in Barcelona");
         excursion1.setPrice(BigDecimal.valueOf(50));
-        
-       /* excursionDTO1 = new ExcursionDTO();
-        excursionDTO1.setCreated(created2);
-        excursionDTO1.setDescription("One of the most viewed football matches in the Europe - El Clasico");
-        excursionDTO1.setDurationInHours(2);
-        excursionDTO1.setFromDate(fromDate2);
-        excursionDTO1.setExcursionType(ExcursionType.ENTERTAINMENT);
-        excursionDTO1.setPlace("Nou Camp stadion in Barcelona");
-        excursionDTO1.setPrice(BigDecimal.valueOf(50));*/
         
         excursionDTO1 = mappingService.mapTo(excursion1, ExcursionDTO.class);
         excursionDTO2 = mappingService.mapTo(excursion2, ExcursionDTO.class);

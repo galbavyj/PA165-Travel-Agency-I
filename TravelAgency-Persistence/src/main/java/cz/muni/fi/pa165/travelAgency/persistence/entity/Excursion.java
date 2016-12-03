@@ -140,6 +140,10 @@ public class Excursion {
     public void addReservation(Reservation reservation){
         this.reservations.add(reservation);
     }
+
+    public void removeReservation(Reservation reservation) {
+        this.reservations.remove(reservation);
+    }
     
     public Long getId() {
         return id;
@@ -160,7 +164,7 @@ public class Excursion {
     public Excursion(){
         reservations = new HashSet<>();
     }
-    
+
     @Override
 	public int hashCode() {
 		final int prime = 31;
@@ -197,7 +201,7 @@ public class Excursion {
 			return false;
 		return true;
 	}
-        
+
     @Override
     public String toString() {
         return "Excursion{" + "id=" + id + ", place=" + place + ", description=" + description + ", from=" + fromDate + ", duration in hours=" + durationInHours + ", price= " + price;
