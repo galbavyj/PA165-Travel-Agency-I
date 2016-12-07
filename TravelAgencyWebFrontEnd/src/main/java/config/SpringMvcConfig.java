@@ -19,7 +19,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 @Configuration
 @Import({SampleDataConfiguration.class})
-@ComponentScan(basePackages = "controllers")
+@ComponentScan(basePackages = {"controllers", "facade", "cz.muni.fi.pa165.travelagency.travelagencyservice", "cz.muni.fi.pa165.travelAgency.persistence.dao"})
 public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 
     final static Logger log = LoggerFactory.getLogger(SpringMvcConfig.class);
@@ -31,7 +31,7 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        log.debug("mapping URL / to auth/login view");
+        log.debug("mapping URL / to authentication/login view");
         registry.addViewController("/").setViewName("/authentication/login");
     }
 

@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,7 +62,7 @@ public class AuthenticationController {
         boolean authenticated = userFacade.authenticateCustomer(authDTO);
         if (!authenticated) {
             redirectAttributes.addFlashAttribute("alert_info", "Wrong email or password");
-            return "redirect:/authentication/login";
+            return "redirect:/admin/customer/list";
         }
         HttpSession session = req.getSession(true);
         CustomerDTO customer = userFacade.findCustomerByEmail(email);
@@ -80,6 +79,6 @@ public class AuthenticationController {
         HttpSession session = req.getSession(true);
         session.removeAttribute("authUser");
         redirectAttributes.addFlashAttribute("alert_info", "You have been successfully logged out.");
-        return "redirect:/authentication/login";
+        return "redirect:/";
     }
 }

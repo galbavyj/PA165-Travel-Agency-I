@@ -29,14 +29,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/hello">Travel Agency</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/admin/customer/list">Travel Agency</a>
             <c:if test="${authUser}">
                 <a class="navbar-brand" href="${pageContext.request.contextPath}/shopping/reservations"> My reservations</a>
             </c:if>
             <c:if test="test na to ci je uzivatel admin">
                 <a class="navbar-brand" href="${pageContext.request.contextPath}/admin/trip/list">Trips</a>
                 <a class="navbar-brand" href="${pageContext.request.contextPath}/admin/excursion/list">Excursions</a>
-                <a class="navbar-brand" href="${pageContext.request.contextPath}/admin/customer/list">Users</a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/admin/customer/list">Customers</a>
                 <a class="navbar-brand" href="${pageContext.request.contextPath}/admin/reservation/list">Reservations</a>
             </c:if>
         </div>

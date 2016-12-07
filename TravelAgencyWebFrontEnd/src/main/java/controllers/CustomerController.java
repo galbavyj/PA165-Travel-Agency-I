@@ -14,8 +14,6 @@ import cz.muni.fi.pa165.travelagency.api.facade.CustomerFacade;
 import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,14 +27,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/admin/customer")
 public class CustomerController {
 
+    public CustomerController() {
+        System.out.println("whatever 777");
+    }
+
+    
+    
     final static Logger log = LoggerFactory.getLogger(CustomerController.class);
 
     @Inject
-    private CustomerFacade userFacade;
+    private CustomerFacade customerFacade;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
-        model.addAttribute("customers", userFacade.findAllCustomers());
-        return "/admincustomer/list";
+        model.addAttribute("customers", customerFacade.findAllCustomers());
+        return "/admin/customer/list";
     }
 }
