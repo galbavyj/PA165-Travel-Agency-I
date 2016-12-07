@@ -9,16 +9,18 @@
 <jsp:attribute name="body">
 
     <table class="table">
-        <caption>Customers</caption>
         <thead>
         <tr>
-            <th>id</th>
-            <th>given name</th>
-            <th>surname</th>
-            <th>email</th>
-            <th>phone</th>
-            <th>address</th>
-            <th>joined</th>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Created</th>
+            <th>Street</th>
+            <th>Number of house</th>
+            <th>City</th>
+            <th>Country</th>
         </tr>
         </thead>
         <tbody>
@@ -26,12 +28,16 @@
             <tr>
                 <td>${customer.id}</td>
                 <td><c:out value="${customer.firstName}"/></td>
-                <td><c:out value="${customer.surname}"/></td>
+                <td><c:out value="${customer.lastName}"/></td>
                 <td><c:out value="${customer.email}"/></td>
-                <td><c:out value="${customer.phone}"/></td>
-                <td><c:out value="${customer.address}"/></td>
-                <td><fmt:formatDate value="${customer.createdDate}" pattern="yyyy-MM-dd"/></td>
-            </tr>
+                <td><c:out value="${customer.phoneNumber}"/></td>
+                <td><fmt:formatDate value="${customer.created}" pattern="dd. MM. yyyy"/></td>
+                <td><c:out value="${customer.address.street}"/></td>
+                <td><c:out value="${customer.address.numberOfHouse}"/></td>
+                <td><c:out value="${customer.address.city}"/></td>
+                <td><c:out value="${customer.address.country}"/></td>
+                <td><a href="/admin/customer/delete">Delete</a></td>
+           </tr>
         </c:forEach>
         </tbody>
     </table>

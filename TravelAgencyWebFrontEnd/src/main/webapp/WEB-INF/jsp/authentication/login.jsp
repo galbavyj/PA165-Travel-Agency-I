@@ -8,10 +8,9 @@
 <my:pagetemplate>
 <jsp:attribute name="body">
     <caption>Welcome to our travel agency!</caption>
-    <a>Log in to proceed:</a>
     <div class="jumbotron">
         <form method="POST" action="/admin/customer/list">
-            Email: <input type="text" name="email"/><br/>
+            Email:    <input type="text" name="email"/><br/>
             Password: <input type="password" name="password"/><br/>
             <input type="submit"/>
         </form>

@@ -57,7 +57,7 @@ public class TripDTO {
     }
 
     public Set<ExcursionDTO> getPossibleExcursions() {
-        return Collections.unmodifiableSet(possibleExcursions);
+        return possibleExcursions;
     }
 
     public void setPossibleExcursions(Set<ExcursionDTO> possibleExcursions) {
@@ -102,7 +102,6 @@ public class TripDTO {
         hash = 37 * hash + (this.id != null ? this.id.hashCode() : 0);
         hash = 37 * hash + (this.toDate != null ? this.toDate.hashCode() : 0);
         hash = 37 * hash + (this.fromDate != null ? this.fromDate.hashCode() : 0);
-        hash = 37 * hash + (this.possibleExcursions != null ? this.possibleExcursions.hashCode() : 0);
         hash = 37 * hash + (this.addressOfHotel != null ? this.addressOfHotel.hashCode() : 0);
         hash = 37 * hash + (this.price != null ? this.price.hashCode() : 0);
         hash = 37 * hash + (this.createdDate != null ? this.createdDate.hashCode() : 0);
@@ -146,10 +145,6 @@ public class TripDTO {
             return false;
         }
         
-        if (this.possibleExcursions != other.possibleExcursions && (this.possibleExcursions == null ||
-                !this.possibleExcursions.equals(other.possibleExcursions))) {
-            return false;
-        }
         return true;
     }
 

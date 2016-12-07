@@ -55,7 +55,7 @@ public class ReservationDTO {
     }
 
     public Set<ExcursionDTO> getExcursions() {
-        return Collections.unmodifiableSet(excursions);
+        return excursions;
     }
 
     public void setExcursions(Set<ExcursionDTO> excursions) {

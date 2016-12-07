@@ -148,7 +148,6 @@ public class Trip {
         hash = 37 * hash + (this.id != null ? this.id.hashCode() : 0);
         hash = 37 * hash + (this.toDate != null ? this.toDate.hashCode() : 0);
         hash = 37 * hash + (this.fromDate != null ? this.fromDate.hashCode() : 0);
-        hash = 37 * hash + (this.possibleExcursions != null ? this.possibleExcursions.hashCode() : 0);
         hash = 37 * hash + (this.addressOfHotel != null ? this.addressOfHotel.hashCode() : 0);
         hash = 37 * hash + (this.price != null ? this.price.hashCode() : 0);
         hash = 37 * hash + (this.createdDate != null ? this.createdDate.hashCode() : 0);
@@ -189,11 +188,6 @@ public class Trip {
             return false;
         }
         if (this.createdDate != other.createdDate && (this.createdDate == null || !this.createdDate.equals(other.createdDate))) {
-            return false;
-        }
-        
-        if (this.possibleExcursions != other.possibleExcursions && (this.possibleExcursions == null ||
-                !this.possibleExcursions.equals(other.possibleExcursions))) {
             return false;
         }
         return true;
