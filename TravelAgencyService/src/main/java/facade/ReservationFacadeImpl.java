@@ -63,26 +63,26 @@ public class ReservationFacadeImpl implements ReservationFacade {
     }
 
     @Override
-    public List<ReservationDTO> getAllReservations() {
+    public List<ReservationDTO> findAllReservations() {
         return beanMappingService.mapTo(
                 reservationService.findAllReservations(), ReservationDTO.class);
     }
 
     @Override
-    public ReservationDTO getReservationsById(Long reservationId) {
+    public ReservationDTO findReservationsById(Long reservationId) {
         return beanMappingService.mapTo(
                 reservationService.findReservationById(reservationId), ReservationDTO.class);
     }
 
     @Override
-    public List<ReservationDTO> getReservationsByTrip(Long tripId) {
+    public List<ReservationDTO> findReservationsByTrip(Long tripId) {
         return beanMappingService.mapTo(
                 reservationService.findReservationsByTrip(
                         tripService.findTripById(tripId)), ReservationDTO.class);
     }
 
     @Override
-    public List<ReservationDTO> getReservationsByCustomer(Long customerId) {
+    public List<ReservationDTO> findReservationsByCustomer(Long customerId) {
         return beanMappingService.mapTo(
                 reservationService.findReservationsByCustomer(
                         customerService.findById(customerId)), ReservationDTO.class);

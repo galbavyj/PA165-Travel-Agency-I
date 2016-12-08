@@ -283,7 +283,7 @@ public class ReservationFacadeTest extends AbstractTransactionalTestNGSpringCont
     public void testReservationById() {
         when(reservationService.findReservationById(1l)).thenReturn(testReservation);
         when(mappingService.mapTo(testReservation, ReservationDTO.class)).thenReturn(testReservationDTO);
-        assertEquals(reservationFacade.getReservationsById(1l), testReservationDTO);
+        assertEquals(reservationFacade.findReservationsById(1l), testReservationDTO);
     }
 
     @Test
@@ -293,7 +293,7 @@ public class ReservationFacadeTest extends AbstractTransactionalTestNGSpringCont
         when(reservationService.findAllReservations()).thenReturn(allRes);
         when(mappingService.mapTo(allRes, ReservationDTO.class)).thenReturn(allDTORes);
         reservationFacade.createReservation(testReservationDTO);
-        assertEquals(reservationFacade.getAllReservations(), allDTORes);
+        assertEquals(reservationFacade.findAllReservations(), allDTORes);
     }
 
     @Test
@@ -303,7 +303,7 @@ public class ReservationFacadeTest extends AbstractTransactionalTestNGSpringCont
         when(reservationService.findReservationsByCustomer(cust)).thenReturn(allRes);
         when(mappingService.mapTo(allRes, ReservationDTO.class)).thenReturn(allDTORes);
         reservationFacade.createReservation(testReservationDTO);
-        assertEquals(reservationFacade.getReservationsByCustomer(cust.getId()), allDTORes);       }
+        assertEquals(reservationFacade.findReservationsByCustomer(cust.getId()), allDTORes);       }
 
     @Test
     public void testFindReservationsByTrip() {
@@ -312,7 +312,7 @@ public class ReservationFacadeTest extends AbstractTransactionalTestNGSpringCont
         when(reservationService.findReservationsByTrip(trip)).thenReturn(allRes);
         when(mappingService.mapTo(allRes, ReservationDTO.class)).thenReturn(allDTORes);
         reservationFacade.createReservation(testReservationDTO);
-        assertEquals(reservationFacade.getReservationsByTrip(trip.getId()), allDTORes);
+        assertEquals(reservationFacade.findReservationsByTrip(trip.getId()), allDTORes);
     }
 
     @Test

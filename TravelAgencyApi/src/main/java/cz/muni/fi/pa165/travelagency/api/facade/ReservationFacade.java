@@ -41,28 +41,28 @@ public interface ReservationFacade {
      * Get All reservations
      * @return List of reservations
      */
-    List<ReservationDTO> getAllReservations();
+    List<ReservationDTO> findAllReservations();
 
     /**
      * Get DTO of reservation by Id
      * @param reservationId
      * @return DTO of reservation
      */
-    ReservationDTO getReservationsById(Long reservationId);
+    ReservationDTO findReservationsById(Long reservationId);
 
     /**
      * Get reservations by trip
      * @param tripId Id of trip
      * @return  List of reservations
      */
-    List<ReservationDTO> getReservationsByTrip(Long tripId);
+    List<ReservationDTO> findReservationsByTrip(Long tripId);
 
     /**
      * Get reservations by Customer
      * @param customerId customer Id
      * @return list of reservations
      */
-    List<ReservationDTO> getReservationsByCustomer(Long customerId);
+    List<ReservationDTO> findReservationsByCustomer(Long customerId);
 
     /**
      * Total price of reservation
