@@ -170,7 +170,6 @@ public class Customer {
         hash = 59 * hash + (this.address != null ? this.address.hashCode() : 0);
         hash = 59 * hash + (this.phoneNumber != null ? this.phoneNumber.hashCode() : 0);
         hash = 59 * hash + (this.customerRole != null ? this.customerRole.hashCode() : 0);
-        hash = 59 * hash + (this.reservations != null ? this.reservations.hashCode() : 0);
         return hash;
     }
 
@@ -202,9 +201,6 @@ public class Customer {
             return false;
         }
         if (this.customerRole != other.customerRole) {
-            return false;
-        }
-        if (this.reservations != other.reservations && (this.reservations == null || !this.reservations.equals(other.reservations))) {
             return false;
         }
         return true;

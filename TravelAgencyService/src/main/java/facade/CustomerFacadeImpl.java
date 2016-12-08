@@ -14,6 +14,8 @@ import cz.muni.fi.pa165.travelagency.api.facade.CustomerFacade;
 import cz.muni.fi.pa165.travelagency.travelagencyservice.MappingService;
 import java.util.List;
 import javax.inject.Inject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import service.CustomerService;
@@ -40,7 +42,7 @@ public class CustomerFacadeImpl implements CustomerFacade{
     @Override
     public boolean authenticateCustomer(CustomerAuthenticateDTO c) {
         return customerService.authenticateCustomer(
-                customerService.findById(c.getId()), c.getPassword());
+                customerService.findByEmail(c.getEmail()), c.getPassword());
     }
 
     @Override

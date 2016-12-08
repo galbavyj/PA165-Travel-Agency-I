@@ -90,7 +90,7 @@ public class ExcursionDTO {
     }
 
     public Set<ReservationDTO> getReservations() {
-        return Collections.unmodifiableSet(reservations);
+        return reservations;
     }
 
     public void setReservations(Set<ReservationDTO> reservations) {

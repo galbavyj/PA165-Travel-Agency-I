@@ -20,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.validation.ConstraintViolationException;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -131,19 +132,19 @@ public class TripDaoTest extends AbstractTestNGSpringContextTests{
         tripDao.create(trip);
     }
     
-    @Test(expectedExceptions=IllegalArgumentException.class)
+    @Test(expectedExceptions=InvalidDataAccessApiUsageException.class)
     public void testCreateNull(){
         tripDao.create(null);
     }
     
-    @Test(expectedExceptions=IllegalArgumentException.class)
+    @Test(expectedExceptions=InvalidDataAccessApiUsageException.class)
     public void testUpdateNull(){
         tripDao.create(trip);
         trip = null;
         tripDao.update(trip);
     }
     
-    @Test(expectedExceptions=IllegalArgumentException.class)
+    @Test(expectedExceptions=InvalidDataAccessApiUsageException.class)
     public void testRemoveNull(){
         tripDao.create(trip);
         tripDao.remove(null);
