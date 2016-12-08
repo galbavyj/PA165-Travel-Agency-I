@@ -40,6 +40,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import service.ReservationService;
 
+
 /**
  *
  * @author Lucia
@@ -230,23 +231,24 @@ public class ReservationServiceTest extends AbstractTransactionalTestNGSpringCon
 
     @Test
     public void testFindAllReservations() {
-
         assertEquals(reservationService.findAllReservations(), Arrays.asList(testReservation));
+        verify(reservationDao).findAllReservations();
     }
 
     @Test
     public void testFindReservationsByCustomer() {
         assertEquals(reservationService.findReservationsByCustomer(testReservation.getCustomer()), Arrays.asList(testReservation));
+        verify(reservationDao).findReservationsByCustomer(testReservation.getCustomer());
     }
 
     @Test
     public void testFindReservationsByTrip() {
         assertEquals(reservationService.findReservationsByTrip(testReservation.getTrip()), Arrays.asList(testReservation));
+        verify(reservationDao).findReservationsByTrip(testReservation.getTrip());
     }
 
     @Test
     public void testGetTotalPriceTest() {
-
         BigDecimal testPrice = testReservation.getTrip().getPrice();
         for(Excursion excursion : testReservation.getExcursions()){
             testPrice = testPrice.add(excursion.getPrice());

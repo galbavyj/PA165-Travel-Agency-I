@@ -160,6 +160,7 @@ public class TripServiceTest extends AbstractTestNGSpringContextTests {
     
     @Test(expectedExceptions = TravelAgencyPersistenceException.class)
     public void createNullTrip(){
+        Mockito.doThrow(NullPointerException.class).when(tripDao).create(null);
         tripService.createTrip(null);
     }
     
@@ -241,7 +242,7 @@ public class TripServiceTest extends AbstractTestNGSpringContextTests {
     @Test
     public void testAddExcursionToTrip() {
         tripService.addExcursionToTrip(trip1, excursion1);
-        verify(tripDao.update(trip1));
-        verify(excursionDao.update(excursion1));
+        verify(tripDao).update(trip1);
+        verify(excursionDao).update(excursion1);
     }
 }
