@@ -10,30 +10,35 @@ import java.util.Collection;
 import java.util.List;
 import javax.inject.Inject;
 import org.dozer.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Martin
  */
-public class MappingServiceImpl implements MappingService{
+@Service
+public class MappingServiceImpl  implements MappingService {
+	
     @Inject
     private Mapper dozer;
-    @Override
-    public <T> List<T> mapTo(Collection<?> objects, Class<T> mapToClass) {
+
+    public  <T> List<T> mapTo(Collection<?> objects, Class<T> mapToClass) {
         List<T> mappedCollection = new ArrayList<>();
         for (Object object : objects) {
-            mappedCollection.add(dozer.map(object, mapToClass));
+            T mappedObject = dozer.map(object, mapToClass);
+            mappedCollection.add(mappedObject);
         }
         return mappedCollection;
     }
 
-    @Override
-    public <T> T mapTo(Object u, Class<T> mapToClass) {
+    public  <T> T mapTo(Object u, Class<T> mapToClass)
+    {
         return dozer.map(u,mapToClass);
     }
-
-    @Override
-    public Mapper getMapper() {
-        return dozer;
+    
+    public Mapper getMapper(){
+    	return dozer;
     }
 }

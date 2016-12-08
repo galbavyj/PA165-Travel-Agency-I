@@ -114,7 +114,7 @@ public class CustomerFacadeTest {
 
         customerAuthenticateDTO1 = new CustomerAuthenticateDTO();
         customerAuthenticateDTO1.setPassword(pass);
-        customerAuthenticateDTO1.setId(10L);
+        customerAuthenticateDTO1.setEmail("dano.drevo@centrum.cz");
 
         customerDTO2 = new CustomerDTO();
         customerDTO2.setAddress(addressDTOCustomer2);
@@ -154,7 +154,7 @@ public class CustomerFacadeTest {
 
     @Test
     public void testAuthenticateCustomer(){
-        when(customerService.findById(customer1.getId())).thenReturn(customer1);
+        when(customerService.findByEmail(customer1.getEmail())).thenReturn(customer1);
         customerFacade.authenticateCustomer(customerAuthenticateDTO1);
         verify(customerService).authenticateCustomer(customer1, pass);
     }

@@ -107,7 +107,7 @@ public class CustomerDTO {
     }
 
     public Set<ReservationDTO> getReservations() {
-        return Collections.unmodifiableSet(reservations);
+        return reservations;
     }
 
     public void setReservations(Set<ReservationDTO> reservations) {

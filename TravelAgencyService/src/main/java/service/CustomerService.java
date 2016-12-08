@@ -8,11 +8,13 @@ package service;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Martin
  */
+@Service
 public interface CustomerService {
 
     /**
