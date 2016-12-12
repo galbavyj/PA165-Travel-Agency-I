@@ -236,7 +236,7 @@ public class ReservationFacadeTest extends AbstractTransactionalTestNGSpringCont
         testReservationDTO.setExcursions(excursionsDTO);
         testReservationDTO.setTrip(tripDTO);
 
-        testReservation.setId(0l);
+        testReservation.setId(10l);
         testReservation.setCustomer(cust);
         testReservation.setExcursions(excursions);
         testReservation.setTrip(trip);
@@ -252,6 +252,7 @@ public class ReservationFacadeTest extends AbstractTransactionalTestNGSpringCont
         //when(mappingService.mapTo(custDTO, CustomerDTO.class)).thenReturn(cust);
         when(customerService.findById(cust.getId())).thenReturn(cust);
         when(tripService.findTripById(trip.getId())).thenReturn(trip);
+        when(reservationService.createReservation(testReservation)).thenReturn(testReservation);
 
         //when(excursionService.createExcursion(trip.getId())).thenReturn(trip);
 
