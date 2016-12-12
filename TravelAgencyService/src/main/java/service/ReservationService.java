@@ -21,7 +21,7 @@ public interface ReservationService {
      * @param reservation reservation to be created
      * @return created reservation
      */
-    void createReservation(Reservation reservation);
+    Reservation createReservation(Reservation reservation);
 
     /**
      * Update new reservation
