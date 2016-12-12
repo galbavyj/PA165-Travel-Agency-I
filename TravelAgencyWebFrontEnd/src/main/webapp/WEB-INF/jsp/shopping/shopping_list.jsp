@@ -29,10 +29,9 @@
                    </td>
                    <td>
                         <h4>
-
-                        <fmt:formatDate value="${trip.dateFrom}" type="date" dateStyle="MEDIUM"/>
+                        <fmt:formatDate value="${trip.dateFrom}" pattern="dd.MM.yyyy"/>
                         -
-                        <fmt:formatDate value="${trip.dateTo}" type="date" dateStyle="MEDIUM"/>
+                        <fmt:formatDate value="${trip.dateTo}" pattern="dd.MM.yyyy"/>
                         <h4>
                    </td>
                    <td>
