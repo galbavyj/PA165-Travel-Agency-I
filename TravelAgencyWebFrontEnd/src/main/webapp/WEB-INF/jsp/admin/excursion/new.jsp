@@ -47,7 +47,7 @@
             <div class="col-sm-10">
                 <fmt:formatDate value="${form.bean.dateProperty}"  
                 type="date" 
-                pattern="yyyy-MM-dd"
+                pattern="dd-mm-yyyy"
                 var="theFormattedDate" />
                 <form:input path="fromDate"  value="${theFormattedDate}" cssClass="form-control"/>
                 <form:errors path="fromDate" cssClass="help-block"/>

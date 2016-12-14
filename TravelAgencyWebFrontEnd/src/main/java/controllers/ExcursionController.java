@@ -45,7 +45,7 @@ public class ExcursionController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
-        //model.addAttribute("excursions", exFacade.findAllExcursions());
+        model.addAttribute("excursions", exFacade.findAllExcursions());
         return "/admin/excursion/list";
     }
     
@@ -56,11 +56,11 @@ public class ExcursionController {
         return "admin/excursion/new";
     }
     
-    /*@ModelAttribute("trips")
+    @ModelAttribute("trips")
     public List<TripDTO> trips() {
         log.debug("trips()");
         return tripFacade.findAllTrips();
-    }*/
+    }
     
     @ModelAttribute("types")
     public ExcursionType[] types() {
