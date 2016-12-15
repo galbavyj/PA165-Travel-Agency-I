@@ -32,12 +32,13 @@ public class ReservationServiceImpl implements ReservationService {
 
 
     @Override
-    public void createReservation(Reservation reservation) {
+    public Reservation createReservation(Reservation reservation) {
         try {
             reservationDao.create(reservation);
             Customer c = customerDao.findById(reservation.getCustomer().getId());
             c.addReservation(reservation);
             customerDao.update(c);
+            return reservation;
         } catch(Exception e){
             throw new TravelAgencyPersistenceException("Failed to create reservation" + e);
         }
