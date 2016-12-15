@@ -70,8 +70,6 @@ public class ReservationDTO {
 
         ReservationDTO that = (ReservationDTO) o;
 
-        if (getCustomer() != null ? !getCustomer().equals(that.getCustomer()) : that.getCustomer() != null)
-            return false;
         if (getCreated() != null ? !getCreated().equals(that.getCreated()) : that.getCreated() != null) return false;
         if (getTrip() != null ? !getTrip().equals(that.getTrip()) : that.getTrip() != null) return false;
         return getExcursions() != null ? getExcursions().equals(that.getExcursions()) : that.getExcursions() == null;
@@ -80,7 +78,7 @@ public class ReservationDTO {
 
     @Override
     public int hashCode() {
-        int result = getCustomer() != null ? getCustomer().hashCode() : 0;
+        int result = 7;
         result = 31 * result + (getCreated() != null ? getCreated().hashCode() : 0);
         result = 31 * result + (getTrip() != null ? getTrip().hashCode() : 0);
         result = 31 * result + (getExcursions() != null ? getExcursions().hashCode() : 0);
