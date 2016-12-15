@@ -21,7 +21,7 @@ public class Reservation {
     private long id;
 
     @NotNull
-    @ManyToOne(cascade= CascadeType.REMOVE)
+    @ManyToOne
     private Customer customer;
 
     @NotNull
@@ -29,7 +29,7 @@ public class Reservation {
     private Date created;
 
     @NotNull
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne(cascade=CascadeType.PERSIST)
     private Trip trip;
 
     @ManyToMany
