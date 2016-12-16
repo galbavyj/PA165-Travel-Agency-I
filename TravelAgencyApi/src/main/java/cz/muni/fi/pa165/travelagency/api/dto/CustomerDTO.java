@@ -106,6 +106,10 @@ public class CustomerDTO {
         this.customerRole = customerRole;
     }
 
+    public boolean isAdmin() {
+        return customerRole == CustomerRole.ADMIN;
+    }
+
     public Set<ReservationDTO> getReservations() {
         return reservations;
     }

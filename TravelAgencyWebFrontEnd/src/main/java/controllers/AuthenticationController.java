@@ -62,13 +62,18 @@ public class AuthenticationController {
         boolean authenticated = userFacade.authenticateCustomer(authDTO);
         if (!authenticated) {
             redirectAttributes.addFlashAttribute("alert_info", "Wrong email or password");
-            return "redirect:/admin/customer/list";
+            return "redirect:/";
         }
         HttpSession session = req.getSession(true);
         CustomerDTO customer = userFacade.findCustomerByEmail(email);
         session.setAttribute("authUser", customer);
         redirectAttributes.addFlashAttribute("alert_info", "You have been logged in.");
-        return "redirect:/shopping";
+        if (customer.isAdmin()){
+            return "redirect:/admin/customer/list";
+        }
+        else {
+            return "redirect:/shopping";
+        }
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
