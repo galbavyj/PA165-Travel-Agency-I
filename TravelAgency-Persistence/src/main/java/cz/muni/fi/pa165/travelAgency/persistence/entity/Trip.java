@@ -77,28 +77,28 @@ public class Trip {
         this.id = id;
     }
 
-    public Date getFrom() {
+    public Date getFromDate() {
         return fromDate;
     }
 
-    public void setFrom(Date from) {
-        this.fromDate = from;
+    public void setFromDate(Date fromDate) {
+        this.fromDate = fromDate;
     }
 
-    public Date getTo() {
+    public Date getToDate() {
         return toDate;
     }
 
-    public void setTo(Date to) {
-        this.toDate = to;
+    public void setToDate(Date toDate) {
+        this.toDate = toDate;
     }
 
-    public Date getCreated() {
+    public Date getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreated(Date created) {
-        this.createdDate = created;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
     public Set<Excursion> getPossibleExcursions() {

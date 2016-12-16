@@ -129,9 +129,9 @@ public class ReservationServiceTest extends AbstractTransactionalTestNGSpringCon
         excursions.add(excursion2);
 
         trip.setId(10l);
-        trip.setCreated(created);
-        trip.setFrom(created);
-        trip.setTo(created);
+        trip.setCreatedDate(created);
+        trip.setFromDate(created);
+        trip.setToDate(created);
         trip.setPossibleExcursions(excursions);
         trip.setPrice(BigDecimal.valueOf(1000));
         trip.setAddressOfHotel(address);

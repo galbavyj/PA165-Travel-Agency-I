@@ -92,9 +92,9 @@ public class TripServiceTest extends AbstractTestNGSpringContextTests {
         } catch (ParseException ex) {
             Logger.getLogger(TripServiceTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        trip1.setCreated(created);
-        trip1.setFrom(from);
-        trip1.setTo(to);
+        trip1.setCreatedDate(created);
+        trip1.setFromDate(from);
+        trip1.setToDate(to);
         trip1.setPrice(BigDecimal.TEN);
         
         trip2 = new Trip();
@@ -104,9 +104,9 @@ public class TripServiceTest extends AbstractTestNGSpringContextTests {
         address2.setNumberOfHouse(69);
         address2.setStreet("Oidipus street");
         trip2.setAddressOfHotel(address2);
-        trip2.setCreated(created);
-        trip2.setFrom(from);
-        trip2.setTo(to);
+        trip2.setCreatedDate(created);
+        trip2.setFromDate(from);
+        trip2.setToDate(to);
         trip2.setPrice(new BigDecimal(1000));
         
         trip1.setId(1L);
@@ -205,7 +205,7 @@ public class TripServiceTest extends AbstractTestNGSpringContextTests {
     public void updateTripWithWrongDates(){
         tripService.createTrip(trip1);
         try {
-            trip1.setTo((java.util.Date) new SimpleDateFormat("dd/MM/yyyy").parse("10/01/2010"));
+            trip1.setToDate((java.util.Date) new SimpleDateFormat("dd/MM/yyyy").parse("10/01/2010"));
         } catch (ParseException ex) {
             Logger.getLogger(TripServiceTest.class.getName()).log(Level.SEVERE, null, ex);
         }

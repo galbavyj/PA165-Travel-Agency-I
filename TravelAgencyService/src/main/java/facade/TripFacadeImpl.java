@@ -29,7 +29,10 @@ public class TripFacadeImpl implements TripFacade {
     
     @Override
     public void createTrip(TripDTO trip) {
-        tripService.createTrip(mappingService.mapTo(trip, Trip.class));
+        Trip tr = new Trip();
+        tr = mappingService.mapTo(trip, Trip.class);
+        tripService.createTrip(tr);
+        //tripService.createTrip(mappingService.mapTo(trip, Trip.class));
     }
 
     @Override

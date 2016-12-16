@@ -85,9 +85,9 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
         } catch (ParseException ex) {
             Logger.getLogger(TripDaoTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        tripBrno.setCreated(created);
-        tripBrno.setFrom(from);
-        tripBrno.setTo(to);
+        tripBrno.setCreatedDate(created);
+        tripBrno.setFromDate(from);
+        tripBrno.setToDate(to);
         tripBrno.setPrice(BigDecimal.TEN);
         
         tripDolany = new Trip();
@@ -98,9 +98,9 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
         } catch (ParseException ex) {
             Logger.getLogger(TripDaoTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        tripDolany.setCreated(created);
-        tripDolany.setFrom(from);
-        tripDolany.setTo(to);
+        tripDolany.setCreatedDate(created);
+        tripDolany.setFromDate(from);
+        tripDolany.setToDate(to);
         tripDolany.setPrice(BigDecimal.ONE);
 
         excursionMuseum = new Excursion();

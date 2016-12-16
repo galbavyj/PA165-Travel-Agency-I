@@ -64,9 +64,9 @@ public class TripDaoTest extends AbstractTestNGSpringContextTests{
         } catch (ParseException ex) {
             Logger.getLogger(TripDaoTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        trip.setCreated(created);
-        trip.setFrom(from);
-        trip.setTo(to);
+        trip.setCreatedDate(created);
+        trip.setFromDate(from);
+        trip.setToDate(to);
         trip.setPrice(BigDecimal.TEN);
         
         trip2 = new Trip();
@@ -76,9 +76,9 @@ public class TripDaoTest extends AbstractTestNGSpringContextTests{
         address2.setNumberOfHouse(69);
         address2.setStreet("Oidipus street");
         trip2.setAddressOfHotel(address2);
-        trip2.setCreated(created);
-        trip2.setFrom(from);
-        trip2.setTo(to);
+        trip2.setCreatedDate(created);
+        trip2.setFromDate(from);
+        trip2.setToDate(to);
         trip2.setPrice(new BigDecimal(1000));
     }
     
@@ -128,7 +128,7 @@ public class TripDaoTest extends AbstractTestNGSpringContextTests{
         
     @Test(expectedExceptions=ConstraintViolationException.class)
     public void testNullCreated(){
-        trip.setCreated(null);
+        trip.setCreatedDate(null);
         tripDao.create(trip);
     }
     
@@ -153,13 +153,13 @@ public class TripDaoTest extends AbstractTestNGSpringContextTests{
     
     @Test(expectedExceptions=ConstraintViolationException.class)
     public void testNullFrom(){
-        trip.setFrom(null);
+        trip.setFromDate(null);
         tripDao.create(trip);
     }
     
     @Test(expectedExceptions=ConstraintViolationException.class)
     public void testNullTo(){
-        trip.setTo(null);
+        trip.setToDate(null);
         tripDao.create(trip);
     }
     
@@ -183,7 +183,7 @@ public class TripDaoTest extends AbstractTestNGSpringContextTests{
         } catch (ParseException ex) {
             Logger.getLogger(TripDaoTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        trip.setFrom(pastFrom);
+        trip.setFromDate(pastFrom);
         tripDao.create(trip);
     }
     
@@ -195,7 +195,7 @@ public class TripDaoTest extends AbstractTestNGSpringContextTests{
         } catch (ParseException ex) {
             Logger.getLogger(TripDaoTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        trip.setTo(pastTo);
+        trip.setToDate(pastTo);
         tripDao.create(trip);
     }
 }

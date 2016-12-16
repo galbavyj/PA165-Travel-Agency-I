@@ -150,9 +150,7 @@ public class TripDTO {
 
     @Override
     public String toString() {
-        return "Trip{" + "id=" + id.toString() + ", from=" + fromDate.toString() + ", to=" + toDate.toString() + ", addressOfHotel=" + 
-                addressOfHotel.toString() + ", price=" + price.toString() +  ", created=" + createdDate.toString() + ", filePathToPicture=" +
-                filePathToPicture + ", possibleExcursions=" + possibleExcursions.toString() + '}';
+        return "Trip{";
     }
     
     
