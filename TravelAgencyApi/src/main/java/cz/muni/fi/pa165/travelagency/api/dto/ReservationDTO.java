@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa165.travelagency.api.dto;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
@@ -21,6 +22,16 @@ public class ReservationDTO {
     private Date created;
     private TripDTO trip;
     private Set<ExcursionDTO> excursions = new HashSet<>();
+    private BigDecimal totalPrice;
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
+
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 
     public Long getId() {
         return id;
@@ -78,8 +89,7 @@ public class ReservationDTO {
 
     @Override
     public int hashCode() {
-        int result = 7;
-        result = 31 * result + (getCreated() != null ? getCreated().hashCode() : 0);
+        int result = getCreated() != null ? getCreated().hashCode() : 0;
         result = 31 * result + (getTrip() != null ? getTrip().hashCode() : 0);
         result = 31 * result + (getExcursions() != null ? getExcursions().hashCode() : 0);
         return result;

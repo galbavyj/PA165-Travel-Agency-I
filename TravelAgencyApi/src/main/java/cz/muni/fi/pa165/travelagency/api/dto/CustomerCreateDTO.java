@@ -13,32 +13,29 @@ import java.util.Set;
 
 /**
  *
- * @author Martin
+ * @author Lucia
  */
-public class CustomerDTO {
+public class CustomerCreateDTO {
     
-    private Long id;
+    
     private String firstName;
     private String lastName;
-    private String passwordHash;
+    private String password;
     private String email;
-    private AddressDTO address;
+    private String country;
+    private String city;
+    private String street;
+    private Integer numberOfHouse;
     private String phoneNumber;
     private Date created;
     private CustomerRole customerRole;
     private Set<ReservationDTO> reservations;
 
-    public CustomerDTO() {
+    public CustomerCreateDTO() {
         reservations = new HashSet<>();
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    
 
     public String getFirstName() {
         return firstName;
@@ -64,13 +61,6 @@ public class CustomerDTO {
         this.email = email;
     }
 
-    public AddressDTO getAddress() {
-        return address;
-    }
-
-    public void setAddress(AddressDTO address) {
-        this.address = address;
-    }
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -90,12 +80,12 @@ public class CustomerDTO {
     
     
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public CustomerRole getcustomerRole() {
@@ -106,16 +96,44 @@ public class CustomerDTO {
         this.customerRole = customerRole;
     }
 
-    public boolean isAdmin() {
-        return customerRole == CustomerRole.ADMIN;
-    }
-
     public Set<ReservationDTO> getReservations() {
         return reservations;
     }
 
     public void setReservations(Set<ReservationDTO> reservations) {
         this.reservations = reservations;
+    }
+    
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public Integer getNumberOfHouse() {
+        return numberOfHouse;
+    }
+
+    public void setNumberOfHouse(Integer numberOfHouse) {
+        this.numberOfHouse = numberOfHouse;
     }
 
     @Override
@@ -124,9 +142,6 @@ public class CustomerDTO {
         hash = 59 * hash + (this.firstName != null ? this.firstName.hashCode() : 0);
         hash = 59 * hash + (this.lastName != null ? this.lastName.hashCode() : 0);
         hash = 59 * hash + (this.email != null ? this.email.hashCode() : 0);
-        hash = 59 * hash + (this.address != null ? this.address.hashCode() : 0);
-        hash = 59 * hash + (this.phoneNumber != null ? this.phoneNumber.hashCode() : 0);
-        hash = 59 * hash + (this.customerRole != null ? this.customerRole.hashCode() : 0);
         return hash;
     }
 
@@ -141,7 +156,7 @@ public class CustomerDTO {
         if (!(obj instanceof CustomerDTO)) {
             return false;
         }
-        final CustomerDTO other = (CustomerDTO) obj;
+        final CustomerCreateDTO other = (CustomerCreateDTO) obj;
         if ((this.firstName == null) ? (other.firstName != null) : !this.firstName.equals(other.firstName)) {
             return false;
         }
@@ -151,21 +166,13 @@ public class CustomerDTO {
         if ((this.email == null) ? (other.email != null) : !this.email.equals(other.email)) {
             return false;
         }
-        if ((this.phoneNumber == null) ? (other.phoneNumber != null) : !this.phoneNumber.equals(other.phoneNumber)) {
-            return false;
-        }
-        if (this.address != other.address && (this.address == null || !this.address.equals(other.address))) {
-            return false;
-        }
-        if (this.customerRole != other.customerRole) {
-            return false;
-        }
-
+        
+        
         return true;
     }
 
     @Override
     public String toString() {
-        return "customer firstName=";
+        return "customer firstName=" + firstName + ", lastName=" + lastName + ", email=" + email;
     }
 }

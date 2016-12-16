@@ -29,16 +29,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/admin/customer/list">Travel Agency</a>
-            <c:if test="${authUser}">
-                <a class="navbar-brand" href="${pageContext.request.contextPath}/shopping/reservations"> My reservations</a>
-            </c:if>
-            <c:if test="test na to ci je uzivatel admin">
                 <a class="navbar-brand" href="${pageContext.request.contextPath}/admin/trip/list">Trips</a>
                 <a class="navbar-brand" href="${pageContext.request.contextPath}/admin/excursion/list">Excursions</a>
                 <a class="navbar-brand" href="${pageContext.request.contextPath}/admin/customer/list">Customers</a>
                 <a class="navbar-brand" href="${pageContext.request.contextPath}/admin/reservation/list">Reservations</a>
-            </c:if>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/authentication/logout">Logout</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             
@@ -47,7 +42,6 @@
 </nav>
 
 <div class="container">
-
     <!-- page title -->
     
         <div class="page-header row">
@@ -70,6 +64,7 @@
 
     
    
+  
     <!-- alerts -->
     <c:if test="${not empty alert_danger}">
         <div class="alert alert-danger fade in" role="alert">
@@ -99,10 +94,6 @@
     <!-- page body -->
     <jsp:invoke fragment="body"/>
 
-    <!-- footer -->
-    <footer class="footer">
-
-    </footer>
 </div>
 <!-- javascripts placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

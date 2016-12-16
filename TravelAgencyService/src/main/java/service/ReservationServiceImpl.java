@@ -32,12 +32,13 @@ public class ReservationServiceImpl implements ReservationService {
 
 
     @Override
-    public void createReservation(Reservation reservation) {
+    public Reservation createReservation(Reservation reservation) {
         try {
             reservationDao.create(reservation);
             Customer c = customerDao.findById(reservation.getCustomer().getId());
             c.addReservation(reservation);
             customerDao.update(c);
+            return reservation;
         } catch(Exception e){
             throw new TravelAgencyPersistenceException("Failed to create reservation" + e);
         }
@@ -55,6 +56,13 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public void removeReservation(Reservation reservation) {
         try {
+            Customer c = customerDao.findById(reservation.getCustomer().getId());
+            for (Reservation res : c.getReservations()) {
+                if(res.getId() == reservation.getId()){
+                    c.removeReservation(res);
+                }
+            }
+            customerDao.update(c);
             reservationDao.remove(reservation);
         } catch(Exception e){
             throw new TravelAgencyPersistenceException("Failed to remove reservation" + e);
@@ -65,9 +73,7 @@ public class ReservationServiceImpl implements ReservationService {
     public void addExcursionToReservation(Reservation reservation, Excursion excursion) {
         try {
             reservation.addExcursion(excursion);
-            excursion.addReservation(reservation);
             reservationDao.update(reservation);
-            excursionDao.update(excursion);
         } catch(Exception e){
             throw new TravelAgencyPersistenceException("Failed to add excursion to reservation" + e);
         }

@@ -36,7 +36,6 @@
                 <td><c:out value="${customer.address.numberOfHouse}"/></td>
                 <td><c:out value="${customer.address.city}"/></td>
                 <td><c:out value="${customer.address.country}"/></td>
-                <td><a href="/admin/customer/delete">Delete</a></td>
            </tr>
         </c:forEach>
         </tbody>
