@@ -38,14 +38,14 @@ public class ExcursionController {
     final static Logger log = LoggerFactory.getLogger(ExcursionController.class);
 
     @Inject
-    private ExcursionFacade exFacade;
+    private ExcursionFacade excursionFacade;
     
     @Inject
     private TripFacade tripFacade;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
-        model.addAttribute("excursions", exFacade.findAllExcursions());
+        model.addAttribute("excursions", excursionFacade.findAllExcursions());
         return "/admin/excursion/list";
     }
     
@@ -84,7 +84,7 @@ public class ExcursionController {
             return "admin/excursion/new";
         }
        
-        Long id = exFacade.createExcursion(formBean);
+        Long id = excursionFacade.createExcursion(formBean);
         //report success
         redirectAttributes.addFlashAttribute("alert_success", "Excursion " + id + " was created");
         return "redirect:" + uriBuilder.path("/admin/excursion/list").buildAndExpand(id).encode().toUriString();
