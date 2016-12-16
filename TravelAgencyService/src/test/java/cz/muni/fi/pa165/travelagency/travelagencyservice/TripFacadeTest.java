@@ -109,35 +109,35 @@ public class TripFacadeTest extends AbstractTransactionalTestNGSpringContextTest
         } catch (ParseException ex) {
             Logger.getLogger(TripFacadeTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        trip1.setCreated(created);
-        trip1.setFrom(from);
-        trip1.setTo(to);
+        trip1.setCreatedDate(created);
+        trip1.setFromDate(from);
+        trip1.setToDate(to);
         trip1.setPrice(BigDecimal.TEN);
         trip1.setFilePathToPicture("C:/petrov");
 
         trip2 = new Trip();
         trip2.setAddressOfHotel(address2);
-        trip2.setCreated(created);
-        trip2.setFrom(from);
-        trip2.setTo(to);
+        trip2.setCreatedDate(created);
+        trip2.setFromDate(from);
+        trip2.setToDate(to);
         trip2.setPrice(new BigDecimal(1000));
         trip2.setFilePathToPicture("C:/sea");
 
         trip1DTO = new TripDTO();
         trip1DTO.setAddressOfHotel(address1DTO);
-        trip1DTO.setCreatedDate(trip1.getCreated());
+        trip1DTO.setCreatedDate(trip1.getCreatedDate());
         trip1DTO.setFilePathToPicture(trip1.getFilePathToPicture());
-        trip1DTO.setFromDate(trip1.getFrom());
+        trip1DTO.setFromDate(trip1.getFromDate());
         trip1DTO.setPrice(trip1.getPrice());
-        trip1DTO.setToDate(trip1.getTo());
+        trip1DTO.setToDate(trip1.getToDate());
         
         trip2DTO = new TripDTO();
         trip2DTO.setAddressOfHotel(address2DTO);
-        trip2DTO.setCreatedDate(trip2.getCreated());
+        trip2DTO.setCreatedDate(trip2.getCreatedDate());
         trip2DTO.setFilePathToPicture(trip2.getFilePathToPicture());
-        trip2DTO.setFromDate(trip2.getFrom());
+        trip2DTO.setFromDate(trip2.getFromDate());
         trip2DTO.setPrice(trip2.getPrice());
-        trip2DTO.setToDate(trip2.getTo());
+        trip2DTO.setToDate(trip2.getToDate());
         
         excursion1 = new ExcursionDTO();
         excursion1.setCreated(created);

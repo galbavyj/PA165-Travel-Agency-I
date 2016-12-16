@@ -112,9 +112,9 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
             java.util.logging.Logger.getLogger(SampleDataLoadingFacadeImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         trip = new Trip();
-        trip.setCreated(created);
-        trip.setFrom(from);
-        trip.setTo(to);
+        trip.setCreatedDate(created);
+        trip.setFromDate(from);
+        trip.setToDate(to);
         trip.setPrice(BigDecimal.valueOf(1000));
         trip.setAddressOfHotel(addressAdmin);
         tripService.createTrip(trip);

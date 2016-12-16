@@ -105,9 +105,9 @@ public class ExcursionDaoTest extends AbstractTestNGSpringContextTests{
         address.setCountry("UK");
         address.setNumberOfHouse(15);
         address.setStreet("George Street");
-        trip1.setCreated(created1);
-        trip1.setFrom(startTrip);
-        trip1.setTo(endTrip);
+        trip1.setCreatedDate(created1);
+        trip1.setFromDate(startTrip);
+        trip1.setToDate(endTrip);
         trip1.setPossibleExcursions(excursions);
         trip1.setPrice(BigDecimal.valueOf(15000));
         trip1.setAddressOfHotel(address);
