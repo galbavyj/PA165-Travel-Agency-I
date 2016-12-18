@@ -10,6 +10,7 @@ import cz.muni.fi.pa165.travelagency.api.dto.TripCreateDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.TripDTO;
 import cz.muni.fi.pa165.travelagency.api.facade.ExcursionFacade;
 import cz.muni.fi.pa165.travelagency.api.facade.TripFacade;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -17,11 +18,14 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -102,12 +106,19 @@ public class TripController {
         return excursionFacade.findAllExcursions();
     }
 
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        sdf.setLenient(true);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
+    }
+    
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@ModelAttribute("tripCreate") TripCreateDTO formBean, BindingResult bindingResult,
+    public String create(@Valid @ModelAttribute("tripCreate") TripCreateDTO createdTrip, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
-        log.debug("create(tripCreate={})", formBean);
+        log.debug("create(tripCreate={})", createdTrip);
         //in case of validation error forward back to the the form
-        /*if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             for (ObjectError ge : bindingResult.getGlobalErrors()) {
                 log.trace("ObjectError: {}", ge);
             }
@@ -116,22 +127,27 @@ public class TripController {
                 log.trace("FieldError: {}", fe);
             }
             return "admin/trip/new";
-        }*/
-        //create product
-        
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(2017, Calendar.JANUARY, 17);
-        Date fromDate = calendar.getTime();
-        
-        calendar.set(2017, Calendar.JANUARY, 19);
-        Date toDate = calendar.getTime();
- 
-        formBean.setFromDate(fromDate);
-        formBean.setToDate(toDate);
-        
-        tripFacade.createTrip(formBean);
+        }
 
-        redirectAttributes.addFlashAttribute("alert_success", "Product " + " was created");
+        if (createdTrip.getFromDate().after(createdTrip.getToDate())){
+            redirectAttributes.addFlashAttribute("alert_danger", "Can't create trip with fromDate after toDate");
+            return "redirect:list";
+        }
+        
+        if (createdTrip.getNumberOfHouse() < 1){
+            redirectAttributes.addFlashAttribute("alert_danger", "Can't create trip with negative house number");
+            return "redirect:list";
+        }
+        
+        if (createdTrip.getPrice().intValue() < 0){
+            redirectAttributes.addFlashAttribute("alert_danger", "Can't create trip with negative price");
+            return "redirect:list";
+        }
+
+        
+        tripFacade.createTrip(createdTrip);
+
+        redirectAttributes.addFlashAttribute("alert_success", "Trip was created");
         return "redirect:list";
     }
     
