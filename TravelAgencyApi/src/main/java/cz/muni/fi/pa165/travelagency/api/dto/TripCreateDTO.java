@@ -13,7 +13,7 @@ public class TripCreateDTO {
   
     private Date fromDate;
     private Date toDate;
-    private Long possibleExcursionId;
+    private Set<Long> possibleExcursionId;
     private String country;
     private String city;
     private String street;
@@ -37,11 +37,11 @@ public class TripCreateDTO {
         this.toDate = toDate;
     }
 
-    public Long getPossibleExcursionId() {
+    public Set<Long> getPossibleExcursionId() {
         return possibleExcursionId;
     }
 
-    public void setPossibleExcursionId(Long possibleExcursionId) {
+    public void setPossibleExcursionId(Set<Long> possibleExcursionId) {
         this.possibleExcursionId = possibleExcursionId;
     }
 
