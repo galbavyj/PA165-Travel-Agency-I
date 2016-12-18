@@ -109,7 +109,7 @@ public class CustomerFacadeTest {
         customerDTO1.setLastName("Drevo");
         customerDTO1.setEmail("dano.drevo@centrum.cz");
         customerDTO1.setPhoneNumber("+420566487744");
-        customerDTO1.setcustomerRole(CustomerRole.CUSTOMER);
+        customerDTO1.setCustomerRole(CustomerRole.CUSTOMER);
         customerDTO1.setCreated(created1);
 
         customerAuthenticateDTO1 = new CustomerAuthenticateDTO();
@@ -122,7 +122,7 @@ public class CustomerFacadeTest {
         customerDTO2.setLastName("Forest");
         customerDTO2.setEmail("albert.forest@centrum.cz");
         customerDTO2.setPhoneNumber("+420756847374");
-        customerDTO2.setcustomerRole(CustomerRole.ADMIN);
+        customerDTO2.setCustomerRole(CustomerRole.ADMIN);
         customerDTO2.setCreated(created2);
 
         customer2 = new Customer();

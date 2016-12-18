@@ -100,7 +100,6 @@ public class ShoppingController {
 
         formBean.setCustomer(customerDTO);
         formBean.setCreated(new Date());
-
         try {
             Long id = reservationFacade.createReservation(formBean);
             redirectAttributes.addFlashAttribute("alert_success", "Reservation " + id + " was created");

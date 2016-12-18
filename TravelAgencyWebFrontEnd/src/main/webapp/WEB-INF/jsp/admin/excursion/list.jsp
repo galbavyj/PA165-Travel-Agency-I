@@ -32,11 +32,20 @@
                 <td><fmt:formatDate value="${excursion.created}" pattern="dd. MM. yyyy"/></td>
                 <td><c:out value="${excursion.place}"/></td>
                 <td><c:out value="${excursion.excursionType}"/></td>
-                <td><a href="/admin/excursion/delete">Delete</a></td>
+                <td><form method="post" action="${pageContext.request.contextPath}/admin/excursion/edit/${excursion.id}">
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                    </form></td>
+                <td><form method="post" action="${pageContext.request.contextPath}/admin/excursion/delete/${excursion.id}">
+                    <button type="submit" class="btn btn-primary">Delete</button>
+                    </form></td>
            </tr>
+           </form>
         </c:forEach>
         </tbody>
     </table>
+    <form method="get" action="${pageContext.request.contextPath}/admin/excursion/new">
+        <button type="submit" class="btn btn-primary">New Excursion</button>
+    </form>
 
 </jsp:attribute>
 </my:pagetemplate>
