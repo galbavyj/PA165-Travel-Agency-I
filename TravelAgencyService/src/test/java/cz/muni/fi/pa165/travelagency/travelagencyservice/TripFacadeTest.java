@@ -17,10 +17,7 @@ import facade.TripFacadeImpl;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.hibernate.service.spi.ServiceException;
@@ -35,9 +32,6 @@ import static org.testng.Assert.assertEquals;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import service.CustomerService;
-import service.ExcursionService;
-import service.ReservationService;
 import service.TripService;
 
 /**

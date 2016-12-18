@@ -5,16 +5,15 @@ import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import cz.muni.fi.pa165.travelagency.api.dto.ReservationDTO;
 import cz.muni.fi.pa165.travelagency.api.facade.ReservationFacade;
 import cz.muni.fi.pa165.travelagency.travelagencyservice.MappingService;
+import java.math.BigDecimal;
+import java.util.List;
+import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import service.CustomerService;
 import service.ExcursionService;
 import service.ReservationService;
 import service.TripService;
-
-import javax.inject.Inject;
-import java.math.BigDecimal;
-import java.util.List;
 
 /**
  * @Author Juraj

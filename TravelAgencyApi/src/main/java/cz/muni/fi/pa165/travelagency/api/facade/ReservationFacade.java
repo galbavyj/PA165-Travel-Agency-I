@@ -1,7 +1,6 @@
 package cz.muni.fi.pa165.travelagency.api.facade;
 
 import cz.muni.fi.pa165.travelagency.api.dto.ReservationDTO;
-
 import java.math.BigDecimal;
 import java.util.List;
 
