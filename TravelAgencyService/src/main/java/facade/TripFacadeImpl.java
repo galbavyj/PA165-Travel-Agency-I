@@ -51,14 +51,15 @@ public class TripFacadeImpl implements TripFacade {
         trip.setFromDate(tripCreateDTO.getFromDate());
         trip.setToDate(tripCreateDTO.getToDate());
         
-        Set<Excursion> possibleExcursions = new HashSet<>();
-        for (Long excursionId : tripCreateDTO.getPossibleExcursionId()){
-            Excursion tmpExcursion = excursionService.findExcursionById(excursionId);
-            possibleExcursions.add(tmpExcursion);
-            tmpExcursion.setTrip(trip);
+        if (tripCreateDTO.getPossibleExcursionId() != null){
+            Set<Excursion> possibleExcursions = new HashSet<>();
+            for (Long excursionId : tripCreateDTO.getPossibleExcursionId()){
+                Excursion tmpExcursion = excursionService.findExcursionById(excursionId);
+                possibleExcursions.add(tmpExcursion);
+                tmpExcursion.setTrip(trip);
+            }
+            trip.setPossibleExcursions(possibleExcursions);
         }
-        trip.setPossibleExcursions(possibleExcursions);
-        
         
         tripService.createTrip(trip);
     }

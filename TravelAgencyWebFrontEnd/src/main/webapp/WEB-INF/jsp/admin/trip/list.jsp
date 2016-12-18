@@ -24,6 +24,10 @@
             <th></th>
         </tr>
         </thead>
+        <br>
+        <form method="get" action="${pageContext.request.contextPath}/admin/trip/new">
+                    <button type="submit" class="btn btn-primary">New trip</button>
+                    </form>
         <tbody>
         <c:forEach items="${trips}" var="trip">
             <tr>
