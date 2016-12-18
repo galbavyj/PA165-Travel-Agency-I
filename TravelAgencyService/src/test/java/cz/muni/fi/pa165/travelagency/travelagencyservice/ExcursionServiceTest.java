@@ -205,12 +205,6 @@ public class ExcursionServiceTest extends AbstractTestNGSpringContextTests{
     }
     
     @Test(expectedExceptions = TravelAgencyPersistenceException.class)
-    public void testRemoveWithNull(){
-        Mockito.doThrow(NullPointerException.class).when(excursionDao).remove(null);
-        excursionService.removeExcursion(null);
-    }
-    
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
     public void testUpdateWithNull(){
         Mockito.doThrow(NullPointerException.class).when(excursionDao).update(null);
         excursionService.updateExcursion(null);

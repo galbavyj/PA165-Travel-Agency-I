@@ -145,7 +145,6 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         excursion3.setFromDate(from);
         excursion3.setPlace("Berlin");
         excursion3.setPrice(BigDecimal.valueOf(50));
-        excursion3.setTrip(trip);
         excursion3.setExcursionType(ExcursionType.ENTERTAINMENT);
         excursionService.createExcursion(excursion1);
         excursionService.createExcursion(excursion2);
