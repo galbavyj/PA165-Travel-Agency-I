@@ -29,7 +29,7 @@ public class Reservation {
     private Date created;
 
     @NotNull
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne(cascade=CascadeType.MERGE)
     private Trip trip;
 
     @ManyToMany

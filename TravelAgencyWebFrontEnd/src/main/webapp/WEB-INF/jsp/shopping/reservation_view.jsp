@@ -15,23 +15,21 @@
                     <c:out value="${reservation.trip.addressOfHotel.country}"/>
                 </a>
             </h2>
-            <h4>
-                Destination: <c:out value="${reservation.trip.addressOfHotel.city}"/>
-            </h4>
+            <h4>Destination: <c:out value="${reservation.trip.addressOfHotel.city}"/></h4>
             <h4>
                 Date:
                 <fmt:formatDate value="${reservation.trip.fromDate}" pattern="dd.MM.yyyy"/>
                 -
                 <fmt:formatDate value="${reservation.trip.toDate}" pattern="dd.MM.yyyy"/>
             </h4>
-            <h4>
-                Price: <c:out value="${reservation.trip.price}"/> EUR
-            </h4>
+            <h4>Price: <c:out value="${reservation.trip.price}"/> EUR</h4>
+
         </div>
         <div class="col-xs-6">
             <table class="table">
-                <caption>Excursions:</caption>
-                <thead>
+                <c:if test="${countExcursion > 0}">
+                    <caption>Excursions:</caption>
+                    <thead>
                         <tr>
                             <th>Place</th>
                             <th>Date</th>
@@ -39,7 +37,8 @@
                             <th>Dur</th>
                             <th>Price</th>
                         </tr>
-                </thead>
+                    </thead>
+                </c:if>
                 <tbody>
                 <c:forEach items="${reservation.excursions}" var="excursion">
                     <tr>
@@ -48,19 +47,10 @@
                                 <c:out value="${excursion.place}"/>
                             </a>
                         </td>
-                        <td>
-                           <fmt:formatDate value="${excursion.fromDate}" pattern="dd.MM.yyyy"/>
-
-                        </td>
-                        <td>
-                            <c:out value="${excursion.excursionType}"/>
-                        </td>
-                        <td>
-                            <c:out value="${excursion.durationInHours}"/>h
-                        </td>
-                        <td>
-                            <c:out value="${excursion.price}"/> EUR
-                        </td>
+                        <td><fmt:formatDate value="${excursion.fromDate}" pattern="dd.MM.yyyy"/></td>
+                        <td><c:out value="${excursion.excursionType}"/></td>
+                        <td><c:out value="${excursion.durationInHours}"/>h</td>
+                        <td><c:out value="${excursion.price}"/> EUR</td>
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -71,6 +61,5 @@
     <h3>
         Total price: <span style="color: green; font-weight: bold;"><c:out value="${reservation.totalPrice}"/>&nbsp;EUR</span>
     </h3>
-
     </jsp:attribute>
 </my:pagetemplate>

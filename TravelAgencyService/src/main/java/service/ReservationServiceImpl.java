@@ -60,6 +60,7 @@ public class ReservationServiceImpl implements ReservationService {
             for (Reservation res : c.getReservations()) {
                 if(res.getId() == reservation.getId()){
                     c.removeReservation(res);
+                    break;
                 }
             }
             customerDao.update(c);

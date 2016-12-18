@@ -103,9 +103,9 @@ public class CustomerServiceTest extends AbstractTestNGSpringContextTests {
         tripAddress.setCountry("UK");
         tripAddress.setNumberOfHouse(15);
         tripAddress.setStreet("George Street");
-        trip.setCreated(created1);
-        trip.setFrom(startTrip);
-        trip.setTo(endTrip);
+        trip.setCreatedDate(created1);
+        trip.setFromDate(startTrip);
+        trip.setToDate(endTrip);
         trip.setPrice(BigDecimal.valueOf(15000));
         trip.setAddressOfHotel(tripAddress);
 
