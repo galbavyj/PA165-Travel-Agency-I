@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import cz.muni.fi.pa165.travelagency.api.dto.CustomerDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.ExcursionDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.TripDTO;
 import cz.muni.fi.pa165.travelagency.api.enums.ExcursionType;
@@ -17,6 +18,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,16 +59,30 @@ public class ExcursionController {
     
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String list(Model model) {
-        model.addAttribute("excursions", excursionFacade.findAllExcursions());
-        return "/admin/excursion/list";
+    public String list(Model model, RedirectAttributes redirectAttributes, HttpServletRequest req) {
+        HttpSession session = req.getSession(true);
+        CustomerDTO customer = (CustomerDTO) session.getAttribute("authUser");
+        if (customer != null && customer.isAdmin()) {
+            model.addAttribute("excursions", excursionFacade.findAllExcursions());
+            return "/admin/excursion/list";
+        } else {
+            redirectAttributes.addFlashAttribute("alert_danger", "You do not have authentication to visit this page.");
+            return "redirect:/";
+        }
     }
     
     @RequestMapping(value = "/new", method = RequestMethod.GET)
-    public String newExcursion(Model model) {
+    public String newExcursion(Model model, RedirectAttributes redirectAttributes, HttpServletRequest req) {
         log.debug("new()");
-        model.addAttribute("excursionCreate", new ExcursionDTO());
-        return "admin/excursion/new";
+        HttpSession session = req.getSession(true);
+        CustomerDTO customer = (CustomerDTO) session.getAttribute("authUser");
+        if (customer != null && customer.isAdmin()) {
+            model.addAttribute("excursionCreate", new ExcursionDTO());
+            return "admin/excursion/new";
+        } else {
+            redirectAttributes.addFlashAttribute("alert_danger", "You do not have authentication to visit this page.");
+            return "redirect:/";
+        }
     }
     
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
