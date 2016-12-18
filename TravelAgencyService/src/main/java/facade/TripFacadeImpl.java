@@ -46,18 +46,19 @@ public class TripFacadeImpl implements TripFacade {
         address.setStreet(tripCreateDTO.getStreet());
         address.setNumberOfHouse(tripCreateDTO.getNumberOfHouse());
         
-        Set<Excursion> possibleExcursions = new HashSet<>();
-        for (Long excursionId : tripCreateDTO.getPossibleExcursionId()){
-            Excursion tmpExcursion = excursionService.findExcursionById(excursionId);
-            possibleExcursions.add(tmpExcursion);
-            
-        }
-        trip.setPossibleExcursions(possibleExcursions);
-        
         trip.setAddressOfHotel(address);
         trip.setCreatedDate(new Date());
         trip.setFromDate(tripCreateDTO.getFromDate());
         trip.setToDate(tripCreateDTO.getToDate());
+        
+        Set<Excursion> possibleExcursions = new HashSet<>();
+        for (Long excursionId : tripCreateDTO.getPossibleExcursionId()){
+            Excursion tmpExcursion = excursionService.findExcursionById(excursionId);
+            possibleExcursions.add(tmpExcursion);
+            tmpExcursion.setTrip(trip);
+        }
+        trip.setPossibleExcursions(possibleExcursions);
+        
         
         tripService.createTrip(trip);
     }
