@@ -76,10 +76,12 @@ public class TripController {
             redirectAttributes.addFlashAttribute("alert_warning", "Null trip");
             return "redirect:/admin/trip/list";
         }
-        tripFacade.removeTrip(tripDTO);
+        
         try {
-            
+            tripFacade.removeTrip(tripDTO);
             redirectAttributes.addFlashAttribute("alert_success", "Trip deleted.");
+        } catch (IllegalStateException e){
+            redirectAttributes.addFlashAttribute("alert_danger", "Can't delete trip which is already booked in a reservation");
         } catch (Exception e){
             redirectAttributes.addFlashAttribute("alert_danger", "Deletion of trip failed");
         }

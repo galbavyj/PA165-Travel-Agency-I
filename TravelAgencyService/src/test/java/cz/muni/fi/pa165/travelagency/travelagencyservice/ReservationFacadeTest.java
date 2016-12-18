@@ -147,7 +147,7 @@ public class ReservationFacadeTest extends AbstractTransactionalTestNGSpringCont
         }
         custDTO.setCreated(created);
         custDTO.setPhoneNumber("725555666");
-        custDTO.setcustomerRole(CustomerRole.CUSTOMER);
+        custDTO.setCustomerRole(CustomerRole.CUSTOMER);
 
         cust.setId(2l);
         cust.setFirstName("Juraj");
