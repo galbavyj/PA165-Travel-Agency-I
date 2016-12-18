@@ -52,7 +52,6 @@ public class TripServiceImpl implements TripService {
             Set<Excursion> excursions = trip.getPossibleExcursions();
             
             for (Excursion e : excursions){
-                e.setTrip(null);
                 excursionDao.update(e);
                 trip.removePossibleExcursion(e);
                 tripDao.update(trip);
