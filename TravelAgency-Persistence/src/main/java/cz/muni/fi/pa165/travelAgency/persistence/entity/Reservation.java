@@ -32,7 +32,7 @@ public class Reservation {
     @ManyToOne(cascade=CascadeType.PERSIST)
     private Trip trip;
 
-    @ManyToMany
+    @ManyToMany(cascade= CascadeType.ALL)
     private Set<Excursion> excursions = new HashSet<>();
 
 

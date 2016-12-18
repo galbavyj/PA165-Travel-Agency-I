@@ -146,7 +146,8 @@ public class Customer {
     }
 
     public Set<Reservation> getReservations() {
-        return Collections.unmodifiableSet(reservations);
+        //return Collections.unmodifiableSet(reservations);
+        return reservations;
     }
 
     public void setReservations(Set<Reservation> reservations) {

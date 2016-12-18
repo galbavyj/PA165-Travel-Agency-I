@@ -5,9 +5,11 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -102,7 +104,8 @@ public class Trip {
     }
 
     public Set<Excursion> getPossibleExcursions() {
-        return Collections.unmodifiableSet(possibleExcursions);
+        //return Collections.unmodifiableSet(possibleExcursions);
+        return possibleExcursions;
     }
 
     public void setPossibleExcursions(Set<Excursion> possibleExcursions) {
