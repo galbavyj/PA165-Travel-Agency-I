@@ -102,7 +102,7 @@ public class Trip {
     }
 
     public Set<Excursion> getPossibleExcursions() {
-        return Collections.unmodifiableSet(possibleExcursions);
+        return possibleExcursions;
     }
 
     public void setPossibleExcursions(Set<Excursion> possibleExcursions) {
@@ -115,6 +115,10 @@ public class Trip {
     
     public void removePossibleExcursion(Excursion possibleExcursion){
         this.possibleExcursions.remove(possibleExcursion);
+    }
+    
+    public void deleteAllPossibleExcursions(){
+        this.possibleExcursions.clear();
     }
     
     

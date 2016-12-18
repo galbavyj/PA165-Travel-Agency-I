@@ -11,9 +11,9 @@
     <form:form method="post" action="${pageContext.request.contextPath}/admin/trip/create"
                modelAttribute="tripCreate" cssClass="form-horizontal">
         <div class="form-group">
-            <form:label path="possibleExcursions" cssClass="col-sm-2 control-label">Excursions</form:label>
+            <form:label path="possibleExcursionId" cssClass="col-sm-2 control-label">Excursions</form:label>
             <div class="col-sm-10">
-                <form:select path="possibleExcursions" cssClass="form-control">
+                <form:select path="possibleExcursionId" cssClass="form-control">
                     <c:forEach items="${excursions}" var="e">
                         <form:option value="${e.id}">${e.description}</form:option>
                     </c:forEach>
@@ -27,13 +27,42 @@
                 <form:errors path="fromDate" cssClass="help-block"/>
             </div>
         </div>
-        <div class="form-group ${name_error?'has-error':''}">
+        <div class="form-group">
             <form:label path="toDate" cssClass="col-sm-2 control-label">To</form:label>
             <div class="col-sm-10">
                 <form:input type="date" path="toDate" cssClass="form-control"/>
                 <form:errors path="toDate" cssClass="help-block"/>
             </div>
         </div>
+        <div class="form-group" >
+            <form:label path="country" cssClass="col-sm-2 control-label">Country</form:label>
+            <div class="col-sm-10">
+                <form:input path="country" cssClass="form-control"/>
+                <form:errors path="country" cssClass="help-block"/>
+            </div>
+        </div>
+        <div class="form-group" >
+            <form:label path="city" cssClass="col-sm-2 control-label">city</form:label>
+            <div class="col-sm-10">
+                <form:input path="city" cssClass="form-control"/>
+                <form:errors path="city" cssClass="help-block"/>
+            </div>
+        </div>
+        <div class="form-group" >
+            <form:label path="street" cssClass="col-sm-2 control-label">street</form:label>
+            <div class="col-sm-10">
+                <form:input path="street" cssClass="form-control"/>
+                <form:errors path="street" cssClass="help-block"/>
+            </div>
+        </div>
+        <div class="form-group" >
+            <form:label path="numberOfHouse" cssClass="col-sm-2 control-label">Number of house</form:label>
+            <div class="col-sm-10">
+                <form:input path="numberOfHouse" cssClass="form-control"/>
+                <form:errors path="numberOfHouse" cssClass="help-block"/>
+            </div>
+        </div>
+
         <div class="form-group ${price_error?'has-error':''}" >
             <form:label path="price" cssClass="col-sm-2 control-label">Price</form:label>
             <div class="col-sm-10">
