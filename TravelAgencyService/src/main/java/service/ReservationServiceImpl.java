@@ -8,11 +8,10 @@ import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
 import cz.muni.fi.pa165.travelagency.travelagencyservice.TravelAgencyPersistenceException;
-import org.springframework.stereotype.Service;
-
-import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.util.List;
+import javax.inject.Inject;
+import org.springframework.stereotype.Service;
 
 /**
  *
@@ -60,6 +59,7 @@ public class ReservationServiceImpl implements ReservationService {
             for (Reservation res : c.getReservations()) {
                 if(res.getId() == reservation.getId()){
                     c.removeReservation(res);
+                    break;
                 }
             }
             customerDao.update(c);

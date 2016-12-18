@@ -42,18 +42,18 @@ import java.util.logging.Logger;
 import org.hibernate.service.spi.ServiceException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
+import static org.testng.Assert.assertEquals;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import service.ReservationService;
-import static org.mockito.Mockito.verify;
-import static org.testng.Assert.assertEquals;
 import service.CustomerService;
 import service.ExcursionService;
+import service.ReservationService;
 import service.TripService;
 
 /**
@@ -147,7 +147,7 @@ public class ReservationFacadeTest extends AbstractTransactionalTestNGSpringCont
         }
         custDTO.setCreated(created);
         custDTO.setPhoneNumber("725555666");
-        custDTO.setcustomerRole(CustomerRole.CUSTOMER);
+        custDTO.setCustomerRole(CustomerRole.CUSTOMER);
 
         cust.setId(2l);
         cust.setFirstName("Juraj");

@@ -29,6 +29,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/shopping">Shopping</a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/shopping/reservations">My reservations</a>
                 <a class="navbar-brand" href="${pageContext.request.contextPath}/admin/trip/list">Trips</a>
                 <a class="navbar-brand" href="${pageContext.request.contextPath}/admin/excursion/list">Excursions</a>
                 <a class="navbar-brand" href="${pageContext.request.contextPath}/admin/customer/list">Customers</a>

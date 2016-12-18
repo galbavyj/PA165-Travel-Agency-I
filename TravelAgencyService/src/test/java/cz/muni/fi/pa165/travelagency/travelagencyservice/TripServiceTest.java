@@ -11,35 +11,27 @@ import cz.muni.fi.pa165.travelAgency.persistence.entity.Address;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
 import cz.muni.fi.pa165.travelagency.api.enums.ExcursionType;
-import org.hibernate.service.spi.ServiceException;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
+import org.hibernate.service.spi.ServiceException;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import org.mockito.MockitoAnnotations;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import static org.testng.Assert.assertEquals;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import service.TripService;
 /**
  *
@@ -237,10 +229,4 @@ public class TripServiceTest extends AbstractTestNGSpringContextTests {
         assertEquals(tripService.findTripsByCountry("Greece"), Arrays.asList(trip2));
     }
     
-    @Test
-    public void testAddExcursionToTrip() {
-        tripService.addExcursionToTrip(trip1, excursion1);
-        verify(tripDao).update(trip1);
-        verify(excursionDao).update(excursion1);
-    }
 }

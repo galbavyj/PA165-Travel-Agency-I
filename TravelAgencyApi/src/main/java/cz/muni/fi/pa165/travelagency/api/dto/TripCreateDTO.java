@@ -2,34 +2,22 @@ package cz.muni.fi.pa165.travelagency.api.dto;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
  * @Patrik Behrami
  */
-public class TripDTO {
-
-    private Long id;   
+public class TripCreateDTO {
+  
     private Date fromDate;
     private Date toDate;
-    private Date createdDate;
-    private Set<ExcursionDTO> possibleExcursions;
-    private AddressDTO addressOfHotel;
+    private Set<Long> possibleExcursionId;
+    private String country;
+    private String city;
+    private String street;
+    private int numberOfHouse;
     private BigDecimal price;
     private String filePathToPicture;
-     
-    public TripDTO(){
-        possibleExcursions = new HashSet<>();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Date getFromDate() {
         return fromDate;
@@ -47,36 +35,44 @@ public class TripDTO {
         this.toDate = toDate;
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
+    public Set<Long> getPossibleExcursionId() {
+        return possibleExcursionId;
     }
 
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
+    public void setPossibleExcursionId(Set<Long> possibleExcursionId) {
+        this.possibleExcursionId = possibleExcursionId;
     }
 
-    public Set<ExcursionDTO> getPossibleExcursions() {
-        return possibleExcursions;
+    public String getCountry() {
+        return country;
     }
 
-    public void setPossibleExcursions(Set<ExcursionDTO> possibleExcursions) {
-        this.possibleExcursions = possibleExcursions;
-    }
-    
-     public void addPossibleExcursion(ExcursionDTO possibleExcursion){
-        this.possibleExcursions.add(possibleExcursion);
-    }
-    
-    public void removePossibleExcursion(ExcursionDTO possibleExcursion){
-        this.possibleExcursions.remove(possibleExcursion);
+    public void setCountry(String country) {
+        this.country = country;
     }
 
-    public AddressDTO getAddressOfHotel() {
-        return addressOfHotel;
+    public String getCity() {
+        return city;
     }
 
-    public void setAddressOfHotel(AddressDTO addressOfHotel) {
-        this.addressOfHotel = addressOfHotel;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public int getNumberOfHouse() {
+        return numberOfHouse;
+    }
+
+    public void setNumberOfHouse(int numberOfHouse) {
+        this.numberOfHouse = numberOfHouse;
     }
 
     public BigDecimal getPrice() {
@@ -95,15 +91,14 @@ public class TripDTO {
         this.filePathToPicture = filePathToPicture;
     }
     
+    
+    
     @Override
     public int hashCode() {
         int hash = 11;
-        hash = 37 * hash + (this.id != null ? this.id.hashCode() : 0);
         hash = 37 * hash + (this.toDate != null ? this.toDate.hashCode() : 0);
         hash = 37 * hash + (this.fromDate != null ? this.fromDate.hashCode() : 0);
-        hash = 37 * hash + (this.addressOfHotel != null ? this.addressOfHotel.hashCode() : 0);
         hash = 37 * hash + (this.price != null ? this.price.hashCode() : 0);
-        hash = 37 * hash + (this.createdDate != null ? this.createdDate.hashCode() : 0);
         hash = 37 * hash + (this.filePathToPicture != null ? this.filePathToPicture.hashCode() : 0);
 
         return hash;
@@ -120,36 +115,28 @@ public class TripDTO {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final TripDTO other = (TripDTO) obj;
+        final TripCreateDTO other = (TripCreateDTO) obj;
         if ((this.fromDate == null) ? (other.fromDate != null) : !this.fromDate.equals(other.fromDate)) {
             return false;
         }
         if ((this.toDate == null) ? (other.toDate != null) : !this.toDate.equals(other.toDate)) {
             return false;
         }
-        if ((this.addressOfHotel == null) ? (other.addressOfHotel != null) : !this.addressOfHotel.equals(other.addressOfHotel)) {
-            return false;
-        }
         if ((this.price == null) ? (other.price != null) : !this.price.equals(other.price)) {
             return false;
         }
-        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
-            return false;
-        }
+
         if (this.filePathToPicture != other.filePathToPicture && (this.filePathToPicture == null
                 || !this.filePathToPicture.equals(other.filePathToPicture))) {
             return false;
         }
-        if (this.createdDate != other.createdDate && (this.createdDate == null || !this.createdDate.equals(other.createdDate))) {
-            return false;
-        }
-        
+
         return true;
     }
 
     @Override
     public String toString() {
-        return "Trip{";
+        return "Trip{--";
     }
     
     

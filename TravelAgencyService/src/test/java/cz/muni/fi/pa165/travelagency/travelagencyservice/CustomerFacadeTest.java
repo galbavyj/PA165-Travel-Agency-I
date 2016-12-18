@@ -8,24 +8,22 @@ import cz.muni.fi.pa165.travelagency.api.dto.CustomerDTO;
 import cz.muni.fi.pa165.travelagency.api.enums.CustomerRole;
 import cz.muni.fi.pa165.travelagency.api.facade.CustomerFacade;
 import facade.CustomerFacadeImpl;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 import org.hibernate.service.spi.ServiceException;
 import org.mockito.InjectMocks;
 import org.mockito.Matchers;
 import org.mockito.Mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.ContextConfiguration;
+import static org.testng.Assert.*;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import service.CustomerService;
-
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.testng.Assert.*;
 
 /**
  * @author Juraj
@@ -109,7 +107,7 @@ public class CustomerFacadeTest {
         customerDTO1.setLastName("Drevo");
         customerDTO1.setEmail("dano.drevo@centrum.cz");
         customerDTO1.setPhoneNumber("+420566487744");
-        customerDTO1.setcustomerRole(CustomerRole.CUSTOMER);
+        customerDTO1.setCustomerRole(CustomerRole.CUSTOMER);
         customerDTO1.setCreated(created1);
 
         customerAuthenticateDTO1 = new CustomerAuthenticateDTO();
@@ -122,7 +120,7 @@ public class CustomerFacadeTest {
         customerDTO2.setLastName("Forest");
         customerDTO2.setEmail("albert.forest@centrum.cz");
         customerDTO2.setPhoneNumber("+420756847374");
-        customerDTO2.setcustomerRole(CustomerRole.ADMIN);
+        customerDTO2.setCustomerRole(CustomerRole.ADMIN);
         customerDTO2.setCreated(created2);
 
         customer2 = new Customer();

@@ -9,7 +9,7 @@
 <jsp:attribute name="body">
     <caption>Welcome to our travel agency!</caption>
     <div class="jumbotron">
-        <form method="POST" action="/authentication/login">
+        <form method="POST" action="/pa165/authentication/login">
             Email:    <input type="text" name="email"/><br/>
             Password: <input type="password" name="password"/><br/>
             <input type="submit"/>

@@ -6,7 +6,6 @@
 package cz.muni.fi.pa165.travelagency.api.dto;
 
 import cz.muni.fi.pa165.travelagency.api.enums.CustomerRole;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -88,11 +87,11 @@ public class CustomerCreateDTO {
         this.password = password;
     }
 
-    public CustomerRole getcustomerRole() {
+    public CustomerRole getCustomerRole() {
         return customerRole;
     }
 
-    public void setcustomerRole(CustomerRole customerRole) {
+    public void setCustomerRole(CustomerRole customerRole) {
         this.customerRole = customerRole;
     }
 

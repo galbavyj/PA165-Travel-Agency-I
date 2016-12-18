@@ -7,23 +7,19 @@ import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
 import cz.muni.fi.pa165.travelagency.api.enums.CustomerRole;
 import cz.muni.fi.pa165.travelagency.api.enums.ExcursionType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
 import javax.inject.Inject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import service.CustomerService;
 import service.ExcursionService;
 import service.ReservationService;
@@ -50,6 +46,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
     private Trip trip;
     private Excursion excursion1;
     private Excursion excursion2;
+    private Excursion excursion3;
 
     @Override
     public void loadData() throws IOException {
@@ -120,6 +117,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         tripService.createTrip(trip);
         excursion1 = new Excursion();
         excursion2 = new Excursion();
+        excursion3 = new Excursion();
         
         excursion1.setCreated(created);
         excursion1.setDescription("Good enough");
@@ -136,8 +134,18 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         excursion2.setPlace("Wien");
         excursion2.setPrice(BigDecimal.valueOf(200));
         excursion2.setExcursionType(ExcursionType.ENTERTAINMENT);
+        
+        excursion3.setCreated(created);
+        excursion3.setDescription("Football Match");
+        excursion3.setDurationInHours(3);
+        excursion3.setFromDate(from);
+        excursion3.setPlace("Berlin");
+        excursion3.setPrice(BigDecimal.valueOf(50));
+        excursion3.setExcursionType(ExcursionType.ENTERTAINMENT);
         excursionService.createExcursion(excursion1);
         excursionService.createExcursion(excursion2);
+        excursionService.createExcursion(excursion3);
+
 
         Set<Excursion> excursions = new HashSet<>();
         excursions.add(excursion1);

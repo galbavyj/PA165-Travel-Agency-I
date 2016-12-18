@@ -3,25 +3,23 @@ package cz.muni.fi.pa165.travelagency.travelagencyservice;
 import cz.muni.fi.pa165.travelAgency.persistence.dao.CustomerDao;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.*;
 import cz.muni.fi.pa165.travelagency.api.enums.CustomerRole;
+import java.math.BigDecimal;
+import java.util.*;
 import org.hibernate.service.spi.ServiceException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import static org.testng.Assert.assertEquals;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import service.CustomerService;
-
-import java.math.BigDecimal;
-import java.util.*;
-import org.mockito.Mockito;
-
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.testng.Assert.assertEquals;
 
 /**
  * @author Juraj

@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.travelagency.api.facade;
 
 import cz.muni.fi.pa165.travelagency.api.dto.ExcursionDTO;
+import cz.muni.fi.pa165.travelagency.api.dto.TripCreateDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.TripDTO;
 import java.math.BigDecimal;
 import java.util.List;
@@ -15,7 +16,7 @@ public interface TripFacade {
      * 
      * @param trip DTO of Trip to be created
      */
-    public void createTrip(TripDTO trip);
+    public void createTrip(TripCreateDTO trip);
     
     /**
      * Remove Trip.

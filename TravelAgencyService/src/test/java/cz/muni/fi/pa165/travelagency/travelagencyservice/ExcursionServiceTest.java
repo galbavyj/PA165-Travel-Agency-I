@@ -136,8 +136,6 @@ public class ExcursionServiceTest extends AbstractTestNGSpringContextTests{
 
         Set<Reservation> reservations = new HashSet<>();
         reservations.add(r1);
-
-        //excursion1.setReservations(reservations);
     }    
 
     @BeforeClass
@@ -204,12 +202,6 @@ public class ExcursionServiceTest extends AbstractTestNGSpringContextTests{
     public void testCreateWithNull(){
         Mockito.doThrow(NullPointerException.class).when(excursionDao).create(null);
         excursionService.createExcursion(null);
-    }
-    
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
-    public void testRemoveWithNull(){
-        Mockito.doThrow(NullPointerException.class).when(excursionDao).remove(null);
-        excursionService.removeExcursion(null);
     }
     
     @Test(expectedExceptions = TravelAgencyPersistenceException.class)

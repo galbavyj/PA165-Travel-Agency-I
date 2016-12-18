@@ -1,6 +1,5 @@
 package cz.muni.fi.pa165.travelAgency.persistence.entity;
 
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,10 +28,10 @@ public class Reservation {
     private Date created;
 
     @NotNull
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne(cascade=CascadeType.MERGE)
     private Trip trip;
 
-    @ManyToMany(cascade= CascadeType.ALL)
+    @ManyToMany()
     private Set<Excursion> excursions = new HashSet<>();
 
 

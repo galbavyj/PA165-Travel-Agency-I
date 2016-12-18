@@ -6,7 +6,6 @@
 package cz.muni.fi.pa165.travelagency.api.dto;
 
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,14 +22,32 @@ public class ReservationDTO {
     private TripDTO trip;
     private Set<ExcursionDTO> excursions = new HashSet<>();
     private BigDecimal totalPrice;
+    private Set<Long> excursionsID = new HashSet<>();
+    private Long tripID;
+
 
     public BigDecimal getTotalPrice() {
         return totalPrice;
     }
 
-
     public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public Set<Long> getExcursionsID() {
+        return excursionsID;
+    }
+
+    public void setExcursionsID(Set<Long> excursionsID) {
+        this.excursionsID = excursionsID;
+    }
+
+    public Long getTripID() {
+        return tripID;
+    }
+
+    public void setTripID(Long tripID) {
+        this.tripID = tripID;
     }
 
     public Long getId() {

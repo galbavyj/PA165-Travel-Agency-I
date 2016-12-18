@@ -24,6 +24,10 @@
             <th></th>
         </tr>
         </thead>
+        <br>
+        <form method="get" action="${pageContext.request.contextPath}/admin/trip/new">
+                    <button type="submit" class="btn btn-primary">New trip</button>
+                    </form>
         <tbody>
         <c:forEach items="${trips}" var="trip">
             <tr>
@@ -37,6 +41,9 @@
                 <td><c:out value="${trip.price}"/></td>
                 <td><fmt:formatDate value="${trip.createdDate}" pattern="dd. MM. yyyy"/></td>
                 <td><c:out value="${trip.filePathToPicture}"/></td>
+                <td><form method="get" action="${pageContext.request.contextPath}/admin/trip/view/${trip.id}">
+                    <button type="submit" class="btn btn-primary">View</button>
+                    </form></td>
                 <td><form method="post" action="${pageContext.request.contextPath}/admin/trip/delete/${trip.id}">
                     <button type="submit" class="btn btn-primary">Delete</button>
                     </form></td>

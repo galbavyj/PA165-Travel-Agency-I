@@ -2,7 +2,6 @@ package cz.muni.fi.pa165.travelagency.rest.controllers;
 
 
 import cz.muni.fi.pa165.travelagency.api.dto.AddressDTO;
-import cz.muni.fi.pa165.travelagency.api.dto.CustomerAuthenticateDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.CustomerCreateDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.CustomerDTO;
 import cz.muni.fi.pa165.travelagency.api.facade.CustomerFacade;
@@ -135,7 +134,7 @@ public class CustomersController {
         customerDto.setFirstName(customerCreate.getFirstName());
         customerDto.setLastName(customerCreate.getLastName());
         customerDto.setPhoneNumber(customerCreate.getPhoneNumber());
-        customerDto.setcustomerRole(customerCreate.getcustomerRole());
+        customerDto.setCustomerRole(customerCreate.getCustomerRole());
         customerDto.setPasswordHash(customerCreate.getPassword());        
         return customerDto;      
     }

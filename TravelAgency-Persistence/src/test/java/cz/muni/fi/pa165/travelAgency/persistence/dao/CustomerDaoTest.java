@@ -26,7 +26,6 @@ import static org.testng.Assert.assertEquals;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import travelAgency.TravelAgencyPersistenceContext;
-import static org.testng.Assert.assertEquals;
 
 /**
  *

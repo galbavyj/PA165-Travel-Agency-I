@@ -1,19 +1,16 @@
 package cz.muni.fi.pa165.travelAgency.persistence.entity;
 
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMin;
@@ -45,7 +42,7 @@ public class Trip {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
     
-    @OneToMany(mappedBy="trip")
+    @ManyToMany()
     private Set<Excursion> possibleExcursions;
     
     @Embedded
@@ -104,7 +101,6 @@ public class Trip {
     }
 
     public Set<Excursion> getPossibleExcursions() {
-        //return Collections.unmodifiableSet(possibleExcursions);
         return possibleExcursions;
     }
 
@@ -118,6 +114,10 @@ public class Trip {
     
     public void removePossibleExcursion(Excursion possibleExcursion){
         this.possibleExcursions.remove(possibleExcursion);
+    }
+    
+    public void deleteAllPossibleExcursions(){
+        this.possibleExcursions.clear();
     }
     
     

@@ -5,22 +5,30 @@
  */
 package controllers;
 
+import cz.muni.fi.pa165.travelagency.api.dto.CustomerDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.ExcursionDTO;
+import cz.muni.fi.pa165.travelagency.api.dto.TripCreateDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.TripDTO;
 import cz.muni.fi.pa165.travelagency.api.facade.ExcursionFacade;
 import cz.muni.fi.pa165.travelagency.api.facade.TripFacade;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,13 +57,29 @@ public class TripController {
     private ExcursionFacade excursionFacade;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String list(Model model) {
+    public String list(Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) {  
+        HttpSession session = request.getSession(true);
+        CustomerDTO customer = (CustomerDTO) session.getAttribute("authUser");
+        if (customer == null || !customer.isAdmin()) {
+            redirectAttributes.addFlashAttribute("alert_danger", "You do not have authentication to visit this page.");
+            return "redirect:/";
+        }     
+        
         model.addAttribute("trips", tripFacade.findAllTrips());
         return "/admin/trip/list";
     }
     
+  
     @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
-    public String view(@PathVariable("id") Long id,RedirectAttributes redirectAttributes, Model model){
+    public String view(@PathVariable("id") Long id,RedirectAttributes redirectAttributes, Model model, HttpServletRequest request){
+        HttpSession session = request.getSession(true);
+        CustomerDTO customer = (CustomerDTO) session.getAttribute("authUser");
+        if (customer == null || !customer.isAdmin()) {
+            redirectAttributes.addFlashAttribute("alert_danger", "You do not have authentication to visit this page.");
+            return "redirect:/";
+        }
+        
+        
         TripDTO tripDTO = tripFacade.findTripById(id);
         if (tripDTO == null){
             redirectAttributes.addFlashAttribute("alert_warning", "Null trip");
@@ -68,7 +92,14 @@ public class TripController {
     }
     
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
-    public String deleteReservation(@PathVariable("id") Long id,RedirectAttributes redirectAttributes, Model model){
+    public String deleteReservation(@PathVariable("id") Long id,RedirectAttributes redirectAttributes, Model model, HttpServletRequest request){
+        HttpSession session = request.getSession(true);
+        CustomerDTO customer = (CustomerDTO) session.getAttribute("authUser");
+        if (customer == null || !customer.isAdmin()) {
+            redirectAttributes.addFlashAttribute("alert_danger", "You do not have authentication to visit this page.");
+            return "redirect:/";
+        }
+        
         TripDTO tripDTO = tripFacade.findTripById(id);
         if (tripDTO == null){
             redirectAttributes.addFlashAttribute("alert_warning", "Null trip");
@@ -78,6 +109,8 @@ public class TripController {
         try {
             tripFacade.removeTrip(tripDTO);
             redirectAttributes.addFlashAttribute("alert_success", "Trip deleted.");
+        } catch (IllegalStateException e){
+            redirectAttributes.addFlashAttribute("alert_danger", "Can't delete trip which is already booked in a reservation");
         } catch (Exception e){
             redirectAttributes.addFlashAttribute("alert_danger", "Deletion of trip failed");
         }
@@ -86,9 +119,16 @@ public class TripController {
     }
            
     @RequestMapping(value = "/new", method = RequestMethod.GET)
-    public String newProduct(Model model) {
+    public String newProduct(Model model,HttpServletRequest request, RedirectAttributes redirectAttributes) {
+        HttpSession session = request.getSession(true);
+        CustomerDTO customer = (CustomerDTO) session.getAttribute("authUser");
+        if (customer == null || !customer.isAdmin()) {
+            redirectAttributes.addFlashAttribute("alert_danger", "You do not have authentication to visit this page.");
+            return "redirect:/";
+        }
+        
         log.debug("trip() new");
-        model.addAttribute("tripCreate", new TripDTO());
+        model.addAttribute("tripCreate", new TripCreateDTO());
         return "admin/trip/new";
     }
 
@@ -98,12 +138,26 @@ public class TripController {
         return excursionFacade.findAllExcursions();
     }
 
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        sdf.setLenient(true);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
+    }
+    
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@ModelAttribute("tripCreate") TripDTO formBean, BindingResult bindingResult,
-                         Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
-        log.debug("create(tripCreate={})", formBean);
+    public String create(@Valid @ModelAttribute("tripCreate") TripCreateDTO createdTrip, BindingResult bindingResult,
+                         Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder,HttpServletRequest request) {
+        HttpSession session = request.getSession(true);
+        CustomerDTO customer = (CustomerDTO) session.getAttribute("authUser");
+        if (customer == null || !customer.isAdmin()) {
+            redirectAttributes.addFlashAttribute("alert_danger", "You do not have authentication to visit this page.");
+            return "redirect:/";
+        }
+        
+        log.debug("create(tripCreate={})", createdTrip);
         //in case of validation error forward back to the the form
-        /*if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             for (ObjectError ge : bindingResult.getGlobalErrors()) {
                 log.trace("ObjectError: {}", ge);
             }
@@ -112,27 +166,27 @@ public class TripController {
                 log.trace("FieldError: {}", fe);
             }
             return "admin/trip/new";
-        }*/
-        //create product
+        }
+
+        if (createdTrip.getFromDate().after(createdTrip.getToDate())){
+            redirectAttributes.addFlashAttribute("alert_danger", "Can't create trip with fromDate after toDate");
+            return "redirect:list";
+        }
         
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(2017, Calendar.JANUARY, 17);
-        Date fromDate = calendar.getTime();
+        if (createdTrip.getNumberOfHouse() < 1){
+            redirectAttributes.addFlashAttribute("alert_danger", "Can't create trip with negative house number");
+            return "redirect:list";
+        }
         
-        calendar.set(2017, Calendar.JANUARY, 19);
-        Date toDate = calendar.getTime();
+        if (createdTrip.getPrice().intValue() < 0){
+            redirectAttributes.addFlashAttribute("alert_danger", "Can't create trip with negative price");
+            return "redirect:list";
+        }
         
-        calendar.set(2016, Calendar.DECEMBER, 15);
-        Date created = calendar.getTime();
- 
-        formBean.setFromDate(fromDate);
-        formBean.setToDate(toDate);
-        formBean.setCreatedDate(created);
-        
-        tripFacade.createTrip(formBean);
-        //report success
-        redirectAttributes.addFlashAttribute("alert_success", "Product " + " was created");
-        return "redirect:" + uriBuilder.path("admin/trip/list").toString();
+        tripFacade.createTrip(createdTrip);
+
+        redirectAttributes.addFlashAttribute("alert_success", "Trip was created");
+        return "redirect:list";
     }
     
 }

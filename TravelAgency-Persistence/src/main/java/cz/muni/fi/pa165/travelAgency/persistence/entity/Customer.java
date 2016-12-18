@@ -6,7 +6,6 @@
 package cz.muni.fi.pa165.travelAgency.persistence.entity;
 
 import cz.muni.fi.pa165.travelagency.api.enums.CustomerRole;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -137,7 +136,7 @@ public class Customer {
         this.created = created;
     }
 
-    public CustomerRole getcustomerRole() {
+    public CustomerRole getCustomerRole() {
         return customerRole;
     }
 
@@ -146,7 +145,6 @@ public class Customer {
     }
 
     public Set<Reservation> getReservations() {
-        //return Collections.unmodifiableSet(reservations);
         return reservations;
     }
 
@@ -209,6 +207,6 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "customer firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", address=" + address.toString() + ", phoneNumber=" + phoneNumber + ", created=" + created.toString() + ", customerRole=" + customerRole.toString();
+        return "customer firstName=" + firstName + ", lastName=" + lastName + ", address=" + address.toString() + ", phoneNumber=" + phoneNumber + ", created=" + created.toString();
     }
 }
