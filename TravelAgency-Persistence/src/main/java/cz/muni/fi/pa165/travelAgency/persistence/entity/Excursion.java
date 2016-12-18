@@ -8,7 +8,6 @@ package cz.muni.fi.pa165.travelAgency.persistence.entity;
     
 import cz.muni.fi.pa165.travelagency.api.enums.ExcursionType;
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -62,11 +61,11 @@ public class Excursion {
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
 
-    @ManyToOne(cascade= CascadeType.ALL)
+    /*@ManyToOne(cascade= CascadeType.ALL)
     private Trip trip;
     
     @ManyToMany(mappedBy="trip")
-    private Set<Reservation> reservations;
+    private Set<Reservation> reservations;*/
     
     @NotNull
     @Column
@@ -129,7 +128,7 @@ public class Excursion {
     }
 
     
-    public Set<Reservation> getReservations() {
+    /*public Set<Reservation> getReservations() {
        return reservations;
     }
 
@@ -143,7 +142,7 @@ public class Excursion {
 
     public void removeReservation(Reservation reservation) {
         this.reservations.remove(reservation);
-    }
+    }*/
     
     public Long getId() {
         return id;
@@ -153,7 +152,7 @@ public class Excursion {
         this.id = id;
     }
     
-    public Trip getTrip() {
+    /*public Trip getTrip() {
         return trip;
     }
 
@@ -163,7 +162,7 @@ public class Excursion {
     
     public Excursion(){
         reservations = new HashSet<>();
-    }
+    }*/
 
     @Override
 	public int hashCode() {

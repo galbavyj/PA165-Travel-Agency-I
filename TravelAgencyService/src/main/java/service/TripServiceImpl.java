@@ -98,7 +98,7 @@ public class TripServiceImpl implements TripService {
     public void addExcursionToTrip(Trip trip,Excursion excursion){
         try{
             trip.addPossibleExcursion(excursion);
-            excursion.setTrip(trip);
+            //excursion.setTrip(trip);
             tripDao.update(trip);
             excursionDao.update(excursion);
         }

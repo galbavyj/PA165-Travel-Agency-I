@@ -85,7 +85,7 @@ public class ExcursionDaoTest extends AbstractTestNGSpringContextTests{
         excursion1.setFromDate(startExcursion1);
         excursion1.setPlace("Greenwich");
         excursion1.setPrice(BigDecimal.valueOf(1500));
-        excursion1.setTrip(trip1);
+        //excursion1.setTrip(trip1);
         excursion1.setExcursionType(ExcursionType.CULTURE);
 
 
@@ -96,7 +96,7 @@ public class ExcursionDaoTest extends AbstractTestNGSpringContextTests{
         excursion2.setFromDate(startExcursion2);
         excursion2.setPlace("Wien");
         excursion2.setPrice(BigDecimal.valueOf(2000));
-        excursion2.setTrip(trip1);
+        //excursion2.setTrip(trip1);
         excursion2.setExcursionType(ExcursionType.ENTERTAINMENT);
 
         trip1 = new Trip();
@@ -137,7 +137,7 @@ public class ExcursionDaoTest extends AbstractTestNGSpringContextTests{
         Set<Reservation> reservations = new HashSet<>();
         reservations.add(r1);
 
-        excursion1.setReservations(reservations);
+        //excursion1.setReservations(reservations);
     }
 
 
@@ -221,7 +221,6 @@ public class ExcursionDaoTest extends AbstractTestNGSpringContextTests{
         assertEquals(excursion.getFromDate(), excursion1.getFromDate());
         assertEquals(excursion.getPlace(), excursion1.getPlace());
         assertEquals(excursion.getPrice(), excursion1.getPrice());
-        assertEquals(excursion.getReservations(), excursion1.getReservations());
     }
 
 }

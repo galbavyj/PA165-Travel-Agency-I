@@ -18,8 +18,8 @@ public class ExcursionDTO {
     private String place;
     private BigDecimal price;
     private Date created;
-    private TripDTO trip;
-    private Set<ReservationDTO> reservations;
+    //private TripDTO trip;
+    //private Set<ReservationDTO> reservations;
     private ExcursionType excursionType;
 
     public ExcursionDTO() {
@@ -81,7 +81,7 @@ public class ExcursionDTO {
         this.created = created;
     }
 
-    public TripDTO getTrip() {
+    /*public TripDTO getTrip() {
         return trip;
     }
 
@@ -95,7 +95,7 @@ public class ExcursionDTO {
 
     public void setReservations(Set<ReservationDTO> reservations) {
         this.reservations = reservations;
-    }
+    }*/
 
     public ExcursionType getExcursionType() {
         return excursionType;

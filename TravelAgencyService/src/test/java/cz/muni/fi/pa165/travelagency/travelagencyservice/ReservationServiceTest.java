@@ -110,7 +110,7 @@ public class ReservationServiceTest extends AbstractTransactionalTestNGSpringCon
         excursion1.setFromDate(created);
         excursion1.setPlace("Greenwich");
         excursion1.setPrice(BigDecimal.valueOf(100));
-        excursion1.setTrip(trip);
+        //excursion1.setTrip(trip);
         excursion1.setExcursionType(ExcursionType.CULTURE);
 
         excursion2.setId(2L);
@@ -120,7 +120,7 @@ public class ReservationServiceTest extends AbstractTransactionalTestNGSpringCon
         excursion2.setFromDate(created);
         excursion2.setPlace("Wien");
         excursion2.setPrice(BigDecimal.valueOf(200));
-        excursion2.setTrip(trip);
+        //excursion2.setTrip(trip);
         excursion2.setExcursionType(ExcursionType.ENTERTAINMENT);
 
 
