@@ -237,10 +237,4 @@ public class TripServiceTest extends AbstractTestNGSpringContextTests {
         assertEquals(tripService.findTripsByCountry("Greece"), Arrays.asList(trip2));
     }
     
-    /*@Test
-    public void testAddExcursionToTrip() {
-        tripService.addExcursionToTrip(trip1, excursion1);
-        verify(tripDao).update(trip1);
-        verify(excursionDao).update(excursion1);
-    }*/
 }
