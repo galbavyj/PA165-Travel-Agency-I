@@ -129,7 +129,6 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         excursion1.setFromDate(from);
         excursion1.setPlace("Greenwich");
         excursion1.setPrice(BigDecimal.valueOf(100));
-        excursion1.setTrip(trip);
         excursion1.setExcursionType(ExcursionType.CULTURE);
 
         excursion2.setCreated(created);
@@ -138,7 +137,6 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         excursion2.setFromDate(from);
         excursion2.setPlace("Wien");
         excursion2.setPrice(BigDecimal.valueOf(200));
-        excursion2.setTrip(trip);
         excursion2.setExcursionType(ExcursionType.ENTERTAINMENT);
         
         excursion3.setCreated(created);

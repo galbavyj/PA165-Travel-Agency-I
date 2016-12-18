@@ -5,22 +5,11 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="Create an excursion">
+<my:pagetemplate title="Edit an excursion">
 <jsp:attribute name="body">
 
-    <form:form method="post" action="${pageContext.request.contextPath}/admin/excursion/create"
-               modelAttribute="excursionCreate" cssClass="form-horizontal">
-        <div class="form-group">
-            <form:label path="trip" cssClass="col-sm-2 control-label">Trips</form:label>
-            <div class="col-sm-10">
-                <form:select path="trip" cssClass="form-control">
-                    <c:forEach items="${trips}" var="t">
-                        <form:option value="${t.id}">${t.addressOfHotel.country}, ${t.addressOfHotel.city}, Date from:${t.fromDate}, Date to:${t.toDate}</form:option>
-                    </c:forEach>
-                </form:select>
-                <p class="help-block"><form:errors path="trip" cssClass="error"/></p>
-            </div>
-        </div>
+    <form:form method="post" action="${pageContext.request.contextPath}/admin/excursion/update/${excursionEdit.id}"
+               modelAttribute="excursionEdit" cssClass="form-horizontal">
         <div class="form-group ${place_error?'has-error':''}">
             <form:label path="place" cssClass="col-sm-2 control-label">Place</form:label>
             <div class="col-sm-10">
@@ -69,7 +58,7 @@
         </div>
 
 
-        <button class="btn btn-primary" type="submit">Create excursion</button>
+        <button class="btn btn-primary" type="submit">Save the edited excursion</button>
     </form:form>
 
 </jsp:attribute>
