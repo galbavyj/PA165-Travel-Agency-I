@@ -86,7 +86,6 @@ public class ExcursionServiceTest extends AbstractTestNGSpringContextTests{
         excursion1.setFromDate(startExcursion1);
         excursion1.setPlace("Greenwich");
         excursion1.setPrice(BigDecimal.valueOf(1500));
-        //excursion1.setTrip(trip1);
         excursion1.setExcursionType(ExcursionType.CULTURE);
 
         excursion2 = new Excursion();
@@ -96,7 +95,6 @@ public class ExcursionServiceTest extends AbstractTestNGSpringContextTests{
         excursion2.setFromDate(startExcursion2);
         excursion2.setPlace("Wien");
         excursion2.setPrice(BigDecimal.valueOf(2000));
-        //excursion2.setTrip(trip1);
         excursion2.setExcursionType(ExcursionType.ENTERTAINMENT);
         
         excursions.add(excursion1);

@@ -170,7 +170,6 @@ public class ReservationFacadeTest extends AbstractTransactionalTestNGSpringCont
         excursion1DTO.setFromDate(created);
         excursion1DTO.setPlace("Greenwich");
         excursion1DTO.setPrice(BigDecimal.valueOf(100));
-        //excursion1DTO.setTrip(tripDTO);
         excursion1DTO.setExcursionType(ExcursionType.CULTURE);
 
         excursion1.setId(15l);
@@ -180,7 +179,6 @@ public class ReservationFacadeTest extends AbstractTransactionalTestNGSpringCont
         excursion1.setFromDate(created);
         excursion1.setPlace("Greenwich");
         excursion1.setPrice(BigDecimal.valueOf(100));
-        //excursion1.setTrip(trip);
         excursion1.setExcursionType(ExcursionType.CULTURE);
 
         excursion2DTO.setId(16l);
@@ -190,7 +188,6 @@ public class ReservationFacadeTest extends AbstractTransactionalTestNGSpringCont
         excursion2DTO.setFromDate(created);
         excursion2DTO.setPlace("Wien");
         excursion2DTO.setPrice(BigDecimal.valueOf(200));
-        //excursion2DTO.setTrip(tripDTO);
         excursion2DTO.setExcursionType(ExcursionType.ENTERTAINMENT);
 
         excursion2.setId(16l);
@@ -200,7 +197,6 @@ public class ReservationFacadeTest extends AbstractTransactionalTestNGSpringCont
         excursion2.setFromDate(created);
         excursion2.setPlace("Wien");
         excursion2.setPrice(BigDecimal.valueOf(200));
-        //excursion2.setTrip(trip);
         excursion2.setExcursionType(ExcursionType.ENTERTAINMENT);
 
         Set<ExcursionDTO> excursionsDTO = new HashSet<>();
