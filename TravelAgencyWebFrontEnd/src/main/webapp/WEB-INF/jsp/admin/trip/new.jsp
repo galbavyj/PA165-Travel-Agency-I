@@ -19,7 +19,7 @@
                                 <c:out value="${e.place}"/>
                         </td>
                         
-                    </tr><br>
+                    </tr>
            </c:forEach>
         </div>
         <div class="form-group ${name_error?'has-error':''}">
