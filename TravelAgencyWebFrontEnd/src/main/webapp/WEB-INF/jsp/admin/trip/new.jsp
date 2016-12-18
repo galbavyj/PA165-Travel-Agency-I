@@ -11,7 +11,7 @@
     <form:form method="post" action="${pageContext.request.contextPath}/admin/trip/create"
                modelAttribute="tripCreate" cssClass="form-horizontal">
         <div class="form-group">
-            <form:label path="possibleExcursionId" cssClass="col-sm-2 control-label">Possible excursions</form:label>
+            <form:label path="possibleExcursionsId" cssClass="col-sm-2 control-label">Possible excursions</form:label>
             <c:forEach items="${excursions}" var="e">
                     <tr>
                         <td><form:checkbox path="possibleExcursionId" value="${e.id}"/></td>
