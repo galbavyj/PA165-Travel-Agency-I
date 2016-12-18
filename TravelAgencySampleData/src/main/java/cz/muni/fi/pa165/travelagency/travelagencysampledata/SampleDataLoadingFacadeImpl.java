@@ -50,6 +50,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
     private Trip trip;
     private Excursion excursion1;
     private Excursion excursion2;
+    private Excursion excursion3;
 
     @Override
     public void loadData() throws IOException {
@@ -120,6 +121,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         tripService.createTrip(trip);
         excursion1 = new Excursion();
         excursion2 = new Excursion();
+        excursion3 = new Excursion();
         
         excursion1.setCreated(created);
         excursion1.setDescription("Good enough");
@@ -138,8 +140,19 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         excursion2.setPrice(BigDecimal.valueOf(200));
         excursion2.setTrip(trip);
         excursion2.setExcursionType(ExcursionType.ENTERTAINMENT);
+        
+        excursion3.setCreated(created);
+        excursion3.setDescription("Football Match");
+        excursion3.setDurationInHours(3);
+        excursion3.setFromDate(from);
+        excursion3.setPlace("Berlin");
+        excursion3.setPrice(BigDecimal.valueOf(50));
+        excursion3.setTrip(trip);
+        excursion3.setExcursionType(ExcursionType.ENTERTAINMENT);
         excursionService.createExcursion(excursion1);
         excursionService.createExcursion(excursion2);
+        excursionService.createExcursion(excursion3);
+
 
         Set<Excursion> excursions = new HashSet<>();
         excursions.add(excursion1);

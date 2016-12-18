@@ -137,7 +137,6 @@ public class ExcursionDaoTest extends AbstractTestNGSpringContextTests{
         Set<Reservation> reservations = new HashSet<>();
         reservations.add(r1);
 
-        excursion1.setReservations(reservations);
     }
 
 
@@ -221,7 +220,6 @@ public class ExcursionDaoTest extends AbstractTestNGSpringContextTests{
         assertEquals(excursion.getFromDate(), excursion1.getFromDate());
         assertEquals(excursion.getPlace(), excursion1.getPlace());
         assertEquals(excursion.getPrice(), excursion1.getPrice());
-        assertEquals(excursion.getReservations(), excursion1.getReservations());
     }
 
 }

@@ -135,7 +135,7 @@ public class CustomersController {
         customerDto.setFirstName(customerCreate.getFirstName());
         customerDto.setLastName(customerCreate.getLastName());
         customerDto.setPhoneNumber(customerCreate.getPhoneNumber());
-        customerDto.setcustomerRole(customerCreate.getcustomerRole());
+        customerDto.setCustomerRole(customerCreate.getCustomerRole());
         customerDto.setPasswordHash(customerCreate.getPassword());        
         return customerDto;      
     }

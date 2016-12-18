@@ -65,9 +65,6 @@ public class Excursion {
     @ManyToOne(cascade= CascadeType.ALL)
     private Trip trip;
     
-    @ManyToMany(mappedBy="trip")
-    private Set<Reservation> reservations;
-    
     @NotNull
     @Column
     private ExcursionType excursionType;
@@ -127,23 +124,6 @@ public class Excursion {
     public void setCreated(Date created) {
         this.created = created;
     }
-
-    
-    public Set<Reservation> getReservations() {
-        return reservations;
-    }
-
-    public void setReservations(Set<Reservation> reservations) {
-        this.reservations = reservations;
-    }
-    
-    public void addReservation(Reservation reservation){
-        this.reservations.add(reservation);
-    }
-
-    public void removeReservation(Reservation reservation) {
-        this.reservations.remove(reservation);
-    }
     
     public Long getId() {
         return id;
@@ -162,7 +142,7 @@ public class Excursion {
     }
     
     public Excursion(){
-        reservations = new HashSet<>();
+        
     }
 
     @Override

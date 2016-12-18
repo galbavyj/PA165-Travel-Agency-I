@@ -29,6 +29,9 @@ public class TripServiceImpl implements TripService {
     @Inject
     ReservationDao reservationDao;
     
+    @Inject 
+    ReservationService reservationService;
+    
     @Override
     public void createTrip(Trip trip) {
         try{
@@ -41,15 +44,22 @@ public class TripServiceImpl implements TripService {
 
     @Override
     public void removeTrip(Trip trip) {
+        if (reservationDao.findReservationsByTrip(trip).size() > 0){
+            throw new IllegalStateException("Can't delete trips which are in active reservations");
+        }
         
         try{
-            trip.deleteAllPossibleExcursions();
-            List<Reservation> reservations = reservationDao.findReservationsByTrip(trip);
+            Set<Excursion> excursions = trip.getPossibleExcursions();
             
-            for (Reservation r : reservations){
-                r.setTrip(null);
-                r.setExcursions(null);
+            for (Excursion e : excursions){
+                e.setTrip(null);
+                excursionDao.update(e);
+                trip.removePossibleExcursion(e);
+                tripDao.update(trip);
             }
+            
+            trip.deleteAllPossibleExcursions();
+            tripDao.update(trip);
             
             tripDao.remove(trip);
         }

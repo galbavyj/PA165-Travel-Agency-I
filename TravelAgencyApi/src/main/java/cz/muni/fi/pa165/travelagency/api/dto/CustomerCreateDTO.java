@@ -88,11 +88,11 @@ public class CustomerCreateDTO {
         this.password = password;
     }
 
-    public CustomerRole getcustomerRole() {
+    public CustomerRole getCustomerRole() {
         return customerRole;
     }
 
-    public void setcustomerRole(CustomerRole customerRole) {
+    public void setCustomerRole(CustomerRole customerRole) {
         this.customerRole = customerRole;
     }
 
