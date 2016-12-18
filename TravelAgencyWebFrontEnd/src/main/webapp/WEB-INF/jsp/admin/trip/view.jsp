@@ -42,16 +42,6 @@
 
         <div class="row">
             <div class="col-xs-6">
-                    <div class="panel panel-default">
-                    <div class="panel-body">
-               <!-- <img class="img-responsive img-rounded"
-                     src="${pageContext.request.contextPath}/shopping/tripImage/${trip.id}"> -->
-                     <img class="img-responsive img-rounded"
-                     src="http://us.123rf.com/450wm/imagebos/imagebos1007/imagebos100700034/7309230-3d-rendering,-tropical-sea-palms.jpg"> 
-                    </div>
-                    </div>
-            </div>
-            <div class="col-xs-6">
                 <table class="table">
                     <caption>Possible excursions</caption>
                     <thead>

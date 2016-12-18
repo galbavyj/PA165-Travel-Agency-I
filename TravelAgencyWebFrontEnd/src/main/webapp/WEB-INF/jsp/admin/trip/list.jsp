@@ -37,6 +37,9 @@
                 <td><c:out value="${trip.price}"/></td>
                 <td><fmt:formatDate value="${trip.createdDate}" pattern="dd. MM. yyyy"/></td>
                 <td><c:out value="${trip.filePathToPicture}"/></td>
+                <td><form method="get" action="${pageContext.request.contextPath}/admin/trip/view/${trip.id}">
+                    <button type="submit" class="btn btn-primary">View</button>
+                    </form></td>
                 <td><form method="post" action="${pageContext.request.contextPath}/admin/trip/delete/${trip.id}">
                     <button type="submit" class="btn btn-primary">Delete</button>
                     </form></td>
