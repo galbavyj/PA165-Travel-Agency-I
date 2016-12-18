@@ -23,14 +23,32 @@ public class ReservationDTO {
     private TripDTO trip;
     private Set<ExcursionDTO> excursions = new HashSet<>();
     private BigDecimal totalPrice;
+    private Set<Long> excursionsID = new HashSet<>();
+    private Long tripID;
+
 
     public BigDecimal getTotalPrice() {
         return totalPrice;
     }
 
-
     public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public Set<Long> getExcursionsID() {
+        return excursionsID;
+    }
+
+    public void setExcursionsID(Set<Long> excursionsID) {
+        this.excursionsID = excursionsID;
+    }
+
+    public Long getTripID() {
+        return tripID;
+    }
+
+    public void setTripID(Long tripID) {
+        this.tripID = tripID;
     }
 
     public Long getId() {

@@ -30,6 +30,7 @@
         </div>
         <div class="col-xs-6">
             <table class="table">
+            <c:if test="${countExcursion > 0}">
                 <caption>Excursions:</caption>
                 <thead>
                         <tr>
@@ -40,6 +41,7 @@
                             <th>Price</th>
                         </tr>
                 </thead>
+                </c:if>
                 <tbody>
                 <c:forEach items="${reservation.excursions}" var="excursion">
                     <tr>
