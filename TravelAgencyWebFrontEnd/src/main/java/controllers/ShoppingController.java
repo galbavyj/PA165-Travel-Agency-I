@@ -5,6 +5,12 @@ import cz.muni.fi.pa165.travelagency.api.facade.ExcursionFacade;
 import cz.muni.fi.pa165.travelagency.api.facade.ReservationFacade;
 import cz.muni.fi.pa165.travelagency.api.facade.TripFacade;
 import cz.muni.fi.pa165.travelagency.travelagencyservice.TravelAgencyPersistenceException;
+import java.util.Date;
+import java.util.List;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -15,13 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.util.Date;
-import java.util.List;
 
 
 /**

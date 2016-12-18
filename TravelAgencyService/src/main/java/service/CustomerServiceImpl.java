@@ -9,14 +9,13 @@ import cz.muni.fi.pa165.travelAgency.persistence.dao.CustomerDao;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import cz.muni.fi.pa165.travelagency.travelagencyservice.TravelAgencyPersistenceException;
-import java.util.List;
-import javax.inject.Inject;
-import org.springframework.stereotype.Service;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
 import java.math.BigInteger;
 import java.security.SecureRandom;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
+import javax.inject.Inject;
+import org.springframework.stereotype.Service;
 
 /**
  *

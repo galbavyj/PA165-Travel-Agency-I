@@ -3,7 +3,6 @@ package facade;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Address;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
-import cz.muni.fi.pa165.travelagency.api.dto.AddressDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.ExcursionDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.TripCreateDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.TripDTO;
@@ -56,7 +55,6 @@ public class TripFacadeImpl implements TripFacade {
             for (Long excursionId : tripCreateDTO.getPossibleExcursionId()){
                 Excursion tmpExcursion = excursionService.findExcursionById(excursionId);
                 possibleExcursions.add(tmpExcursion);
-                tmpExcursion.setTrip(trip);
             }
             trip.setPossibleExcursions(possibleExcursions);
         }

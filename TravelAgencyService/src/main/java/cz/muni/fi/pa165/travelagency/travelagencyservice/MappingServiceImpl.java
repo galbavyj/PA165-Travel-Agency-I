@@ -10,8 +10,6 @@ import java.util.Collection;
 import java.util.List;
 import javax.inject.Inject;
 import org.dozer.Mapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 /**

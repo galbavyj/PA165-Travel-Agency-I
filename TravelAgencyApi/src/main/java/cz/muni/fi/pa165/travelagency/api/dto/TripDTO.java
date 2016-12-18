@@ -1,7 +1,6 @@
 package cz.muni.fi.pa165.travelagency.api.dto;
 
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;

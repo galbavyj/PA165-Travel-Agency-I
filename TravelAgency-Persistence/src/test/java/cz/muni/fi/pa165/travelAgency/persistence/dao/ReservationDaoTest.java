@@ -10,8 +10,8 @@ import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
-import cz.muni.fi.pa165.travelagency.api.enums.ExcursionType;
 import cz.muni.fi.pa165.travelagency.api.enums.CustomerRole;
+import cz.muni.fi.pa165.travelagency.api.enums.ExcursionType;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,7 +33,6 @@ import static org.testng.Assert.assertEquals;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import travelAgency.TravelAgencyPersistenceContext;
-import static org.testng.Assert.assertEquals;
 
 @ContextConfiguration(classes = TravelAgencyPersistenceContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)

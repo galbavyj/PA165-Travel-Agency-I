@@ -6,7 +6,6 @@
 package cz.muni.fi.pa165.travelagency.api.dto;
 
 import cz.muni.fi.pa165.travelagency.api.enums.CustomerRole;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
