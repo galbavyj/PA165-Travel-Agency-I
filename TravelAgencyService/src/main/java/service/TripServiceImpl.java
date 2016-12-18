@@ -4,7 +4,6 @@ import cz.muni.fi.pa165.travelAgency.persistence.dao.ExcursionDao;
 import cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDao;
 import cz.muni.fi.pa165.travelAgency.persistence.dao.TripDao;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
-import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
 import cz.muni.fi.pa165.travelagency.travelagencyservice.TravelAgencyPersistenceException;
 import java.math.BigDecimal;

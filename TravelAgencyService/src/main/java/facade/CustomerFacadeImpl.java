@@ -5,17 +5,15 @@
  */
 package facade;
 
-import cz.muni.fi.pa165.travelagency.api.dto.CustomerDTO;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Customer;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import cz.muni.fi.pa165.travelagency.api.dto.CustomerAuthenticateDTO;
+import cz.muni.fi.pa165.travelagency.api.dto.CustomerDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.ReservationDTO;
 import cz.muni.fi.pa165.travelagency.api.facade.CustomerFacade;
 import cz.muni.fi.pa165.travelagency.travelagencyservice.MappingService;
 import java.util.List;
 import javax.inject.Inject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import service.CustomerService;

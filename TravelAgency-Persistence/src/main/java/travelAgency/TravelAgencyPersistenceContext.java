@@ -1,12 +1,12 @@
 package travelAgency;
 
-import javax.sql.DataSource;
 import cz.muni.fi.pa165.travelAgency.persistence.dao.CustomerDao;
-import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import javax.sql.DataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver;
 import org.springframework.instrument.classloading.LoadTimeWeaver;
