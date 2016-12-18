@@ -56,7 +56,6 @@ public class TripFacadeImpl implements TripFacade {
             for (Long excursionId : tripCreateDTO.getPossibleExcursionId()){
                 Excursion tmpExcursion = excursionService.findExcursionById(excursionId);
                 possibleExcursions.add(tmpExcursion);
-                tmpExcursion.setTrip(trip);
             }
             trip.setPossibleExcursions(possibleExcursions);
         }

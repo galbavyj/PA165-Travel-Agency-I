@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import cz.muni.fi.pa165.travelagency.api.dto.CustomerDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.ExcursionDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.TripCreateDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.TripDTO;
@@ -15,6 +16,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,14 +57,29 @@ public class TripController {
     private ExcursionFacade excursionFacade;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String list(Model model) {
+    public String list(Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) {  
+        HttpSession session = request.getSession(true);
+        CustomerDTO customer = (CustomerDTO) session.getAttribute("authUser");
+        if (customer == null || !customer.isAdmin()) {
+            redirectAttributes.addFlashAttribute("alert_danger", "You do not have authentication to visit this page.");
+            return "redirect:/";
+        }     
+        
         model.addAttribute("trips", tripFacade.findAllTrips());
         return "/admin/trip/list";
     }
     
   
     @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
-    public String view(@PathVariable("id") Long id,RedirectAttributes redirectAttributes, Model model){
+    public String view(@PathVariable("id") Long id,RedirectAttributes redirectAttributes, Model model, HttpServletRequest request){
+        HttpSession session = request.getSession(true);
+        CustomerDTO customer = (CustomerDTO) session.getAttribute("authUser");
+        if (customer == null || !customer.isAdmin()) {
+            redirectAttributes.addFlashAttribute("alert_danger", "You do not have authentication to visit this page.");
+            return "redirect:/";
+        }
+        
+        
         TripDTO tripDTO = tripFacade.findTripById(id);
         if (tripDTO == null){
             redirectAttributes.addFlashAttribute("alert_warning", "Null trip");
@@ -74,7 +92,14 @@ public class TripController {
     }
     
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
-    public String deleteReservation(@PathVariable("id") Long id,RedirectAttributes redirectAttributes, Model model){
+    public String deleteReservation(@PathVariable("id") Long id,RedirectAttributes redirectAttributes, Model model, HttpServletRequest request){
+        HttpSession session = request.getSession(true);
+        CustomerDTO customer = (CustomerDTO) session.getAttribute("authUser");
+        if (customer == null || !customer.isAdmin()) {
+            redirectAttributes.addFlashAttribute("alert_danger", "You do not have authentication to visit this page.");
+            return "redirect:/";
+        }
+        
         TripDTO tripDTO = tripFacade.findTripById(id);
         if (tripDTO == null){
             redirectAttributes.addFlashAttribute("alert_warning", "Null trip");
@@ -94,7 +119,14 @@ public class TripController {
     }
            
     @RequestMapping(value = "/new", method = RequestMethod.GET)
-    public String newProduct(Model model) {
+    public String newProduct(Model model,HttpServletRequest request, RedirectAttributes redirectAttributes) {
+        HttpSession session = request.getSession(true);
+        CustomerDTO customer = (CustomerDTO) session.getAttribute("authUser");
+        if (customer == null || !customer.isAdmin()) {
+            redirectAttributes.addFlashAttribute("alert_danger", "You do not have authentication to visit this page.");
+            return "redirect:/";
+        }
+        
         log.debug("trip() new");
         model.addAttribute("tripCreate", new TripCreateDTO());
         return "admin/trip/new";
@@ -115,7 +147,14 @@ public class TripController {
     
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("tripCreate") TripCreateDTO createdTrip, BindingResult bindingResult,
-                         Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
+                         Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder,HttpServletRequest request) {
+        HttpSession session = request.getSession(true);
+        CustomerDTO customer = (CustomerDTO) session.getAttribute("authUser");
+        if (customer == null || !customer.isAdmin()) {
+            redirectAttributes.addFlashAttribute("alert_danger", "You do not have authentication to visit this page.");
+            return "redirect:/";
+        }
+        
         log.debug("create(tripCreate={})", createdTrip);
         //in case of validation error forward back to the the form
         if (bindingResult.hasErrors()) {
@@ -143,7 +182,6 @@ public class TripController {
             redirectAttributes.addFlashAttribute("alert_danger", "Can't create trip with negative price");
             return "redirect:list";
         }
-
         
         tripFacade.createTrip(createdTrip);
 
