@@ -34,6 +34,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
+import validators.ExcursionValidator;
 
 /**
  *
@@ -124,7 +125,7 @@ public class ExcursionController {
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         log.debug("update(excursionCreate={})", formBean);
         //in case of validation error forward back to the the form
-        /*if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             for (ObjectError ge : bindingResult.getGlobalErrors()) {
                 log.trace("ObjectError: {}", ge);
             }
@@ -132,8 +133,8 @@ public class ExcursionController {
                 model.addAttribute(fe.getField() + "_error", true);
                 log.trace("FieldError: {}", fe);
             }
-            return "admin/excursion/new";
-        }*/
+            return "admin/excursion/list";
+        }
         excursionToUpdate.setPlace(formBean.getPlace());
         excursionToUpdate.setDescription(formBean.getDescription());
         excursionToUpdate.setPrice(formBean.getPrice());
@@ -148,6 +149,9 @@ public class ExcursionController {
     
     @InitBinder
     public void initBinder(WebDataBinder binder) {
+        if (binder.getTarget() instanceof ExcursionDTO) {
+            binder.addValidators(new ExcursionValidator());
+        }
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setLenient(true);
         binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));

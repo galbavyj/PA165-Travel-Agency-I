@@ -10,17 +10,6 @@
 
     <form:form method="post" action="${pageContext.request.contextPath}/admin/excursion/create"
                modelAttribute="excursionCreate" cssClass="form-horizontal">
-        <div class="form-group">
-            <form:label path="trip" cssClass="col-sm-2 control-label">Trips</form:label>
-            <div class="col-sm-10">
-                <form:select path="trip" cssClass="form-control">
-                    <c:forEach items="${trips}" var="t">
-                        <form:option value="${t.id}">${t.addressOfHotel.country}, ${t.addressOfHotel.city}, Date from:${t.fromDate}, Date to:${t.toDate}</form:option>
-                    </c:forEach>
-                </form:select>
-                <p class="help-block"><form:errors path="trip" cssClass="error"/></p>
-            </div>
-        </div>
         <div class="form-group ${place_error?'has-error':''}">
             <form:label path="place" cssClass="col-sm-2 control-label">Place</form:label>
             <div class="col-sm-10">
