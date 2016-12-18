@@ -1,12 +1,15 @@
 package service;
 
 import cz.muni.fi.pa165.travelAgency.persistence.dao.ExcursionDao;
+import cz.muni.fi.pa165.travelAgency.persistence.dao.ReservationDao;
 import cz.muni.fi.pa165.travelAgency.persistence.dao.TripDao;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Excursion;
+import cz.muni.fi.pa165.travelAgency.persistence.entity.Reservation;
 import cz.muni.fi.pa165.travelAgency.persistence.entity.Trip;
 import cz.muni.fi.pa165.travelagency.travelagencyservice.TravelAgencyPersistenceException;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +26,9 @@ public class TripServiceImpl implements TripService {
     @Inject
     ExcursionDao excursionDao;
     
+    @Inject
+    ReservationDao reservationDao;
+    
     @Override
     public void createTrip(Trip trip) {
         try{
@@ -35,7 +41,16 @@ public class TripServiceImpl implements TripService {
 
     @Override
     public void removeTrip(Trip trip) {
+        
         try{
+            trip.deleteAllPossibleExcursions();
+            List<Reservation> reservations = reservationDao.findReservationsByTrip(trip);
+            
+            for (Reservation r : reservations){
+                r.setTrip(null);
+                r.setExcursions(null);
+            }
+            
             tripDao.remove(trip);
         }
         catch(Exception ex){

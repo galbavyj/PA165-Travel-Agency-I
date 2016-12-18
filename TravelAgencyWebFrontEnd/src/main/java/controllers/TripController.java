@@ -6,6 +6,7 @@
 package controllers;
 
 import cz.muni.fi.pa165.travelagency.api.dto.ExcursionDTO;
+import cz.muni.fi.pa165.travelagency.api.dto.TripCreateDTO;
 import cz.muni.fi.pa165.travelagency.api.dto.TripDTO;
 import cz.muni.fi.pa165.travelagency.api.facade.ExcursionFacade;
 import cz.muni.fi.pa165.travelagency.api.facade.TripFacade;
@@ -54,6 +55,7 @@ public class TripController {
         return "/admin/trip/list";
     }
     
+  
     @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
     public String view(@PathVariable("id") Long id,RedirectAttributes redirectAttributes, Model model){
         TripDTO tripDTO = tripFacade.findTripById(id);
@@ -74,9 +76,9 @@ public class TripController {
             redirectAttributes.addFlashAttribute("alert_warning", "Null trip");
             return "redirect:/admin/trip/list";
         }
-        
+        tripFacade.removeTrip(tripDTO);
         try {
-            tripFacade.removeTrip(tripDTO);
+            
             redirectAttributes.addFlashAttribute("alert_success", "Trip deleted.");
         } catch (Exception e){
             redirectAttributes.addFlashAttribute("alert_danger", "Deletion of trip failed");
@@ -88,7 +90,7 @@ public class TripController {
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String newProduct(Model model) {
         log.debug("trip() new");
-        model.addAttribute("tripCreate", new TripDTO());
+        model.addAttribute("tripCreate", new TripCreateDTO());
         return "admin/trip/new";
     }
 
@@ -99,7 +101,7 @@ public class TripController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@ModelAttribute("tripCreate") TripDTO formBean, BindingResult bindingResult,
+    public String create(@ModelAttribute("tripCreate") TripCreateDTO formBean, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         log.debug("create(tripCreate={})", formBean);
         //in case of validation error forward back to the the form
@@ -121,18 +123,14 @@ public class TripController {
         
         calendar.set(2017, Calendar.JANUARY, 19);
         Date toDate = calendar.getTime();
-        
-        calendar.set(2016, Calendar.DECEMBER, 15);
-        Date created = calendar.getTime();
  
         formBean.setFromDate(fromDate);
         formBean.setToDate(toDate);
-        formBean.setCreatedDate(created);
         
         tripFacade.createTrip(formBean);
-        //report success
+
         redirectAttributes.addFlashAttribute("alert_success", "Product " + " was created");
-        return "redirect:" + uriBuilder.path("admin/trip/list").toString();
+        return "redirect:list";
     }
     
 }
