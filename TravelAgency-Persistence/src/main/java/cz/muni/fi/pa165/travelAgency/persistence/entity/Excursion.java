@@ -60,7 +60,7 @@ public class Excursion {
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
-    
+  
     @NotNull
     @Column
     private ExcursionType excursionType;

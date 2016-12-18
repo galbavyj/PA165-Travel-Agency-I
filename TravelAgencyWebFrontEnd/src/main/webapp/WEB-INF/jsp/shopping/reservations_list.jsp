@@ -10,12 +10,12 @@
 <jsp:attribute name="body">
     <table class="table">
         <thead>
-        <tr>
-            <th>ID</th>
-            <th>Trip</th>
-            <th>Total price</th>
-            <th></th>
-        </tr>
+            <tr>
+                <th>ID</th>
+                <th>Trip</th>
+                <th>Total price</th>
+                <th></th>
+            </tr>
         </thead>
         <tbody>
         <c:forEach items="${reservations}" var="reservation">
@@ -23,11 +23,9 @@
                 <td><c:out value="${reservation.id}"/></td>
                 <td><c:out value="${reservation.trip.addressOfHotel.city}"/></td>
                 <td><c:out value="${reservation.totalPrice}"/> EUR</td>
+                <td><a href="/pa165/shopping/reservation/${reservation.id}" class="btn btn-primary">Detail</a></td>
                 <td>
-                    <a href="/pa165/shopping/reservation/${reservation.id}" class="btn btn-primary">Detail</a>
-                </td>
-                <td>
-                    <form method="post" action="${pageContext.request.contextPath}/shopping/reservations/${reservation.id}/delete}">
+                    <form method="post" action="${pageContext.request.contextPath}/shopping/reservation/delete/${reservation.id}">
                         <button type="submit" class="btn btn-primary">Delete</button>
                     </form>
                 </td>

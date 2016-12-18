@@ -137,7 +137,7 @@ public class Customer {
         this.created = created;
     }
 
-    public CustomerRole getcustomerRole() {
+    public CustomerRole getCustomerRole() {
         return customerRole;
     }
 
@@ -146,7 +146,6 @@ public class Customer {
     }
 
     public Set<Reservation> getReservations() {
-        //return Collections.unmodifiableSet(reservations);
         return reservations;
     }
 
@@ -209,6 +208,6 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "customer firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", address=" + address.toString() + ", phoneNumber=" + phoneNumber + ", created=" + created.toString() + ", customerRole=" + customerRole.toString();
+        return "customer firstName=" + firstName + ", lastName=" + lastName + ", address=" + address.toString() + ", phoneNumber=" + phoneNumber + ", created=" + created.toString();
     }
 }

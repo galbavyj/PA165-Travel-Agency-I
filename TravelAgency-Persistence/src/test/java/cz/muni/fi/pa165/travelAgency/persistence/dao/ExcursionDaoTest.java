@@ -134,8 +134,6 @@ public class ExcursionDaoTest extends AbstractTestNGSpringContextTests{
 
         Set<Reservation> reservations = new HashSet<>();
         reservations.add(r1);
-
-        //excursion1.setReservations(reservations);
     }
 
 

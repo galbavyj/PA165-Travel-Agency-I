@@ -41,7 +41,9 @@ public class ReservationFacadeImpl implements ReservationFacade {
 
     @Override
     public Long createReservation(ReservationDTO reservationDTO) {
-        Reservation reservation = reservationService.createReservation(beanMappingService.mapTo(reservationDTO, Reservation.class));
+        Reservation reservation = beanMappingService.mapTo(reservationDTO, Reservation.class);
+        
+        reservationService.createReservation(reservation);
         return reservation.getId();
     }
 
