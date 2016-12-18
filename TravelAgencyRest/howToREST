@@ -1,0 +1,17 @@
+Create a new excursion
+curl -X POST -i -H "Content-Type: application/json" --data '{"id":null,"fromDate":"2017-01-01","durationInHours":3,"description":"Beautiful excursion with amazing views","place":"High Tatras","price":2000,"created":"2016-12-18","trip":null,"reservations":[],"excursionType":"ENTERTAINMENT"}' http://localhost:8080/pa165/rest/excursions/create
+
+Find excursion, which you created
+curl -i -X GET http://localhost:8080/pa165/rest/excursions/3
+
+Update your excursion
+curl -X PUT -i -H "Content-Type: application/json" --data '{"id":3,"fromDate":"2017-01-01","durationInHours":3,"description":"New description","place":"High Tatras","price":2000,"created":"2016-12-18","trip":null,"reservations":[],"excursionType":"ENTERTAINMENT"}' http://localhost:8080/pa165/rest/excursions/update
+
+Check updated excursion
+curl -i -X GET http://localhost:8080/pa165/rest/excursions/3
+
+Delete your excursion
+curl -i -X DELETE http://localhost:8080/pa165/rest/excursions/3
+
+Check that excursion was deleted (this will result to an error)
+curl -i -X GET http://localhost:8080/pa165/rest/excursions/3
