@@ -3,6 +3,10 @@ package cz.muni.fi.pa165.travelagency.api.dto;
 import cz.muni.fi.pa165.travelagency.api.enums.ExcursionType;
 import java.math.BigDecimal;
 import java.util.Date;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
@@ -10,12 +14,28 @@ import java.util.Date;
  */
 public class ExcursionDTO {
     private Long id;
+    
+    @NotNull(message = "Please, choose a date from")
+    @Future(message = "Date must be in the future")
     private Date fromDate;
+    
+    @NotNull(message = "Please, choose a duration in hours")
+    @Min(value = 0, message = "Duration of excursion can't be negative")
     private int durationInHours;
+    
+    @NotBlank(message = "Please, choose a description")
     private String description;
+    
+    @NotBlank(message = "Please, choose a place of the excursion")
     private String place;
+    
+    @NotNull(message = "Please, choose a price")
+    @Min(value = 0, message = "Price of excursion can't be negative")
     private BigDecimal price;
+    
     private Date created;
+    
+    @NotNull(message = "Please, choose a type of the excursion")
     private ExcursionType excursionType;
 
     public ExcursionDTO() {

@@ -78,8 +78,8 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
         tripBrno = new Trip();
         tripBrno.setAddressOfHotel(addressHotelBrno);
         try {
-            from = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2017");
-            to = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("10/01/2017");
+            from = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("06/06/2017");
+            to = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("10/06/2017");
             created = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("30/10/2016");
         } catch (ParseException ex) {
             Logger.getLogger(TripDaoTest.class.getName()).log(Level.SEVERE, null, ex);
@@ -105,7 +105,7 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
         excursionMuseum = new Excursion();
         excursionMuseum.setCreated(created);
         try {
-            from = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("05/01/2017");
+            from = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("05/05/2017");
         } catch (ParseException ex) {
             Logger.getLogger(TripDaoTest.class.getName()).log(Level.SEVERE, null, ex);
         }
