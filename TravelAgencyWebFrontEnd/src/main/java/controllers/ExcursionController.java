@@ -24,8 +24,6 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,7 +32,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
-import validators.ExcursionValidator;
 
 /**
  *
@@ -106,22 +103,15 @@ public class ExcursionController {
     public String create(@Valid @ModelAttribute("excursionCreate") ExcursionDTO formBean, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         log.debug("create(excursionCreate={})", formBean);
-        //in case of validation error forward back to the the form
         if (bindingResult.hasErrors()) {
-            for (ObjectError ge : bindingResult.getGlobalErrors()) {
-                log.trace("ObjectError: {}", ge);
-            }
-            for (FieldError fe : bindingResult.getFieldErrors()) {
-                model.addAttribute(fe.getField() + "_error", true);
-                log.trace("FieldError: {}", fe);
-            }
             return "admin/excursion/new";
         }
+        
         Date created = new Date();
         formBean.setCreated(created);
-     
+      
         Long id = excursionFacade.createExcursion(formBean);
-        //report success
+        
         redirectAttributes.addFlashAttribute("alert_success", "Excursion " + id + " was created");
         return "redirect:" + uriBuilder.path("/admin/excursion/list").buildAndExpand(id).encode().toUriString();
     }
@@ -138,37 +128,31 @@ public class ExcursionController {
     public String update(@Valid @ModelAttribute("excursionEdit") ExcursionDTO formBean, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         log.debug("update(excursionCreate={})", formBean);
-        //in case of validation error forward back to the the form
         if (bindingResult.hasErrors()) {
-            for (ObjectError ge : bindingResult.getGlobalErrors()) {
-                log.trace("ObjectError: {}", ge);
-            }
-            for (FieldError fe : bindingResult.getFieldErrors()) {
-                model.addAttribute(fe.getField() + "_error", true);
-                log.trace("FieldError: {}", fe);
-            }
-            return "admin/excursion/list";
+            return "admin/excursion/edit";
         }
-        excursionToUpdate.setPlace(formBean.getPlace());
-        excursionToUpdate.setDescription(formBean.getDescription());
-        excursionToUpdate.setPrice(formBean.getPrice());
-        excursionToUpdate.setDurationInHours(formBean.getDurationInHours());
-        excursionToUpdate.setFromDate(formBean.getFromDate());
-        excursionToUpdate.setExcursionType(formBean.getExcursionType());
+        
+        prepareUpdate(formBean);
         excursionFacade.updateExcursion(excursionToUpdate);
-        //report success
+
         redirectAttributes.addFlashAttribute("alert_success", "Excursion was edited");
         return "redirect:" + uriBuilder.path("/admin/excursion/list").buildAndExpand().encode().toUriString();
     }
     
     @InitBinder
     public void initBinder(WebDataBinder binder) {
-        if (binder.getTarget() instanceof ExcursionDTO) {
-            binder.addValidators(new ExcursionValidator());
-        }
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setLenient(true);
         binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
+    }
+    
+    private void prepareUpdate(ExcursionDTO excursion) {
+        excursionToUpdate.setPlace(excursion.getPlace());
+        excursionToUpdate.setDescription(excursion.getDescription());
+        excursionToUpdate.setPrice(excursion.getPrice());
+        excursionToUpdate.setDurationInHours(excursion.getDurationInHours());
+        excursionToUpdate.setFromDate(excursion.getFromDate());
+        excursionToUpdate.setExcursionType(excursion.getExcursionType());
     }
     
 }
