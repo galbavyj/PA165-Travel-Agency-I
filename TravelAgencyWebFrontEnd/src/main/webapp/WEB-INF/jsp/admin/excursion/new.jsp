@@ -10,28 +10,29 @@
 
     <form:form method="post" action="${pageContext.request.contextPath}/admin/excursion/create"
                modelAttribute="excursionCreate" cssClass="form-horizontal">
-        <div class="form-group ${place_error?'has-error':''}">
+        
+        <div class="form-group"> 
             <form:label path="place" cssClass="col-sm-2 control-label">Place</form:label>
             <div class="col-sm-10">
                 <form:input path="place" cssClass="form-control"/>
                 <form:errors path="place" cssClass="help-block"/>
             </div>
         </div>
-        <div class="form-group ${description_error?'has-error':''}">
+        <div class="form-group">
             <form:label path="description" cssClass="col-sm-2 control-label">Description</form:label>
             <div class="col-sm-10">
                 <form:textarea cols="80" rows="10" path="description" cssClass="form-control"/>
                 <form:errors path="description" cssClass="help-block"/>
             </div>
         </div>
-        <div class="form-group ${price_error?'has-error':''}">
+        <div class="form-group">
             <form:label path="price" cssClass="col-sm-2 control-label">Price</form:label>
             <div class="col-sm-10">
                 <form:input path="price" cssClass="form-control"/>
-                <form:errors path="price" cssClass="help-block"/>
+                <form:errors path="price" cssClass="error"/>
             </div>
         </div>
-       <div class="form-group ${name_error?'has-error':''}">
+       <div class="form-group">
             <form:label path="fromDate" cssClass="col-sm-2 control-label">From</form:label>
             <div class="col-sm-10">
                 <form:input type="date" path="fromDate" cssClass="form-control"/>
@@ -49,7 +50,7 @@
                 <form:errors path="excursionType" cssClass="error"/>
             </div>
         </div>
-        <div class="form-group ${durationInHours_error?'has-error':''}" >
+        <div class="form-group" >
             <form:label path="durationInHours" cssClass="col-sm-2 control-label">Duration in hours</form:label>
             <div class="col-sm-10">
                 <form:input path="durationInHours" cssClass="form-control"/>
