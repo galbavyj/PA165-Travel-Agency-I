@@ -59,7 +59,13 @@ public class AuthenticationController {
         CustomerAuthenticateDTO authDTO = new CustomerAuthenticateDTO();
         authDTO.setEmail(email);
         authDTO.setPassword(password);
-        boolean authenticated = userFacade.authenticateCustomer(authDTO);
+        boolean authenticated;
+        try {
+            authenticated = userFacade.authenticateCustomer(authDTO);
+        }
+        catch (Exception ex){
+            authenticated = false;
+        }
         if (!authenticated) {
             redirectAttributes.addFlashAttribute("alert_info", "Wrong email or password");
             return "redirect:/";
