@@ -154,13 +154,13 @@ public class ReservationServiceTest extends AbstractTransactionalTestNGSpringCon
         assertEquals(res, testReservation);
     }
 
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    @Test(expectedExceptions = NullPointerException.class)
     public void testRemoveNull(){
         Mockito.doThrow(NullPointerException.class).when(reservationDao).remove(null);
         reservationService.removeReservation(null);
     }
 
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void  findTripByInvalidId(){
         when(reservationDao.findById(-10L)).thenThrow(new IllegalArgumentException());
         reservationService.findReservationById(-10L);
@@ -177,7 +177,7 @@ public class ReservationServiceTest extends AbstractTransactionalTestNGSpringCon
 
     }
 
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    @Test(expectedExceptions = NullPointerException.class)
     public void testCreateNullReservation(){
         reservationService.createReservation(null);
     }
@@ -195,13 +195,13 @@ public class ReservationServiceTest extends AbstractTransactionalTestNGSpringCon
         verify(reservationDao).update(testReservation);
     }
 
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void testUpdateNullReservation(){
         when(reservationDao.update(null)).thenThrow(new IllegalArgumentException());
         reservationService.updateReservation(null);
     }
 
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void testUpdateReservationWithNullParameter(){
         testReservation.setCreated(null);
         when(reservationDao.update(testReservation)).thenThrow(new IllegalArgumentException());
@@ -253,7 +253,7 @@ public class ReservationServiceTest extends AbstractTransactionalTestNGSpringCon
         Assert.assertEquals(reservationService.getTotalPrice(testReservation), testPrice);
     }
 
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void testGetTotalPriceWithNullTest() {
         reservationService.getTotalPrice(null);
     }

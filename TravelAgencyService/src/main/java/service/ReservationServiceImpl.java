@@ -32,105 +32,68 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public Reservation createReservation(Reservation reservation) {
-        try {
-            reservationDao.create(reservation);
-            Customer c = customerDao.findById(reservation.getCustomer().getId());
-            c.addReservation(reservation);
-            customerDao.update(c);
-            return reservation;
-        } catch(Exception e){
-            throw new TravelAgencyPersistenceException("Failed to create reservation" + e);
-        }
+        reservationDao.create(reservation);
+        Customer c = customerDao.findById(reservation.getCustomer().getId());
+        c.addReservation(reservation);
+        customerDao.update(c);
+        return reservation;
     }
 
     @Override
     public void updateReservation(Reservation reservation) {
-        try {
-            reservationDao.update(reservation);
-        } catch(Exception e){
-            throw new TravelAgencyPersistenceException("Failed to update reservation" + e);
-        }
+        reservationDao.update(reservation);
     }
 
     @Override
     public void removeReservation(Reservation reservation) {
-        try {
-            Customer c = customerDao.findById(reservation.getCustomer().getId());
-            for (Reservation res : c.getReservations()) {
-                if(res.getId() == reservation.getId()){
-                    c.removeReservation(res);
-                    break;
-                }
+        Customer c = customerDao.findById(reservation.getCustomer().getId());
+        for (Reservation res : c.getReservations()) {
+            if(res.getId() == reservation.getId()){
+                c.removeReservation(res);
+                break;
             }
-            customerDao.update(c);
-            reservationDao.remove(reservation);
-        } catch(Exception e){
-            throw new TravelAgencyPersistenceException("Failed to remove reservation" + e);
         }
+        customerDao.update(c);
+        reservationDao.remove(reservation);
     }
 
     @Override
     public void addExcursionToReservation(Reservation reservation, Excursion excursion) {
-        try {
-            reservation.addExcursion(excursion);
-            reservationDao.update(reservation);
-        } catch(Exception e){
-            throw new TravelAgencyPersistenceException("Failed to add excursion to reservation" + e);
-        }
+        reservation.addExcursion(excursion);
+        reservationDao.update(reservation);
     }
 
     @Override
     public List<Reservation> findAllReservations() {
-        try {
-            return reservationDao.findAllReservations();
-        } catch(Exception e) {
-            throw new TravelAgencyPersistenceException("Failed to find all reservations" + e);
-        }
+        return reservationDao.findAllReservations();
     }
 
     @Override
     public Reservation findReservationById(Long id) {
-        try {
-            return reservationDao.findById(id);
-        } catch(Exception e){
-            throw new TravelAgencyPersistenceException("Failed to find reservation by id" + e);
-        }
+        return reservationDao.findById(id);
     }
 
     @Override
     public List<Reservation> findReservationsByCustomer(Customer customer) {
-        try {
-            return reservationDao.findReservationsByCustomer(customer);
-        } catch(Exception e){
-            throw new TravelAgencyPersistenceException("Failed to find reservation by customer" + e);
-        }
+        return reservationDao.findReservationsByCustomer(customer);
     }
 
     @Override
     public List<Reservation> findReservationsByTrip(Trip trip) {
-        try {
-            return reservationDao.findReservationsByTrip(trip);
-        } catch(Exception e){
-            throw new TravelAgencyPersistenceException("Failed to find reservation by trip" + e);
-        }
+        return reservationDao.findReservationsByTrip(trip);
     }
 
     @Override
     public BigDecimal getTotalPrice(Reservation reservation) {
-        try{
-            if(reservation == null){
-                throw new IllegalArgumentException();
-            }
-            reservation = reservationDao.findById(reservation.getId());
-
-            BigDecimal totalPrice = reservation.getTrip().getPrice();
-            for(Excursion excursion : reservation.getExcursions()){
-                totalPrice = totalPrice.add(excursion.getPrice());
-            }
-            return totalPrice;
-        }catch(Exception e){
-            throw new TravelAgencyPersistenceException("Failed to get total price" + e);
+        if(reservation == null){
+            throw new IllegalArgumentException();
         }
+        reservation = reservationDao.findById(reservation.getId());
 
+        BigDecimal totalPrice = reservation.getTrip().getPrice();
+        for(Excursion excursion : reservation.getExcursions()){
+            totalPrice = totalPrice.add(excursion.getPrice());
+        }
+        return totalPrice;
     }
 }
