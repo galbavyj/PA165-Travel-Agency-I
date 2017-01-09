@@ -188,7 +188,7 @@ public class TripController {
         
         InputStream fileContent = file.getInputStream();
         OutputStream outputStream = null;
-        outputStream = new FileOutputStream(request.getSession().getServletContext().getRealPath("/") + "\\..\\..\\src\\main\\webapp\\WEB-INF\\resources\\" +  trip.getId().intValue() + ".jpg");
+        outputStream = new FileOutputStream(request.getSession().getServletContext().getRealPath("/") + "\\WEB-INF\\resources\\" +  trip.getId().intValue() + ".jpg");
         
         int readBytes = 0;
         byte[] buffer = new byte[8192];
