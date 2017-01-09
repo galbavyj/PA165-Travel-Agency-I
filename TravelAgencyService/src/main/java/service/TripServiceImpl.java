@@ -32,13 +32,10 @@ public class TripServiceImpl implements TripService {
     ReservationService reservationService;
     
     @Override
-    public void createTrip(Trip trip) {
-        try{
-            tripDao.create(trip);
-        }
-        catch(Exception ex){
-            throw new TravelAgencyPersistenceException("Failed to create trip" + ex.getMessage(), ex.getCause());
-        }   
+    public Trip createTrip(Trip trip) {
+        tripDao.create(trip);
+        return trip;
+
     }
 
     @Override
@@ -46,87 +43,43 @@ public class TripServiceImpl implements TripService {
         if (reservationDao.findReservationsByTrip(trip).size() > 0){
             throw new IllegalStateException("Can't delete trips which are in active reservations");
         }
-        
-        try{
-            Set<Excursion> excursions = trip.getPossibleExcursions();
-            
-            for (Excursion e : excursions){
-                excursionDao.update(e);
-                trip.removePossibleExcursion(e);
-                tripDao.update(trip);
-            }
-            
-            trip.deleteAllPossibleExcursions();
-            tripDao.update(trip);
-            
-            tripDao.remove(trip);
-        }
-        catch(Exception ex){
-            throw new TravelAgencyPersistenceException("Failed to remove trip"  + ex.getMessage(), ex.getCause());
-        }   
+
+        trip.deleteAllPossibleExcursions();
+        tripDao.update(trip);
+
+        tripDao.remove(trip);
     }
 
     @Override
     public Trip updateTrip(Trip trip) {
-        try{
-            return tripDao.update(trip);
-        }
-        catch(Exception ex){
-            throw new TravelAgencyPersistenceException("Failed to update trip"  + ex.getMessage(), ex.getCause());
-        }   
+        return tripDao.update(trip);  
     }
 
     @Override
     public Trip findTripById(Long id) {
-        try{
-            return tripDao.findById(id);
-        }
-        catch(Exception ex){
-            throw new TravelAgencyPersistenceException("Failed to find trip by id"  + ex.getMessage(), ex.getCause());
-        }   
+        return tripDao.findById(id);
     }
 
     @Override
     public List<Trip> findAllTrips() {
-        try{
-            return tripDao.findAllTrips();
-        }
-        catch(Exception ex){
-            throw new TravelAgencyPersistenceException("Failed to find all trips" + ex.getMessage(), ex.getCause());
-        }  
+        return tripDao.findAllTrips();
     }
 
     @Override
     public List<Trip> findTripsByCountry(String countryName) {
-        try{
-            return tripDao.findTripsByCountry(countryName);
-        }
-        catch(Exception ex){
-            throw new TravelAgencyPersistenceException("Failed to find trip by country name " + countryName + ex.getMessage(), ex.getCause());
-        }  
+        return tripDao.findTripsByCountry(countryName);
     }
 
     @Override
     public void changePrice(Trip trip, BigDecimal price) {
-        try{
-             trip.setPrice(price);
-             tripDao.update(trip);
-        }
-        catch(Exception ex){
-            throw new TravelAgencyPersistenceException("Failed to change price at trip " + trip.toString() + ex.getMessage(), ex.getCause());
-        }  
+            trip.setPrice(price);
+            tripDao.update(trip);
     }
 
     @Override
     public void addExcursionToTrip(Trip trip,Excursion excursion){
-        try{
             trip.addPossibleExcursion(excursion);
-            //excursion.setTrip(trip);
             tripDao.update(trip);
             excursionDao.update(excursion);
-        }
-        catch(Exception ex){
-            throw new TravelAgencyPersistenceException("Failed to add possible excursion " + excursion.toString() + "to trip " + trip.toString() + ex.getMessage(), ex.getCause());
-        }
     }
 }

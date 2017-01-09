@@ -5,11 +5,11 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="New trip">
+<my:pagetemplate title="Updating trip">
 <jsp:attribute name="body">
 
-    <form:form method="post" action="${pageContext.request.contextPath}/admin/trip/create"
-               modelAttribute="tripCreate" cssClass="form-horizontal">
+    <form:form method="post" action="${pageContext.request.contextPath}/admin/trip/update/${tripEdit.id}"
+               modelAttribute="tripEdit" cssClass="form-horizontal">
         <div class="form-group">
             <form:label path="possibleExcursionId" cssClass="col-sm-2 control-label">Possible excursions</form:label>
             <table>
@@ -25,6 +25,12 @@
         <c:if test="${excursionDateFail}">
             <center><font color="red">Selected possible excursion has to be accessible in trip date</font></center>
         </c:if>
+       <div class="form-group">
+            <form:label path="createdDate" cssClass="col-sm-2 control-label">Created</form:label>
+            <div class="col-sm-10">
+                <form:input type="date" path="createdDate" cssClass="form-control" readonly="true"/>
+            </div>
+        </div>
         <div class="form-group ${fromDate_error?'has-error':''}">
             <form:label path="fromDate" cssClass="col-sm-2 control-label">From</form:label>
             <div class="col-sm-10">
@@ -38,7 +44,7 @@
         <div class="form-group ${toDate_error?'has-error':''}">
             <form:label path="toDate" cssClass="col-sm-2 control-label">To</form:label>
             <div class="col-sm-10">
-               <form:input type="date" path="toDate" cssClass="form-control"/>
+                <form:input type="date" path="toDate" cssClass="form-control"/>
                 <form:errors path="toDate" cssClass="help-block"/>
             </div>
         </div>
@@ -78,8 +84,13 @@
                 <form:errors path="price" cssClass="help-block"/>
             </div>
         </div>
+      
+        <form:label path="filePathToPicture" cssClass="col-sm-2 control-label">Filepath to picture</form:label>
+        <div class="col-sm-10">
+            <form:input path="filePathToPicture" cssClass="form-control" readonly="true"/>
+        </div>
 
-        <button class="btn btn-primary" type="submit">Create trip</button>
+        <button class="btn btn-primary" type="submit">Update trip</button>
     </form:form>
 
 </jsp:attribute>

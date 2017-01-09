@@ -24,7 +24,9 @@
             </h4>
             <br />
             <h4>Price: <c:out value="${trip.price}"/> EUR</h4>
+            <button class="btn btn-primary" type="submit">Create reservation</button>
         </div>
+        
         <div class="col-xs-6">
             <table class="table">
                 <c:if test="${countExcursion > 0}">
@@ -58,10 +60,18 @@
                 </tbody>
             </table>
         </div>
+        <div class="col-xs-6">
+                    <div class="panel panel-default">
+                    <div class="panel-body">
+                      
+                <img class="img-responsive img-rounded" src="<c:url value="${trip.filePathToPicture}"/>" height="550" width="550"/>
+                    </div>
+                    </div>
+            </div>
     </div>
     <br />
     <br />
-    <button class="btn btn-primary" type="submit">Create reservation</button>
+
     </form:form>
 </jsp:attribute>
 </my:pagetemplate>
