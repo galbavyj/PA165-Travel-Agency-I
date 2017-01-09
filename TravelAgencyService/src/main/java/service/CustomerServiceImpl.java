@@ -29,20 +29,19 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void registerCustomer(Customer c, String plainTextPassword) {
-        try {
-            c.setPasswordHash(createHash(plainTextPassword));
-            customerDao.create(c);
-        }
-        catch (Exception e) {
-            throw new TravelAgencyPersistenceException("Failed to create customer" + e.getMessage(), e.getCause());
-        }
+        c.setPasswordHash(createHash(plainTextPassword));
+        customerDao.create(c);
     }
-    
+
     @Override
     public boolean authenticateCustomer(Customer c, String password) {
         String correctHash = c.getPasswordHash();
-        if(password == null) return false;
-        if(correctHash == null) throw new IllegalArgumentException("password hash is null");
+        if (password == null) {
+            return false;
+        }
+        if (correctHash == null) {
+            throw new IllegalArgumentException("password hash is null");
+        }
         String[] params = correctHash.split(":");
         int iterations = Integer.parseInt(params[0]);
         byte[] salt = fromHex(params[1]);
@@ -53,52 +52,27 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void updateCustomer(Customer c) {
-        try {
-            customerDao.update(c);
-        }
-        catch (Exception e) {
-            throw new TravelAgencyPersistenceException("Failed to update customer" + e.getMessage(), e.getCause());
-        }
+        customerDao.update(c);
     }
 
     @Override
     public void removeCustomer(Customer c) {
-        try {
-            customerDao.remove(c);
-        }
-        catch (Exception e) {
-            throw new TravelAgencyPersistenceException("Failed to remove customer" + e.getMessage(), e.getCause());
-        }
+        customerDao.remove(c);
     }
 
     @Override
     public List<Customer> findAll() {
-        try {
-            return customerDao.findAllCustomers();
-        }
-        catch (Exception e) {
-            throw new TravelAgencyPersistenceException(e.getMessage(), e.getCause());
-        }
+        return customerDao.findAllCustomers();
     }
 
     @Override
     public Customer findByEmail(String email) {
-        try {
-            return customerDao.findByEmail(email);
-        }
-        catch (Exception e) {
-            throw new TravelAgencyPersistenceException("Failed to find customer with email " + email + e.getMessage(), e.getCause());
-        }
+        return customerDao.findByEmail(email);
     }
 
     @Override
     public Customer findById(Long customerId) {
-        try {
-            return customerDao.findById(customerId);
-        }
-        catch (Exception e) {
-            throw new TravelAgencyPersistenceException("Failed to find customer with id " + customerId + e.getMessage(), e.getCause());
-        }
+        return customerDao.findById(customerId);
     }
 
     private static String createHash(String password) {
@@ -114,7 +88,7 @@ public class CustomerServiceImpl implements CustomerService {
         // format iterations:salt:hash
         return PBKDF2_ITERATIONS + ":" + toHex(salt) + ":" + toHex(hash);
     }
-    
+
     private static byte[] pbkdf2(char[] password, byte[] salt, int iterations, int bytes) {
         try {
             PBEKeySpec spec = new PBEKeySpec(password, salt, iterations, bytes * 8);
@@ -123,6 +97,7 @@ public class CustomerServiceImpl implements CustomerService {
             throw new RuntimeException(e);
         }
     }
+
     /**
      * Compares two byte arrays in length-constant time. This comparison method
      * is used so that password hashes cannot be extracted from an on-line
@@ -134,8 +109,9 @@ public class CustomerServiceImpl implements CustomerService {
      */
     private static boolean slowEquals(byte[] a, byte[] b) {
         int diff = a.length ^ b.length;
-        for (int i = 0; i < a.length && i < b.length; i++)
+        for (int i = 0; i < a.length && i < b.length; i++) {
             diff |= a[i] ^ b[i];
+        }
         return diff == 0;
     }
 
@@ -156,12 +132,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void addReservationToCustomer(Customer customer, Reservation reservation) {
-        try {
-            customerDao.addReservation(customer, reservation);
-        }
-        catch (Exception e) {
-            throw new TravelAgencyPersistenceException("Failed to assign reservation " + reservation + 
-                    "to customer" + customer.toString() + e.getMessage(), e.getCause());
-        }
+        customerDao.addReservation(customer, reservation);
     }
 }
