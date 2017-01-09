@@ -16,6 +16,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
+<<<<<<< HEAD
             <version>5.2.4.Final</version>
             <type>jar</type>
         </dependency>
@@ -23,6 +24,10 @@
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <version>7.0</version>
+=======
+            <version>5.3.0.Final</version>
+            <type>jar</type>
+>>>>>>> refs/remotes/origin/master
         </dependency>
     </dependencies>
     <parent>

@@ -37,6 +37,9 @@
                 <a class="navbar-brand" href="${pageContext.request.contextPath}/admin/customer/list">Customers</a>
                 <a class="navbar-brand" href="${pageContext.request.contextPath}/admin/reservation/list">Reservations</a>
                 <a class="navbar-brand" href="${pageContext.request.contextPath}/authentication/logout">Logout</a>
+<%--           no idea why this is not working...
+            <c:if test="${not empty authUser}">
+            </c:if>--%>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             
