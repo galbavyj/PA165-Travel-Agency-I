@@ -112,10 +112,15 @@ public class CustomerServiceTest extends AbstractTestNGSpringContextTests {
 
 
     @Test
-    public void testRegisterAndAuthenticateCustomer(){
+    public void testRegisterCustomer(){
         customerService.registerCustomer(customer1, pass);
         verify(customerDao).create(customer1);
-        assertEquals(customerService.authenticateCustomer(customer1, pass), true);
+    }
+
+    @Test
+    public void testAuthenticateCustomer(){
+        customerService.registerCustomer(customer2, pass);
+        assertEquals(customerService.authenticateCustomer(customer2, pass), true);
     }
 
     @Test
