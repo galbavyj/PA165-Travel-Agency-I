@@ -84,6 +84,11 @@
                 <form:errors path="price" cssClass="help-block"/>
             </div>
         </div>
+      
+        <form:label path="filePathToPicture" cssClass="col-sm-2 control-label">Filepath to picture</form:label>
+        <div class="col-sm-10">
+            <form:input path="filePathToPicture" cssClass="form-control" readonly="true"/>
+        </div>
 
         <button class="btn btn-primary" type="submit">Update trip</button>
     </form:form>

@@ -15,6 +15,15 @@ public class TripUpdateDTO extends TripCreateDTO{
     
     private Long id;
     private Date createdDate;
+    private String filePathToPicture;
+
+    public String getFilePathToPicture() {
+        return filePathToPicture;
+    }
+
+    public void setFilePathToPicture(String filePathToPicture) {
+        this.filePathToPicture = filePathToPicture;
+    }
     
     public Long getId() {
         return id;

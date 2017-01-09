@@ -46,16 +46,6 @@ public class TripCreateDTO {
     @NotNull(message = "Please enter a value")
     @DecimalMin(value = "1", message = "Price can't be negative or zero")
     private BigDecimal price;
-    
-    private Image image;
-
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
 
     public Date getFromDate() {
         return fromDate;

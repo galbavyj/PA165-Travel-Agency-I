@@ -7,10 +7,17 @@
 
 <my:pagetemplate title="Trip detail">
 <jsp:attribute name="body">
-
-    <form method="post" action="${pageContext.request.contextPath}/admin/trip/delete/${trip.id}">
+    <table>
+    <tr><td><form method="post" action="${pageContext.request.contextPath}/admin/trip/delete/${trip.id}">
         <button type="submit" class="btn btn-primary">Delete</button>
-    </form>
+            </form></td>
+    <td><form method="get" action="${pageContext.request.contextPath}/admin/trip/edit/${trip.id}">
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                    </form></td>
+    <td><form method="get" action="${pageContext.request.contextPath}/admin/trip/uploadForm/${trip.id}">
+        <button type="submit" class="btn btn-primary">Upload picture</button>
+        </form></td></tr>
+    </table>
 
     <table class="table">
         <thead>

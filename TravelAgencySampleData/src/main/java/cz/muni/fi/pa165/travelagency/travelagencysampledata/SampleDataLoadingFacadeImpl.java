@@ -115,8 +115,6 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         trip.setPrice(BigDecimal.valueOf(1000));
         trip.setAddressOfHotel(addressAdmin);
         Long createdTripId = tripService.createTrip(trip).getId();
-        trip.setFilePathToPicture("/resources/" + createdTripId.longValue() + ".jpg");
-        tripService.updateTrip(trip);
         excursion1 = new Excursion();
         excursion2 = new Excursion();
         excursion3 = new Excursion();
