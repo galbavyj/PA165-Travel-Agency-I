@@ -1,6 +1,9 @@
 package config;
 
 import cz.muni.fi.pa165.travelagency.travelagencysampledata.SampleDataConfiguration;
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration;
+import javax.servlet.annotation.MultipartConfig;
 import javax.validation.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,9 +11,11 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -25,7 +30,12 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
     final static Logger log = LoggerFactory.getLogger(SpringMvcConfig.class);
     
     public static final String TEXTS = "Texts";
-
+    
+    @Override
+    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**").addResourceLocations("WEB-INF/resources/");
+    }
+    
     /**
      * Maps the main page to a specific view.
      */
@@ -75,5 +85,13 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
     public Validator validator() {
         log.debug("registering JSR-303 validator");
         return new LocalValidatorFactoryBean();
+    }
+    
+    @Bean
+    public CommonsMultipartResolver multipartResolver(){
+         CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
+        commonsMultipartResolver.setDefaultEncoding("utf-8");
+        commonsMultipartResolver.setMaxUploadSize(50000000);
+        return commonsMultipartResolver;
     }
 }

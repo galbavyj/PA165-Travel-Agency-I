@@ -131,7 +131,6 @@ public class TripFacadeTest extends AbstractTransactionalTestNGSpringContextTest
         tripCreateDTO.setCity(address1DTO.getCity());
         tripCreateDTO.setStreet(address1DTO.getStreet());
         tripCreateDTO.setNumberOfHouse(address1DTO.getNumberOfHouse());
-        tripCreateDTO.setFilePathToPicture(trip1.getFilePathToPicture());
         tripCreateDTO.setFromDate(trip1.getFromDate());
         tripCreateDTO.setPrice(trip1.getPrice());
         tripCreateDTO.setToDate(trip1.getToDate());     
@@ -149,7 +148,6 @@ public class TripFacadeTest extends AbstractTransactionalTestNGSpringContextTest
         tripCreateDTO2.setCity(address2DTO.getCity());
         tripCreateDTO2.setStreet(address2DTO.getStreet());
         tripCreateDTO2.setNumberOfHouse(address2DTO.getNumberOfHouse());
-        tripCreateDTO2.setFilePathToPicture(trip2.getFilePathToPicture());
         tripCreateDTO2.setFromDate(trip2.getFromDate());
         tripCreateDTO2.setPrice(trip2.getPrice());
         tripCreateDTO2.setToDate(trip2.getToDate()); 

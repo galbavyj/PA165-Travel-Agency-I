@@ -78,8 +78,13 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests{
         tripBrno = new Trip();
         tripBrno.setAddressOfHotel(addressHotelBrno);
         try {
+<<<<<<< HEAD
+            from = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("01/05/2017");
+            to = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("10/05/2017");
+=======
             from = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("06/06/2017");
             to = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("10/06/2017");
+>>>>>>> refs/remotes/origin/master
             created = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("30/10/2016");
         } catch (ParseException ex) {
             Logger.getLogger(TripDaoTest.class.getName()).log(Level.SEVERE, null, ex);

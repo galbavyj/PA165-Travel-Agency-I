@@ -1,23 +1,51 @@
 package cz.muni.fi.pa165.travelagency.api.dto;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
+import java.awt.Image;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
 
 /**
  * @Patrik Behrami
  */
 public class TripCreateDTO {
   
+    @NotNull(message = "Please enter a date")
+    @Future(message = "Date must be in the future")
     private Date fromDate;
+    
+    @NotNull(message = "Please enter a date")
+    @Future(message = "Date must be in the future")
     private Date toDate;
+    
     private Set<Long> possibleExcursionId;
+    
+    @NotBlank(message = "Please enter a value.")
+    @Size(max = 30, message = "Please don't enter more than 30 characters.")
     private String country;
+    
+    @NotBlank(message = "Please enter a value.")
+    @Size(max = 30, message = "Please don't enter more than 30 characters.")
     private String city;
+    
+    @NotBlank(message = "Please enter a value.")
+    @Size(max = 30, message = "Please don't enter more than 30 characters.")
     private String street;
+    
+    @NotNull(message = "Please enter a value")
+    @Min(value = 1, message = "Number of house can't be negative or zero")
     private int numberOfHouse;
+    
+    @NotNull(message = "Please enter a value")
+    @DecimalMin(value = "1", message = "Price can't be negative or zero")
     private BigDecimal price;
-    private String filePathToPicture;
 
     public Date getFromDate() {
         return fromDate;
@@ -83,13 +111,6 @@ public class TripCreateDTO {
         this.price = price;
     }
 
-    public String getFilePathToPicture() {
-        return filePathToPicture;
-    }
-
-    public void setFilePathToPicture(String filePathToPicture) {
-        this.filePathToPicture = filePathToPicture;
-    }
     
     
     
@@ -99,7 +120,6 @@ public class TripCreateDTO {
         hash = 37 * hash + (this.toDate != null ? this.toDate.hashCode() : 0);
         hash = 37 * hash + (this.fromDate != null ? this.fromDate.hashCode() : 0);
         hash = 37 * hash + (this.price != null ? this.price.hashCode() : 0);
-        hash = 37 * hash + (this.filePathToPicture != null ? this.filePathToPicture.hashCode() : 0);
 
         return hash;
     }
@@ -123,11 +143,6 @@ public class TripCreateDTO {
             return false;
         }
         if ((this.price == null) ? (other.price != null) : !this.price.equals(other.price)) {
-            return false;
-        }
-
-        if (this.filePathToPicture != other.filePathToPicture && (this.filePathToPicture == null
-                || !this.filePathToPicture.equals(other.filePathToPicture))) {
             return false;
         }
 

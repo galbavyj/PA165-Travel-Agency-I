@@ -5,33 +5,39 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="Product Administration">
+<my:pagetemplate title="Trip detail">
 <jsp:attribute name="body">
-
-    <form method="post" action="${pageContext.request.contextPath}/admin/trip/delete/${trip.id}">
+    <table>
+    <tr><td><form method="post" action="${pageContext.request.contextPath}/admin/trip/delete/${trip.id}">
         <button type="submit" class="btn btn-primary">Delete</button>
-    </form>
-
+            </form></td>
+    <td><form method="get" action="${pageContext.request.contextPath}/admin/trip/edit/${trip.id}">
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                    </form></td>
+    <td><form method="get" action="${pageContext.request.contextPath}/admin/trip/uploadForm/${trip.id}">
+        <button type="submit" class="btn btn-primary">Upload picture</button>
+        </form></td></tr>
+    </table>
 
     <table class="table">
         <thead>
         <tr>
-            <th>id</th>
-            <th>from</th>
-            <th>to</th>
-            <th>created</th>
-            <th>country</th>
-            <th>street</th>
-            <th>number of house</th>
-            <th>price</th>
+            <th>Id</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Created</th>
+            <th>Country</th>
+            <th>Street</th>
+            <th>Number of house</th>
+            <th>Price</th>
         </tr>
         </thead>
         <tbody>
             <tr>
                 <td>${trip.id}</td>
-                <td><fmt:formatDate value="${trip.fromDate}" pattern="yyyy-MM-dd"/></td>
-                <td><fmt:formatDate value="${trip.toDate}" pattern="yyyy-MM-dd"/></td>
-                <td><fmt:formatDate value="${trip.createdDate}" pattern="yyyy-MM-dd"/></td>
+                <td><fmt:formatDate value="${trip.fromDate}" pattern="dd. MM. yyyy"/></td>
+                <td><fmt:formatDate value="${trip.toDate}" pattern="dd. MM. yyyy"/></td>
+                <td><fmt:formatDate value="${trip.createdDate}" pattern="dd. MM. yyyy"/></td>
                 <td><c:out value="${trip.addressOfHotel.country}"/></td>
                 <td><c:out value="${trip.addressOfHotel.street}"/></td>
                 <td><c:out value="${trip.addressOfHotel.numberOfHouse}"/></td>
@@ -46,19 +52,29 @@
                     <caption>Possible excursions</caption>
                     <thead>
                     <tr>
-                        <th>id</th>
-                        <th>description</th>
+                        <th>Id</th>
+                        <th>Place</th>
+                        <th>Description</th>
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach items="${possibleExcursions}" var="excursion">
                         <tr>
                             <td>${excursion.id}</td>
+                            <td><c:out value="${excursion.place}"/></td>
                             <td><c:out value="${excursion.description}"/></td>
                         </tr>
                     </c:forEach>
                     </tbody>
                 </table>
+            </div>
+            <div class="col-xs-6">
+                    <div class="panel panel-default">
+                    <div class="panel-body">
+                      
+                <img class="img-responsive img-rounded" src="<c:url value="${trip.filePathToPicture}"/>" height="550" width="550"/>
+                    </div>
+                    </div>
             </div>
         </div>
 

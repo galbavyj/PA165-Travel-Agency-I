@@ -148,7 +148,7 @@ public class TripServiceTest extends AbstractTestNGSpringContextTests {
         verify(tripDao).create(trip1);
     }
     
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    @Test(expectedExceptions = NullPointerException.class)
     public void createNullTrip(){
         Mockito.doThrow(NullPointerException.class).when(tripDao).create(null);
         tripService.createTrip(null);
@@ -169,13 +169,13 @@ public class TripServiceTest extends AbstractTestNGSpringContextTests {
         verify(tripDao).update(trip1);
     }
     
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    @Test(expectedExceptions = NullPointerException.class)
     public void updateNullTrip(){
         when(tripDao.update(null)).thenThrow(new NullPointerException());
         tripService.updateTrip(null);
     }
     
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void updateTripWithNullParameter(){
         tripService.createTrip(trip1);
         trip1.setAddressOfHotel(null);
@@ -183,7 +183,7 @@ public class TripServiceTest extends AbstractTestNGSpringContextTests {
         tripService.updateTrip(trip1);
     }
     
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void updateTripWithNegativePrice(){
         tripService.createTrip(trip1);
         trip1.setPrice(new BigDecimal("-10"));
@@ -191,7 +191,7 @@ public class TripServiceTest extends AbstractTestNGSpringContextTests {
         tripService.updateTrip(trip1);
     }
     
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void updateTripWithWrongDates(){
         tripService.createTrip(trip1);
         try {
@@ -211,7 +211,7 @@ public class TripServiceTest extends AbstractTestNGSpringContextTests {
         assertEquals(trip, trip1);
     }
     
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void  findTripByInvalidId(){
         when(tripDao.findById(-10L)).thenThrow(new IllegalArgumentException());
         tripService.findTripById(-10L);

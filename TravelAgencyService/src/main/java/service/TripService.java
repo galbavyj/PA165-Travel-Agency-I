@@ -15,7 +15,7 @@ public interface TripService {
      *
      * @param trip Trip to be created
      */
-    void createTrip(Trip trip);
+    Trip createTrip(Trip trip);
 
     /**
      * Removes Trip

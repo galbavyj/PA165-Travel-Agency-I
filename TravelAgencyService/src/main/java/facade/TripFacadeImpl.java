@@ -37,7 +37,7 @@ public class TripFacadeImpl implements TripFacade {
     private ExcursionService excursionService;
     
     @Override
-    public void createTrip(TripCreateDTO tripCreateDTO) {
+    public Long createTrip(TripCreateDTO tripCreateDTO) {
         Trip trip = mappingService.mapTo(tripCreateDTO, Trip.class);
         Address address = new Address();
         address.setCountry(tripCreateDTO.getCountry());
@@ -60,6 +60,7 @@ public class TripFacadeImpl implements TripFacade {
         }
         
         tripService.createTrip(trip);
+        return trip.getId();
     }
 
     @Override
