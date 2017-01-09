@@ -16,7 +16,7 @@ public interface TripFacade {
      * 
      * @param trip DTO of Trip to be created
      */
-    public void createTrip(TripCreateDTO trip);
+    public Long createTrip(TripCreateDTO trip);
     
     /**
      * Remove Trip.

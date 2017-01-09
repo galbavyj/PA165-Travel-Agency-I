@@ -70,6 +70,10 @@ public class TripDTO {
     public void removePossibleExcursion(ExcursionDTO possibleExcursion){
         this.possibleExcursions.remove(possibleExcursion);
     }
+    
+    public void deleteAllPossibleExcursions(){
+        this.possibleExcursions.clear();
+    }
 
     public AddressDTO getAddressOfHotel() {
         return addressOfHotel;

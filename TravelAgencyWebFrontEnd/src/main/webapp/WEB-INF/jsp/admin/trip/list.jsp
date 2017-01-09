@@ -44,9 +44,13 @@
                 <td><form method="get" action="${pageContext.request.contextPath}/admin/trip/view/${trip.id}">
                     <button type="submit" class="btn btn-primary">View</button>
                     </form></td>
+                <td><form method="get" action="${pageContext.request.contextPath}/admin/trip/edit/${trip.id}">
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                    </form></td>
                 <td><form method="post" action="${pageContext.request.contextPath}/admin/trip/delete/${trip.id}">
                     <button type="submit" class="btn btn-primary">Delete</button>
                     </form></td>
+                    
            </tr>
         </c:forEach>
         </tbody>

@@ -16,6 +16,7 @@
     <!-- bootstrap loaded from content delivery network -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"  crossorigin="anonymous">
+    <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
     <jsp:invoke fragment="head"/>
 </head>
 <body>

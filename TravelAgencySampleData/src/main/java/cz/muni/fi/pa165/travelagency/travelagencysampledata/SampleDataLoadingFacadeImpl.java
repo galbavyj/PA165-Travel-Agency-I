@@ -102,8 +102,8 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         java.util.Date from = new java.util.Date();
         java.util.Date to = new java.util.Date();
         try {
-            from = (java.util.Date) new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2017");
-            to = (java.util.Date) new SimpleDateFormat("dd/MM/yyyy").parse("10/01/2017");
+            from = (java.util.Date) new SimpleDateFormat("dd/MM/yyyy").parse("01/05/2017");
+            to = (java.util.Date) new SimpleDateFormat("dd/MM/yyyy").parse("10/05/2017");
             created = (java.util.Date) new SimpleDateFormat("dd/MM/yyyy").parse("30/10/2016");
         } catch (ParseException ex) {
             java.util.logging.Logger.getLogger(SampleDataLoadingFacadeImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -114,7 +114,9 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         trip.setToDate(to);
         trip.setPrice(BigDecimal.valueOf(1000));
         trip.setAddressOfHotel(addressAdmin);
-        tripService.createTrip(trip);
+        Long createdTripId = tripService.createTrip(trip).getId();
+        trip.setFilePathToPicture("/resources/" + createdTripId.longValue() + ".jpg");
+        tripService.updateTrip(trip);
         excursion1 = new Excursion();
         excursion2 = new Excursion();
         excursion3 = new Excursion();

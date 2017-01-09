@@ -32,9 +32,10 @@ public class TripServiceImpl implements TripService {
     ReservationService reservationService;
     
     @Override
-    public void createTrip(Trip trip) {
+    public Trip createTrip(Trip trip) {
         try{
             tripDao.create(trip);
+            return trip;
         }
         catch(Exception ex){
             throw new TravelAgencyPersistenceException("Failed to create trip" + ex.getMessage(), ex.getCause());
@@ -48,14 +49,6 @@ public class TripServiceImpl implements TripService {
         }
         
         try{
-            Set<Excursion> excursions = trip.getPossibleExcursions();
-            
-            for (Excursion e : excursions){
-                excursionDao.update(e);
-                trip.removePossibleExcursion(e);
-                tripDao.update(trip);
-            }
-            
             trip.deleteAllPossibleExcursions();
             tripDao.update(trip);
             
