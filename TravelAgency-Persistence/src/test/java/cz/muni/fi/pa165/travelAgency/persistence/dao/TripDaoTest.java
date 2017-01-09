@@ -60,6 +60,8 @@ public class TripDaoTest extends AbstractTestNGSpringContextTests{
         try {
             from = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("01/05/2017");
             to = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("10/05/2017");
+            from = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("01/06/2017");
+            to = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("10/06/2017");
             created = (Date) new SimpleDateFormat("dd/MM/yyyy").parse("30/10/2016");
         } catch (ParseException ex) {
             Logger.getLogger(TripDaoTest.class.getName()).log(Level.SEVERE, null, ex);

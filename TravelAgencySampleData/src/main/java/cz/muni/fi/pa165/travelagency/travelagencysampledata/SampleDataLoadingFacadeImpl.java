@@ -104,6 +104,8 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         try {
             from = (java.util.Date) new SimpleDateFormat("dd/MM/yyyy").parse("01/05/2017");
             to = (java.util.Date) new SimpleDateFormat("dd/MM/yyyy").parse("10/05/2017");
+            from = (java.util.Date) new SimpleDateFormat("dd/MM/yyyy").parse("01/06/2017");
+            to = (java.util.Date) new SimpleDateFormat("dd/MM/yyyy").parse("10/06/2017");
             created = (java.util.Date) new SimpleDateFormat("dd/MM/yyyy").parse("30/10/2016");
         } catch (ParseException ex) {
             java.util.logging.Logger.getLogger(SampleDataLoadingFacadeImpl.class.getName()).log(Level.SEVERE, null, ex);

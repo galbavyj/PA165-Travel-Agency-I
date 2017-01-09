@@ -168,38 +168,38 @@ public class CustomerServiceTest extends AbstractTestNGSpringContextTests {
         customerService.addReservationToCustomer(customer1, reservation);        
     }
 
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void testFindByIdNull(){
         when(customerDao.findById(null)).thenThrow(new IllegalArgumentException());
         customerService.findById(null);
     }
     
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void testFindByIdInvalid(){
         Long id = new Long(-1);
         when(customerDao.findById(id)).thenThrow(IllegalArgumentException.class);
         customerService.findById(id);
     }
 
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void testFindByEmailNull(){
         when(customerDao.findByEmail(null)).thenThrow(new IllegalArgumentException());
         customerService.findByEmail(null);
     }
 
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    @Test(expectedExceptions = NullPointerException.class)
     public void testCreateWithNull(){
         Mockito.doThrow(NullPointerException.class).when(customerDao).create(null);
         customerService.registerCustomer(null,null);
     }
     
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    @Test(expectedExceptions = NullPointerException.class)
     public void testRemoveWithNull(){
         Mockito.doThrow(NullPointerException.class).when(customerDao).remove(null);
         customerService.removeCustomer(null);
     }
     
-    @Test(expectedExceptions = TravelAgencyPersistenceException.class)
+    @Test(expectedExceptions = NullPointerException.class)
     public void testUpdateWithNull(){
         Mockito.doThrow(NullPointerException.class).when(customerDao).update(null);
         customerService.updateCustomer(null);
