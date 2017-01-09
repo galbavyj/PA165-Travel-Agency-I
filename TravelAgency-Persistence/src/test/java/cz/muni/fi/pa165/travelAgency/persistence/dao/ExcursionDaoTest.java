@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -202,6 +203,16 @@ public class ExcursionDaoTest extends AbstractTestNGSpringContextTests{
     public void testCreateWithNullExcursionType() {
         excursion1.setExcursionType(null);
         excursionDao.create(excursion1);
+    }
+
+    @Test(expectedExceptions = InvalidDataAccessApiUsageException.class)
+    public void updateWithNull(){
+        excursionDao.update(null);
+    }
+
+    @Test(expectedExceptions = InvalidDataAccessApiUsageException.class)
+    public void testCreateWithNull() {
+        excursionDao.create(null);
     }
 
     private void assertFullEquals(Excursion excursion, Excursion excursion1) {
