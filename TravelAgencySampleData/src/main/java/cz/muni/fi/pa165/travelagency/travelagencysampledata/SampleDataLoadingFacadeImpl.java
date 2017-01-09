@@ -154,6 +154,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         excursions.add(excursion2);
 
         trip.setPossibleExcursions(excursions);
+        trip.setFilePathToPicture("/resources/1.jpg");
         tripService.updateTrip(trip);
         
         testReservation = new Reservation();
